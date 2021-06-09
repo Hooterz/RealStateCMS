@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
-namespace controller;
+namespace config;
 
 class Redirection
 {
     public static $path = array(
         'error' => __DIR__.'/../views/error.html',
-        'home' => __DIR__.'/../views/index.html',
+        'home' => __DIR__ . '/../views/index.html',
     );
 
     public static function Error404(){
