@@ -13,7 +13,7 @@ create table Image(
     img_path varchar(500)
 );
 
-create table Propiedad(
+create table Property(
 	prop_id varchar(25) primary key ,
 	prop_name varchar(100) default '-' not null,
 	prop_address varchar(100) default '-' not null,
@@ -26,9 +26,9 @@ create table Propiedad(
 	prop_isHidden int
 );
 
-create table Propiedad_Image(
+create table Property_Image(
     propImg_prop_id varchar(25),
-    foreign key (propImg_prop_id) references Propiedad(prop_id),
+    foreign key (propImg_prop_id) references Property(prop_id),
     propImg_img_id int,
     foreign key (propImg_img_id) references Image(img_id)
 );
