@@ -1,14 +1,16 @@
 <?php
+    declare(strict_types=1);
     use \config\DatabaseConnection;
     use \config\Redirection;
+
     require('./config/autoload.php');
-    (new Autoloader())->load();
+    (new Autoloader())->Load();
 
     trait Database_Methods
     {
-        public function queryExecuter($query)
+        private function QueryExecuter($query)
         {
-            $con = DatabaseConnection::getInstance();
+            $con = DatabaseConnection::GetInstance();
             $result = $con->query($query);
 
             //Check if any results were returned
@@ -23,64 +25,68 @@
 
         public function ExecuteRawQuery($query){
             $cleaned_query= htmlspecialchars($query);
-            $this->queryExecuter($query);
+            return $this->QueryExecuter($query);
         }
     }
 
-    abstract class Database_Connector
-    {
-        public abstract function findById($id);
-        public abstract function ExecuteRawQuery($query);
+    abstract class Database_Model
+    {   
+        public function FindById($id):array ;
 
+        public function Exists($id): bool {
+            $cleanedId = htmlspecialchars($id);
+            $db_response = $this->FindById($cleanedId);
+            return count($db_response) === 0 ? false : true;
+        }
     }
 
-    class Database_PropertyConnector extends DatabaseConnector
+    class Database_PropertyModel extends Database_Model
     {
-        use DatabaseMethods;
+        use Database_Methods;
 
-        public function findById($id)
+        public function FindById($id) : array
         {
             $cleanedId = htmlspecialchars($id);
-            return $this->queryExecuter("SELECT * FROM Propiedades WHERE prop_id = $cleanedId");
+            return $this->QueryExecuter("SELECT * FROM Propiedades WHERE prop_id = $cleanedId");
         }
+
     }
 
-    class Database_LocationConnector extends DatabaseConnector
+    class Database_LocationModel extends Database_Model
     {
-        use DatabaseMethods;
+        use Database_Methods;
 
-        public function findById($id)
+        public function FindById($id) : array
         {
             $cleanedId = htmlspecialchars($id);
-            return $this->queryExecuter("SELECT * FROM Location WHERE lo_id = $cleanedId");
+            return $this->QueryExecuter("SELECT * FROM Location WHERE lo_id = $cleanedId");
         }
     }
 
-    class Database_ImageConnector extends DatabaseConnector
+    class Database_ImageModel extends Database_Model
     {
-        use DatabaseMethods;
+        use Database_Methods;
 
-        public function findById($id)
+        public function FindById($id) : array
         {
             $cleanedId = htmlspecialchars($id);
-            return $this->queryExecuter("SELECT * FROM Image WHERE img_id = $cleanedId");
+            return $this->QueryExecuter("SELECT * FROM Image WHERE img_id = $cleanedId");
         }
     }
 
-    class Database_Property_ImageConnector extends DatabaseConnector
+    class Database_Property_ImageModel extends Database_Model
     {
-        use DatabaseMethods;
+        use Database_Methods;
 
         /**
          * @param $id
          * Esta función nos va a devolver cada referencia relacionada a una propiedad;
          */
-        public function findById($id)
+        public function FindById($id) : array
         {
             $cleanedId = htmlspecialchars($id);
-            return $this->queryExecuter("SELECT propImg_img_id FROM Property_Image WHERE propImg_prop_id = $cleanedId");
+            return $this->QueryExecuter("SELECT propImg_img_id FROM Property_Image WHERE propImg_prop_id = $cleanedId");
         }
 
-        p
     }
 ?>

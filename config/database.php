@@ -5,7 +5,7 @@ class DatabaseConnection
 {
     public static $instance;
 
-    public static function getInstance()
+    public static function GetInstance()
     {
         if (isset(self::$instance))
         {

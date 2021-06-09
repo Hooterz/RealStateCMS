@@ -14,9 +14,9 @@ class Redirection
         header('Location: '.$pathToFile.'?error="404"');
     }
 
-    public static function CustomError($error_numer){
+    public static function CustomError($error_number){
         $pathToFile = self::$path['error'];
-        header('Location: '.$pathToFile.'?error="'.$error_numer.'"');
+        header('Location: '.$pathToFile.'?error="'.$error_number.'"');
     }
 
     public static function Home(){

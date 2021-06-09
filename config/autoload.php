@@ -1,7 +1,7 @@
 <?php
     class Autoloader
     {
-        private function classLoader($class)
+        private function ClassLoader($class)
         {
             $path = str_replace('\\', '/', $class).'.php';
 
@@ -9,9 +9,9 @@
                 require_once $path;
         }
 
-        public function load()
+        public function Load()
         {
-            spl_autoload_register(array($this, 'Classloader'));
+            spl_autoload_register(array($this, 'ClassLoader'));
         }
     }
 ?>
