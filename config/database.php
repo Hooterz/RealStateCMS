@@ -1,9 +1,39 @@
 <?php
-$mysqli = new mysqli("localhost","my_user","my_password","my_db");
+namespace config;
 
-// Check connection
-if ($mysqli -> connect_errno) {
-    echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
-    exit();
+class DatabaseConnection
+{
+    public static $instance;
+
+    public static function getInstance()
+    {
+        if (isset(self::$instance))
+        {
+            return self::$instance;
+        }
+        else
+        {
+            $instance = new DatabaseConnection();
+            self::$instance = $instance;
+            return self::$instance;
+        }
+    }
+
+    public function __construct($dbhost = "", $username = "", $password = "", $dbname = "")
+    {
+        try
+        {
+            $this->instance = new mysqli($dbhost, $username, $password, $dbname);
+
+            if(mysqli_connect_errno())
+            {
+                throw new Exception("Could not connect to database.");
+            }
+        }
+        catch (Exception $error)
+        {
+            throw new Exception($error->getMessage());
+        }
+    }
 }
 ?>
