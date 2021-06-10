@@ -1,5 +1,6 @@
 <?php
     declare(strict_types=1);
+    use \config\Autoloader;
     use \config\DatabaseConnection;
     use \config\Redirection;
 
@@ -24,18 +25,17 @@
         }
 
         public function ExecuteRawQuery($query){
-            $cleaned_query= htmlspecialchars($query);
             return $this->QueryExecuter($query);
         }
     }
 
     abstract class Database_Model
     {   
-        public function FindById($id):array ;
+        public abstract function FindById($id);
 
         public function Exists($id): bool {
             $cleanedId = htmlspecialchars($id);
-            $db_response = $this->FindById($cleanedId);
+            $db_response = (array) $this->FindById($cleanedId);
             return count($db_response) === 0 ? false : true;
         }
     }
@@ -49,7 +49,6 @@
             $cleanedId = htmlspecialchars($id);
             return $this->QueryExecuter("SELECT * FROM Propiedades WHERE prop_id = $cleanedId");
         }
-
     }
 
     class Database_LocationModel extends Database_Model

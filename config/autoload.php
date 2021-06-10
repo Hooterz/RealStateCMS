@@ -1,4 +1,6 @@
 <?php
+    namespace config;
+    
     class Autoloader
     {
         private function ClassLoader($class)
