@@ -1,19 +1,10 @@
 <?php
-
-
+declare(strict_types=1);
 namespace controller\Forms;
 
-
-class BaseFormHandler implements IFormHandler
+abstract class BaseFormHandler implements IFormHandler
 {
+    public abstract function Handle_POST(array $POST);
 
-    public function Handle_POST()
-    {
-        // TODO: Implement Handle_POST() method.
-    }
-
-    public function Handle_GET()
-    {
-        // TODO: Implement Handle_GET() method.
-    }
+    public abstract function Handle_GET(array $GET);
 }
