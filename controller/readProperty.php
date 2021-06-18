@@ -3,8 +3,7 @@
 
     use controller\tools\RequestChecker;
     use RealStateModel\{
-        Location,
-        LocationQuery
+        Property
     };
 
     require './tools/checkRequest.php';
@@ -14,10 +13,7 @@
     $request_args = RequestChecker::CheckEmpty($_POST);
     if(!$request_args) header('Location: ../index.php');
 
-    print_r($request_args);
-    $location = new Location();
-    $location->setLoName($_POST['name']);
-    $location->save();
+    $property = new Property();
 
-
+    
 ?>
