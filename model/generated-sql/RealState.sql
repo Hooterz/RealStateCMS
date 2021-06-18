@@ -1,3 +1,6 @@
+DROP DATABASE IF EXISTS RealState;
+CREATE DATABASE RealState;
+USE RealState;
 
 # This is a fix for InnoDB in MySQL >= 4.1.x
 # It "suspends judgement" for fkey relationships until are tables are set.
