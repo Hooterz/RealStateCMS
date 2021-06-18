@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<database name="RealState" defaultIdMethod="native" defaultPhpNamingMethod="phpname">
+<database name="RealState" namespace="RealStateModel" defaultIdMethod="native" defaultPhpNamingMethod="phpname">
   <table name="Feature" idMethod="native" phpName="Feature">
     <column name="feature_id" phpName="FeatureId" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="feature_content" phpName="FeatureContent" type="VARCHAR" size="200"/>
