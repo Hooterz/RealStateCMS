@@ -7,7 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="./controller/registerProperty.php" method="post">
+    <form action="<?php 
+        // echo 'http://'.$_SERVER['SERVER_NAME'].'/controller/registerProperty.php' ;
+        echo $_SERVER["SERVER_PROTOCOL"];
+    ?>" method="post">
         <input type="text" name="name" id="nameId">
         <input type="submit" value="Submit">
     </form>

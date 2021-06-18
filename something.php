@@ -7,6 +7,7 @@
         LocationQuery
     };
 
+    d(__DIR__);
     // $locationQuery = LocationQuery::create()
     //                  ->filterByLoName(array('Cancún', 'Mérida'))
     //                  ->find();

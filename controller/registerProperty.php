@@ -18,4 +18,6 @@
     $location = new Location();
     $location->setLoName($_POST['name']);
     $location->save();
+
+
 ?>
