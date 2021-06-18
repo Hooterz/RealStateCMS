@@ -1,0 +1,10 @@
+{
+    "vendor": "iPy849/alejandro",
+    "require":{
+        "propel/propel": "~2.0@dev",
+        "kint-php/kint": "3.*"
+    },
+    "autoload": {
+        "classmap": ["./models/generated-classes/"]
+      }
+}
