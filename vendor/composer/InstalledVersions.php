@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '54b710b9e718e564d13c89ad02e8c607bd10ad17',
+    'reference' => '62eaca6225af047abac428748c111d8546e3bfa2',
     'name' => '__root__',
   ),
   'versions' => 
@@ -44,7 +44,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '54b710b9e718e564d13c89ad02e8c607bd10ad17',
+      'reference' => '62eaca6225af047abac428748c111d8546e3bfa2',
     ),
     'kint-php/kint' => 
     array (
@@ -63,7 +63,7 @@ private static $installed = array (
       array (
         0 => '2.0.x-dev',
       ),
-      'reference' => '5048947571cfcfeef59b18d4c973313e96c1d8d3',
+      'reference' => '150556e8aaec20b9892c4ae27f364a819b1d5fdd',
     ),
     'psr/container' => 
     array (
@@ -258,6 +258,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '71719ab2409401711d619765aa255f9d352a59b2',
+    ),
+    'twig/twig' => 
+    array (
+      'pretty_version' => 'v3.3.2',
+      'version' => '3.3.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '21578f00e83d4a82ecfa3d50752b609f13de6790',
     ),
   ),
 );

@@ -1,0 +1,128 @@
+{% extends "./layout.html" %}
+{% block title %}CMS - Añadir Propiedad{% endblock %}
+{% block body %}
+  <main id="main" class="mt-2">
+    <section class="intro-single">
+      <div class="container">
+        <form action="" method="post">
+
+          <label>Tipo de adicion:</label>
+          <select id="type_select" class="form-select w-50" aria-label="Default select example">
+            <option selected>Selecciona el tipo de propiedad</option>
+            <option value="casa">Casa</option>
+            <option value="terreno">Terreno</option>
+          </select>
+
+          <fieldset class="border rounded my-4 p-md-3" style="border-color: #fff;">
+            <div class="container-fluid">
+
+              <div class="row">
+                <div class="col">
+                  <label>Nombre:</label>
+                  <input placeholder="Nombre" type="text" name="prop_name" id="name"
+                    class="form-control form-control-lg form-control-a" required maxlength="255" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6 col-md-12">
+                  <label>Localización de la propiedad:</label>
+                  <select id="type_select" class="form-select form-select-lg " aria-label="Default select example"
+                    name="prop_location" id="location">
+                  <option value="default" selected>Selecciona la localización de la propiedad</option>
+                  <?php //Aquí va una llamada a todas las localizaciones de la base de datos ?>
+                  </select>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                  <label>Añadir Localización:</label>
+                  <input placeholder="Nombre de nueva localización" type="text" name="prop_new_location" id="new_location"
+                    class="form-control form-control-lg form-control-a" required maxlength="255" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <label>Direccion:</label>
+                  <input placeholder="Direccion" type="text" name="prop_address" id="address"
+                    class="form-control form-control-lg form-control-a" required />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <label>Descripcion:</label>
+                  <textarea rows="5" placeholder="Descripcion" name="prop_desc" id="description"
+                    class="form-control form-control-lg form-control-a" required></textarea>
+                </div>
+              </div>
+
+              <!--
+                STATUS: Incompleto
+                FIXME: Tengo que incorporar algo con JS para que cuando envie el formulario envie una lista de features 
+              -->
+              <div id="display_house_form" class="container-fluid p-3 my-3 border rounded " style="display: none;">
+                <h2 style="font-weight: 500;">Casas:</h2>
+                <div class="row d-flex flex-column-mod">
+                  <div class="col">
+                    <label>Bedrooms:</label>
+                    <input type="number" min="0" name="name" id="name"
+                      class="form-control form-control-lg form-control-a" value="0" />
+                  </div>
+
+                  <div class="col">
+                    <label>Bathrooms:</label>
+                    <input type="number" min="0" name="name" id="name"
+                      class="form-control form-control-lg form-control-a" value="0" />
+                  </div>
+
+                  <div class="col">
+                    <label>Parking Slots:</label>
+                    <input type="number" min="0" name="name" id="name"
+                      class="form-control form-control-lg form-control-a" value="0" />
+                  </div>
+                </div>
+              </div>
+
+              <div id="display_terrain_form" class="container-fluid p-3 my-3 border rounded" style="display: none;">
+                <h2 style="font-weight: 500;">Terrenos:</h2>
+                <div class="row">
+                  <ul id="terrain_description_list"></ul>
+                </div>
+                <div class="row d-flex flex-column-mod">
+                  <div class="col-md-12 col-lg-10">
+                    <input type="text" class="form-control form-control-lg form-control-a" placeholder="Anndir texto"
+                      id="terrain_text_add" />
+                  </div>
+                  <div class="col-2">
+                    <div class="btn btn-primary" id="terrain_add_button">Agregar</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row d-flex align-items-end p-3">
+              <div class="col-6">
+                <label>Precio:</label>
+                <input type="number" min="0" name="prop_price" id="price" class="form-control form-control-lg form-control-a"
+                  required />
+              </div>
+              <div class="col-6">
+                <label>Área (m^2):</label>
+                <input type="number" min="0" name="prop_area" id="area" class="form-control form-control-lg form-control-a"
+                  required />
+              </div>
+              <div class="row d-flex align-items-end p-3">
+                <div class="col d-flex justify-content-center">
+                  <input type="submit" value="Registrar Propiedad" class="btn btn-primary" />
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </section>
+  </main>
+{% endblock %}
+{% block aditional_js %}
+<script type="text/javascript" src="views/custom_assets/js/addproperty_view.js"></script>
+{% endblock %}

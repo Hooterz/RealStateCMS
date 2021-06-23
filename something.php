@@ -1,15 +1,20 @@
 <?php
-    require ('./vendor/autoload.php');
-    require('./model/generated-conf/config.php');
+
+use RealStateModel\{
+    LocationQuery,
+    Location
+};
+use Twig\{
+    Loader\FilesystemLoader,
+    Environment
+};   
+    require('./autoload.php');
+    (new Autoloader())->Load();
+
+    $query = new LocationQuery();
     
-    use RealStateModel\{
-        Location,
-        LocationQuery
-    };
-
-    d(__DIR__);
-    // $locationQuery = LocationQuery::create()
-    //                  ->filterByLoName(array('Cancún', 'Mérida'))
-    //                  ->find();
-
+    $loader = new FilesystemLoader('./views');
+    $twig = new Environment($loader);
+    echo $twig->render('addproperty.html');
 ?>
+

@@ -185,9 +185,7 @@ abstract class Feature implements ActiveRecordInterface
     public function resetModified($col = null)
     {
         if (null !== $col) {
-            if (isset($this->modifiedColumns[$col])) {
-                unset($this->modifiedColumns[$col]);
-            }
+            unset($this->modifiedColumns[$col]);
         } else {
             $this->modifiedColumns = array();
         }
