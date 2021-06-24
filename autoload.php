@@ -1,8 +1,8 @@
 <?php    
-    require 'settings/Path.php';
-    require './vendor/autoload.php';
-    require './model/generated-conf/config.php';
     use settings\Path;
+    require 'settings/Path.php';
+    require 'vendor/autoload.php';
+    require 'model/generated-conf/config.php';
     
     class Autoloader
     {
