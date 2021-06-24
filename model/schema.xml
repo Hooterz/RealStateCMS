@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="RealState" namespace="RealStateModel" defaultIdMethod="native" defaultPhpNamingMethod="phpname">
+  <table name="Feature" idMethod="native" phpName="Feature">
+    <column name="feature_id" phpName="FeatureId" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="feature_content" phpName="FeatureContent" type="VARCHAR" size="200"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="Image" idMethod="native" phpName="Image">
+    <column name="img_id" phpName="ImgId" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="img_path" phpName="ImgPath" type="VARCHAR" size="500"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="Location" idMethod="native" phpName="Location">
+    <column name="lo_id" phpName="LoId" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="lo_name" phpName="LoName" type="VARCHAR" size="100"/>
+    <unique name="lo_name">
+      <unique-column name="lo_name"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="Property" idMethod="native" phpName="Property">
+    <column name="prop_id" phpName="PropId" type="VARCHAR" size="25" primaryKey="true" required="true"/>
+    <column name="prop_name" phpName="PropName" type="VARCHAR" size="100" required="true" defaultValue="-"/>
+    <column name="prop_address" phpName="PropAddress" type="VARCHAR" size="100" required="true" defaultValue="-"/>
+    <column name="prop_location" phpName="PropLocation" type="INTEGER" required="true"/>
+    <column name="prop_description" phpName="PropDescription" type="LONGVARCHAR"/>
+    <column name="prop_area" phpName="PropArea" type="FLOAT"/>
+    <column name="prop_price" phpName="PropPrice" type="DOUBLE" required="true" defaultValue="0"/>
+    <column name="prop_pubDate" phpName="PropPubdate" type="DATE"/>
+    <column name="prop_isHidden" phpName="PropIshidden" type="INTEGER"/>
+    <foreign-key foreignTable="Location" name="property_ibfk_1">
+      <reference local="prop_location" foreign="lo_id"/>
+    </foreign-key>
+    <index name="prop_location">
+      <index-column name="prop_location"/>
+    </index>
+    <unique name="prop_pubDate">
+      <unique-column name="prop_pubDate"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="Property_Feature" idMethod="native" phpName="PropertyFeature">
+    <column name="propFeature_prop_id" phpName="PropfeaturePropId" type="VARCHAR" size="25"/>
+    <column name="propFeatureg_feature_id" phpName="PropfeaturegFeatureId" type="INTEGER"/>
+    <foreign-key foreignTable="Property" name="property_feature_ibfk_1">
+      <reference local="propFeature_prop_id" foreign="prop_id"/>
+    </foreign-key>
+    <foreign-key foreignTable="Feature" name="property_feature_ibfk_2">
+      <reference local="propFeatureg_feature_id" foreign="feature_id"/>
+    </foreign-key>
+    <index name="propFeature_prop_id">
+      <index-column name="propFeature_prop_id"/>
+    </index>
+    <index name="propFeatureg_feature_id">
+      <index-column name="propFeatureg_feature_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="Property_Image" idMethod="native" phpName="PropertyImage">
+    <column name="propImg_prop_id" phpName="PropimgPropId" type="VARCHAR" size="25"/>
+    <column name="propImg_img_id" phpName="PropimgImgId" type="INTEGER"/>
+    <foreign-key foreignTable="Property" name="property_image_ibfk_1">
+      <reference local="propImg_prop_id" foreign="prop_id"/>
+    </foreign-key>
+    <foreign-key foreignTable="Image" name="property_image_ibfk_2">
+      <reference local="propImg_img_id" foreign="img_id"/>
+    </foreign-key>
+    <index name="propImg_prop_id">
+      <index-column name="propImg_prop_id"/>
+    </index>
+    <index name="propImg_img_id">
+      <index-column name="propImg_img_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+</database>

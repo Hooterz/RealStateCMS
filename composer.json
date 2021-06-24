@@ -1,0 +1,12 @@
+{
+    "vendor": "iPy849/alejandro",
+    "require":{
+        "propel/propel": "~2.0@dev",
+        "kint-php/kint": "3.*",
+        "twig/twig": "^3.0",
+        "altorouter/altorouter": "2.0"
+    },
+    "autoload": {   
+        "classmap": ["model/generated-classes/RealStateModel"]
+    }
+}

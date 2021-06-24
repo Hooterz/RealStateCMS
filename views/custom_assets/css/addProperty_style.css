@@ -1,0 +1,38 @@
+label {
+    padding-top: .8rem;
+    font-size  : 1rem;
+}
+
+.flex-column-mod {
+    flex-direction: initial;
+}
+
+@media screen and (max-width: 800px) {
+    .navbar{
+        padding: 0;
+        margin: 0;
+    }
+
+    .intro-single{
+        padding-top: 5rem;
+    }
+    
+    #terrain_add_button {
+        margin: .5rem;
+    }
+
+    label {
+        padding-top: .5rem;
+        font-size  : 0.8rem;
+    }
+
+    input,
+    textarea,
+    select {
+        font-size: .8rem !important;
+    }
+
+    .flex-column-mod {
+        flex-direction: column;
+    }
+}
