@@ -4,10 +4,11 @@
   <main id="main" class="mt-2">
     <section class="intro-single">
       <div class="container">
-        <form action="" method="post">
+        <form action="{{ post_response }}" method="post">
 
           <label>Tipo de adicion:</label>
-          <select id="type_select" class="form-select w-50" aria-label="Default select example">
+          <select id="type_select" class="form-select w-50" aria-label="Default select example" 
+            name="type_select" required>
             <option selected>Selecciona el tipo de propiedad</option>
             <option value="casa">Casa</option>
             <option value="terreno">Terreno</option>
@@ -26,23 +27,24 @@
 
               <div class="row">
                 <div class="col-lg-6 col-md-12">
-                  <label>Localización de la propiedad:</label>
-                  <select id="type_select" class="form-select form-select-lg " aria-label="Default select example"
-                    name="prop_location" id="location">
+                  <label>Ciudad:</label>
+                  <select class="form-select form-select-lg " aria-label="Default select example"
+                    name="prop_location" id="location" required>
                   <option value="default" selected>Selecciona la localización de la propiedad</option>
-                  <?php //Aquí va una llamada a todas las localizaciones de la base de datos ?>
+                  {# Medio para poner más cosas #}
+                  <option value="new">Añadir localización</option>
                   </select>
                 </div>
-                <div class="col-lg-6 col-md-12">
-                  <label>Añadir Localización:</label>
+                <div class="col-lg-6 col-md-12" id="new_location_wrapper" hidden>
+                  <label>Añadir Ciudad:</label>
                   <input placeholder="Nombre de nueva localización" type="text" name="prop_new_location" id="new_location"
-                    class="form-control form-control-lg form-control-a" required maxlength="255" />
+                    class="form-control form-control-lg form-control-a" maxlength="255" />
                 </div>
               </div>
 
               <div class="row">
                 <div class="col">
-                  <label>Direccion:</label>
+                  <label>Dirección:</label>
                   <input placeholder="Direccion" type="text" name="prop_address" id="address"
                     class="form-control form-control-lg form-control-a" required />
                 </div>
@@ -50,47 +52,43 @@
 
               <div class="row">
                 <div class="col">
-                  <label>Descripcion:</label>
+                  <label>Descripción:</label>
                   <textarea rows="5" placeholder="Descripcion" name="prop_desc" id="description"
-                    class="form-control form-control-lg form-control-a" required></textarea>
+                    class="form-control form-control-lg form-control-a"></textarea>
                 </div>
               </div>
 
-              <!--
-                STATUS: Incompleto
-                FIXME: Tengo que incorporar algo con JS para que cuando envie el formulario envie una lista de features 
-              -->
               <div id="display_house_form" class="container-fluid p-3 my-3 border rounded " style="display: none;">
-                <h2 style="font-weight: 500;">Casas:</h2>
+                <h2 style="font-weight: 500;">Carácteristicas de casa:</h2>
                 <div class="row d-flex flex-column-mod">
                   <div class="col">
-                    <label>Bedrooms:</label>
-                    <input type="number" min="0" name="name" id="name"
+                    <label>Habitaciones:</label>
+                    <input type="number" min="0" id="bedrooms"
                       class="form-control form-control-lg form-control-a" value="0" />
                   </div>
 
                   <div class="col">
-                    <label>Bathrooms:</label>
-                    <input type="number" min="0" name="name" id="name"
+                    <label>Baños:</label>
+                    <input type="number" min="0" id="bathrooms"
                       class="form-control form-control-lg form-control-a" value="0" />
                   </div>
 
                   <div class="col">
-                    <label>Parking Slots:</label>
-                    <input type="number" min="0" name="name" id="name"
+                    <label>Lotes de estacionamiento:</label>
+                    <input type="number" min="0" id="parking_slots"
                       class="form-control form-control-lg form-control-a" value="0" />
                   </div>
                 </div>
               </div>
 
               <div id="display_terrain_form" class="container-fluid p-3 my-3 border rounded" style="display: none;">
-                <h2 style="font-weight: 500;">Terrenos:</h2>
+                <h2 style="font-weight: 500;">Características de terreno:</h2>
                 <div class="row">
                   <ul id="terrain_description_list"></ul>
                 </div>
                 <div class="row d-flex flex-column-mod">
                   <div class="col-md-12 col-lg-10">
-                    <input type="text" class="form-control form-control-lg form-control-a" placeholder="Anndir texto"
+                    <input type="text" class="form-control form-control-lg form-control-a" placeholder="Añadir texto"
                       id="terrain_text_add" />
                   </div>
                   <div class="col-2">
@@ -111,9 +109,15 @@
                 <input type="number" min="0" name="prop_area" id="area" class="form-control form-control-lg form-control-a"
                   required />
               </div>
+              {# Acá se hacen una lista serializada de features #}
+              <input type="hidden" name="features" id="features"/> 
+              <div class="input-group p-3 d-flex flex-column">
+                <label>Imágenes:</label>
+                <input type="file" multiple class="form-control w-100" name="uploaded_files">
+              </div>
               <div class="row d-flex align-items-end p-3">
                 <div class="col d-flex justify-content-center">
-                  <input type="submit" value="Registrar Propiedad" class="btn btn-primary" />
+                  <input type="submit" id="submit" value="Registrar Propiedad" class="btn btn-primary" />
                 </div>
               </div>
             </div>

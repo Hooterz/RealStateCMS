@@ -1,30 +1,34 @@
 <?php
     namespace controller;
+
+    use Propel\Runtime\ActiveQuery\Criteria;
     use Twig\{
-        Loader\FilesystemLoader,
-        Environment
-    };
+            Loader\FilesystemLoader,
+            Environment
+        };
     use RealStateModel\{
-    Category,
-    PropertyQuery,
-        CategoryQuery,
-        Property
+        PropertyQuery,
+        LocationQuery,
     };
 
-    if(isset($_GET['offset'], $_GET['limit']))
+if(isset($_GET['offset'], $_GET['limit']))
     {
         $offset = $_GET['offset'];
         $limit = $_GET['limit'];
 
-        $properties = PropertyQuery::create()->find();
+        $properties = PropertyQuery::create()
+            ->orderByPropName(Criteria::DESC)
+            ->offset($offset)
+            ->limit($limit)
+            ->find();
         
         foreach($properties as $property)
         {           
             $data = [
-                'prop'.$property->getPropId() => [
+                'prop_'.$property->getPropId() => [
                     'prop_name' => $property->getPropName(),
                     'prop_address' => $property->getPropAddress(),
-                    'prop_location' => $property->getPropLocation(),
+                    'prop_location' => LocationQuery::create()->findPk($property->getPropLocation())->find(),
                     'prop_description' => $property->getPropDescription(),
                     'prop_area' => $property->getPropArea(),
                     'prop_price' => $property->getPropPrice(),
@@ -38,8 +42,9 @@
             echo json_encode($data);
         }   
     }
-    else
-    {
-        header( $_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+    else{
+        echo json_encode([
+            'message' => 'Error'
+        ]);
     }
 ?>
