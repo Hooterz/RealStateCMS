@@ -21,6 +21,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+    // Para añadir nuevas locations
+
+    document.querySelector('#location').addEventListener('change', function(){
+        let newLocationSection = document.querySelector('#new_location_wrapper');
+        if(this.value === 'new'){
+            newLocationSection.removeAttribute('hidden');
+        }
+        else{
+            newLocationSection.setAttribute('hidden', '');
+        }
+    })
+
     //Botones y texto de la modificacion del terreno
     var terrain_add_button = document.querySelector("#terrain_add_button");
     var terrain_text_add = document.querySelector("#terrain_text_add");
@@ -50,9 +62,33 @@ document.addEventListener("DOMContentLoaded", () => {
         list_element.appendChild(text);
 
         terrain_description_list.appendChild(list_element);
-
     });
 
+    document.querySelector('#submit').addEventListener('click', function(e){
+        let formType = document.querySelector("#type_select");
+        let inputData = document.querySelector("#features");
+        let data = [];
+
+        switch(formType.value){
+            case "casa":
+                document.querySelectorAll('div.flex-column-mod:nth-child(2) > div').forEach(function(element){
+                    data.push(`${element.firstElementChild.innerHTML} ${element.lastElementChild.value}`);
+                });
+                break;
+            case "terreno":
+                document.querySelectorAll('li.d-flex').forEach(function(element){
+                    data.push(element.lastElementChild.innerHTML);
+                })
+                break;
+
+            default:
+                e.preventDefault();
+                break;
+        }
+        data = JSON.stringify(data);
+        inputData.value = data;
+        console.log(inputData);
+    })
 
 });
 
