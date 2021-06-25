@@ -58,7 +58,7 @@ class PropertyTableMap extends TableMap
     /**
      * The total number of columns
      */
-    const NUM_COLUMNS = 9;
+    const NUM_COLUMNS = 10;
 
     /**
      * The number of lazy-loaded columns
@@ -68,7 +68,7 @@ class PropertyTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 9;
+    const NUM_HYDRATE_COLUMNS = 10;
 
     /**
      * the column name for the prop_id field
@@ -116,6 +116,11 @@ class PropertyTableMap extends TableMap
     const COL_PROP_ISHIDDEN = 'Property.prop_isHidden';
 
     /**
+     * the column name for the prop_category field
+     */
+    const COL_PROP_CATEGORY = 'Property.prop_category';
+
+    /**
      * The default string format for model objects of the related table
      */
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -127,11 +132,11 @@ class PropertyTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('PropId', 'PropName', 'PropAddress', 'PropLocation', 'PropDescription', 'PropArea', 'PropPrice', 'PropPubdate', 'PropIshidden', ),
-        self::TYPE_CAMELNAME     => array('propId', 'propName', 'propAddress', 'propLocation', 'propDescription', 'propArea', 'propPrice', 'propPubdate', 'propIshidden', ),
-        self::TYPE_COLNAME       => array(PropertyTableMap::COL_PROP_ID, PropertyTableMap::COL_PROP_NAME, PropertyTableMap::COL_PROP_ADDRESS, PropertyTableMap::COL_PROP_LOCATION, PropertyTableMap::COL_PROP_DESCRIPTION, PropertyTableMap::COL_PROP_AREA, PropertyTableMap::COL_PROP_PRICE, PropertyTableMap::COL_PROP_PUBDATE, PropertyTableMap::COL_PROP_ISHIDDEN, ),
-        self::TYPE_FIELDNAME     => array('prop_id', 'prop_name', 'prop_address', 'prop_location', 'prop_description', 'prop_area', 'prop_price', 'prop_pubDate', 'prop_isHidden', ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, )
+        self::TYPE_PHPNAME       => array('PropId', 'PropName', 'PropAddress', 'PropLocation', 'PropDescription', 'PropArea', 'PropPrice', 'PropPubdate', 'PropIshidden', 'PropIshidden', ),
+        self::TYPE_CAMELNAME     => array('propId', 'propName', 'propAddress', 'propLocation', 'propDescription', 'propArea', 'propPrice', 'propPubdate', 'propIshidden', 'propIshidden', ),
+        self::TYPE_COLNAME       => array(PropertyTableMap::COL_PROP_ID, PropertyTableMap::COL_PROP_NAME, PropertyTableMap::COL_PROP_ADDRESS, PropertyTableMap::COL_PROP_LOCATION, PropertyTableMap::COL_PROP_DESCRIPTION, PropertyTableMap::COL_PROP_AREA, PropertyTableMap::COL_PROP_PRICE, PropertyTableMap::COL_PROP_PUBDATE, PropertyTableMap::COL_PROP_ISHIDDEN, PropertyTableMap::COL_PROP_CATEGORY, ),
+        self::TYPE_FIELDNAME     => array('prop_id', 'prop_name', 'prop_address', 'prop_location', 'prop_description', 'prop_area', 'prop_price', 'prop_pubDate', 'prop_isHidden', 'prop_category', ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
     );
 
     /**
@@ -141,11 +146,11 @@ class PropertyTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('PropId' => 0, 'PropName' => 1, 'PropAddress' => 2, 'PropLocation' => 3, 'PropDescription' => 4, 'PropArea' => 5, 'PropPrice' => 6, 'PropPubdate' => 7, 'PropIshidden' => 8, ),
-        self::TYPE_CAMELNAME     => array('propId' => 0, 'propName' => 1, 'propAddress' => 2, 'propLocation' => 3, 'propDescription' => 4, 'propArea' => 5, 'propPrice' => 6, 'propPubdate' => 7, 'propIshidden' => 8, ),
-        self::TYPE_COLNAME       => array(PropertyTableMap::COL_PROP_ID => 0, PropertyTableMap::COL_PROP_NAME => 1, PropertyTableMap::COL_PROP_ADDRESS => 2, PropertyTableMap::COL_PROP_LOCATION => 3, PropertyTableMap::COL_PROP_DESCRIPTION => 4, PropertyTableMap::COL_PROP_AREA => 5, PropertyTableMap::COL_PROP_PRICE => 6, PropertyTableMap::COL_PROP_PUBDATE => 7, PropertyTableMap::COL_PROP_ISHIDDEN => 8, ),
-        self::TYPE_FIELDNAME     => array('prop_id' => 0, 'prop_name' => 1, 'prop_address' => 2, 'prop_location' => 3, 'prop_description' => 4, 'prop_area' => 5, 'prop_price' => 6, 'prop_pubDate' => 7, 'prop_isHidden' => 8, ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, )
+        self::TYPE_PHPNAME       => array('PropId' => 0, 'PropName' => 1, 'PropAddress' => 2, 'PropLocation' => 3, 'PropDescription' => 4, 'PropArea' => 5, 'PropPrice' => 6, 'PropPubdate' => 7, 'PropIshidden' => 8, 'PropIshidden' => 9, ),
+        self::TYPE_CAMELNAME     => array('propId' => 0, 'propName' => 1, 'propAddress' => 2, 'propLocation' => 3, 'propDescription' => 4, 'propArea' => 5, 'propPrice' => 6, 'propPubdate' => 7, 'propIshidden' => 8, 'propIshidden' => 9, ),
+        self::TYPE_COLNAME       => array(PropertyTableMap::COL_PROP_ID => 0, PropertyTableMap::COL_PROP_NAME => 1, PropertyTableMap::COL_PROP_ADDRESS => 2, PropertyTableMap::COL_PROP_LOCATION => 3, PropertyTableMap::COL_PROP_DESCRIPTION => 4, PropertyTableMap::COL_PROP_AREA => 5, PropertyTableMap::COL_PROP_PRICE => 6, PropertyTableMap::COL_PROP_PUBDATE => 7, PropertyTableMap::COL_PROP_ISHIDDEN => 8, PropertyTableMap::COL_PROP_CATEGORY => 9, ),
+        self::TYPE_FIELDNAME     => array('prop_id' => 0, 'prop_name' => 1, 'prop_address' => 2, 'prop_location' => 3, 'prop_description' => 4, 'prop_area' => 5, 'prop_price' => 6, 'prop_pubDate' => 7, 'prop_isHidden' => 8, 'prop_category' => 9, ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
     );
 
     /**
@@ -226,6 +231,14 @@ class PropertyTableMap extends TableMap
         'COL_PROP_ISHIDDEN' => 'PROP_ISHIDDEN',
         'prop_isHidden' => 'PROP_ISHIDDEN',
         'Property.prop_isHidden' => 'PROP_ISHIDDEN',
+        'PropIshidden' => 'PROP_CATEGORY',
+        'Property.PropIshidden' => 'PROP_CATEGORY',
+        'propIshidden' => 'PROP_CATEGORY',
+        'property.propIshidden' => 'PROP_CATEGORY',
+        'PropertyTableMap::COL_PROP_CATEGORY' => 'PROP_CATEGORY',
+        'COL_PROP_CATEGORY' => 'PROP_CATEGORY',
+        'prop_category' => 'PROP_CATEGORY',
+        'Property.prop_category' => 'PROP_CATEGORY',
     ];
 
     /**
@@ -254,6 +267,7 @@ class PropertyTableMap extends TableMap
         $this->addColumn('prop_price', 'PropPrice', 'DOUBLE', true, null, 0);
         $this->addColumn('prop_pubDate', 'PropPubdate', 'DATE', false, null, null);
         $this->addColumn('prop_isHidden', 'PropIshidden', 'INTEGER', false, null, null);
+        $this->addForeignKey('prop_category', 'PropIshidden', 'INTEGER', 'Category', 'cat_id', false, null, null);
     } // initialize()
 
     /**
@@ -266,6 +280,13 @@ class PropertyTableMap extends TableMap
   array (
     0 => ':prop_location',
     1 => ':lo_id',
+  ),
+), null, null, null, false);
+        $this->addRelation('Category', '\\RealStateModel\\Category', RelationMap::MANY_TO_ONE, array (
+  0 =>
+  array (
+    0 => ':prop_category',
+    1 => ':cat_id',
   ),
 ), null, null, null, false);
         $this->addRelation('PropertyFeature', '\\RealStateModel\\PropertyFeature', RelationMap::ONE_TO_MANY, array (
@@ -434,6 +455,7 @@ class PropertyTableMap extends TableMap
             $criteria->addSelectColumn(PropertyTableMap::COL_PROP_PRICE);
             $criteria->addSelectColumn(PropertyTableMap::COL_PROP_PUBDATE);
             $criteria->addSelectColumn(PropertyTableMap::COL_PROP_ISHIDDEN);
+            $criteria->addSelectColumn(PropertyTableMap::COL_PROP_CATEGORY);
         } else {
             $criteria->addSelectColumn($alias . '.prop_id');
             $criteria->addSelectColumn($alias . '.prop_name');
@@ -444,6 +466,7 @@ class PropertyTableMap extends TableMap
             $criteria->addSelectColumn($alias . '.prop_price');
             $criteria->addSelectColumn($alias . '.prop_pubDate');
             $criteria->addSelectColumn($alias . '.prop_isHidden');
+            $criteria->addSelectColumn($alias . '.prop_category');
         }
     }
 
@@ -470,6 +493,7 @@ class PropertyTableMap extends TableMap
             $criteria->removeSelectColumn(PropertyTableMap::COL_PROP_PRICE);
             $criteria->removeSelectColumn(PropertyTableMap::COL_PROP_PUBDATE);
             $criteria->removeSelectColumn(PropertyTableMap::COL_PROP_ISHIDDEN);
+            $criteria->removeSelectColumn(PropertyTableMap::COL_PROP_CATEGORY);
         } else {
             $criteria->removeSelectColumn($alias . '.prop_id');
             $criteria->removeSelectColumn($alias . '.prop_name');
@@ -480,6 +504,7 @@ class PropertyTableMap extends TableMap
             $criteria->removeSelectColumn($alias . '.prop_price');
             $criteria->removeSelectColumn($alias . '.prop_pubDate');
             $criteria->removeSelectColumn($alias . '.prop_isHidden');
+            $criteria->removeSelectColumn($alias . '.prop_category');
         }
     }
 

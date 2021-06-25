@@ -9,6 +9,13 @@
 
     $router->map('GET', '/add-property', fn() => require_once 'controller/GET_addProperty_Controller.php');
 
+    $router->map('GET', '/houses', fn() => require_once 'controller/GET_houses_Controller.php');
+    $router->map('GET', '/terrains', fn() => require_once 'controller/GET_terrains_Controller.php');
+
+    $router->map('GET', '/properties', fn() => require_once 'controller/GET_properties_Controller.php');
+
+    $router->map('GET', 'api/get_properties', fn() => require_once 'controller/API_get_properties_Controller.php');
+
 
     // match current request url
     $match = $router->match();

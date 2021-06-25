@@ -18,6 +18,8 @@ use Propel\Runtime\Exception\PropelException;
 use Propel\Runtime\Map\TableMap;
 use Propel\Runtime\Parser\AbstractParser;
 use Propel\Runtime\Util\PropelDateTime;
+use RealStateModel\Category as ChildCategory;
+use RealStateModel\CategoryQuery as ChildCategoryQuery;
 use RealStateModel\Location as ChildLocation;
 use RealStateModel\LocationQuery as ChildLocationQuery;
 use RealStateModel\Property as ChildProperty;
@@ -138,9 +140,21 @@ abstract class Property implements ActiveRecordInterface
     protected $prop_ishidden;
 
     /**
+     * The value for the prop_category field.
+     *
+     * @var        int|null
+     */
+    protected $prop_category;
+
+    /**
      * @var        ChildLocation
      */
     protected $aLocation;
+
+    /**
+     * @var        ChildCategory
+     */
+    protected $aCategory;
 
     /**
      * @var        ObjectCollection|ChildPropertyFeature[] Collection to store aggregation of ChildPropertyFeature objects.
@@ -516,6 +530,16 @@ abstract class Property implements ActiveRecordInterface
     }
 
     /**
+     * Get the [prop_category] column value.
+     *
+     * @return int|null
+     */
+    public function getPropCategory()
+    {
+        return $this->prop_category;
+    }
+
+    /**
      * Set the value of [prop_id] column.
      *
      * @param string $v New value
@@ -700,6 +724,30 @@ abstract class Property implements ActiveRecordInterface
     } // setPropIshidden()
 
     /**
+     * Set the value of [prop_category] column.
+     *
+     * @param int|null $v New value
+     * @return $this|\RealStateModel\Property The current object (for fluent API support)
+     */
+    public function setPropCategory($v)
+    {
+        if ($v !== null) {
+            $v = (int) $v;
+        }
+
+        if ($this->prop_category !== $v) {
+            $this->prop_category = $v;
+            $this->modifiedColumns[PropertyTableMap::COL_PROP_CATEGORY] = true;
+        }
+
+        if ($this->aCategory !== null && $this->aCategory->getCatId() !== $v) {
+            $this->aCategory = null;
+        }
+
+        return $this;
+    } // setPropIshidden()
+
+    /**
      * Indicates whether the columns in this object are only set to default values.
      *
      * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -776,6 +824,9 @@ abstract class Property implements ActiveRecordInterface
 
             $col = $row[TableMap::TYPE_NUM == $indexType ? 8 + $startcol : PropertyTableMap::translateFieldName('PropIshidden', TableMap::TYPE_PHPNAME, $indexType)];
             $this->prop_ishidden = (null !== $col) ? (int) $col : null;
+
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 9 + $startcol : PropertyTableMap::translateFieldName('PropCategory', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->prop_category = (null !== $col) ? (int) $col : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -784,7 +835,7 @@ abstract class Property implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 9; // 9 = PropertyTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 10; // 10 = PropertyTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\RealStateModel\\Property'), 0, $e);
@@ -808,6 +859,9 @@ abstract class Property implements ActiveRecordInterface
     {
         if ($this->aLocation !== null && $this->prop_location !== $this->aLocation->getLoId()) {
             $this->aLocation = null;
+        }
+        if ($this->aCategory !== null && $this->prop_category !== $this->aCategory->getCatId()) {
+            $this->aCategory = null;
         }
     } // ensureConsistency
 
@@ -849,6 +903,7 @@ abstract class Property implements ActiveRecordInterface
         if ($deep) {  // also de-associate any related objects?
 
             $this->aLocation = null;
+            $this->aCategory = null;
             $this->collPropertyFeatures = null;
 
             $this->collPropertyImages = null;
@@ -968,6 +1023,13 @@ abstract class Property implements ActiveRecordInterface
                 $this->setLocation($this->aLocation);
             }
 
+            if ($this->aCategory !== null) {
+                if ($this->aCategory->isModified() || $this->aCategory->isNew()) {
+                    $affectedRows += $this->aCategory->save($con);
+                }
+                $this->setCategory($this->aCategory);
+            }
+
             if ($this->isNew() || $this->isModified()) {
                 // persist changes
                 if ($this->isNew()) {
@@ -1064,6 +1126,9 @@ abstract class Property implements ActiveRecordInterface
         if ($this->isColumnModified(PropertyTableMap::COL_PROP_ISHIDDEN)) {
             $modifiedColumns[':p' . $index++]  = 'prop_isHidden';
         }
+        if ($this->isColumnModified(PropertyTableMap::COL_PROP_CATEGORY)) {
+            $modifiedColumns[':p' . $index++]  = 'prop_category';
+        }
 
         $sql = sprintf(
             'INSERT INTO Property (%s) VALUES (%s)',
@@ -1101,6 +1166,9 @@ abstract class Property implements ActiveRecordInterface
                         break;
                     case 'prop_isHidden':
                         $stmt->bindValue($identifier, $this->prop_ishidden, PDO::PARAM_INT);
+                        break;
+                    case 'prop_category':
+                        $stmt->bindValue($identifier, $this->prop_category, PDO::PARAM_INT);
                         break;
                 }
             }
@@ -1184,6 +1252,9 @@ abstract class Property implements ActiveRecordInterface
             case 8:
                 return $this->getPropIshidden();
                 break;
+            case 9:
+                return $this->getPropIshidden();
+                break;
             default:
                 return null;
                 break;
@@ -1223,6 +1294,7 @@ abstract class Property implements ActiveRecordInterface
             $keys[6] => $this->getPropPrice(),
             $keys[7] => $this->getPropPubdate(),
             $keys[8] => $this->getPropIshidden(),
+            $keys[9] => $this->getPropIshidden(),
         );
         if ($result[$keys[7]] instanceof \DateTimeInterface) {
             $result[$keys[7]] = $result[$keys[7]]->format('Y-m-d');
@@ -1248,6 +1320,21 @@ abstract class Property implements ActiveRecordInterface
                 }
 
                 $result[$key] = $this->aLocation->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+            }
+            if (null !== $this->aCategory) {
+
+                switch ($keyType) {
+                    case TableMap::TYPE_CAMELNAME:
+                        $key = 'category';
+                        break;
+                    case TableMap::TYPE_FIELDNAME:
+                        $key = 'Category';
+                        break;
+                    default:
+                        $key = 'Category';
+                }
+
+                $result[$key] = $this->aCategory->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
             }
             if (null !== $this->collPropertyFeatures) {
 
@@ -1340,6 +1427,9 @@ abstract class Property implements ActiveRecordInterface
             case 8:
                 $this->setPropIshidden($value);
                 break;
+            case 9:
+                $this->setPropIshidden($value);
+                break;
         } // switch()
 
         return $this;
@@ -1392,6 +1482,9 @@ abstract class Property implements ActiveRecordInterface
         }
         if (array_key_exists($keys[8], $arr)) {
             $this->setPropIshidden($arr[$keys[8]]);
+        }
+        if (array_key_exists($keys[9], $arr)) {
+            $this->setPropIshidden($arr[$keys[9]]);
         }
 
         return $this;
@@ -1462,6 +1555,9 @@ abstract class Property implements ActiveRecordInterface
         }
         if ($this->isColumnModified(PropertyTableMap::COL_PROP_ISHIDDEN)) {
             $criteria->add(PropertyTableMap::COL_PROP_ISHIDDEN, $this->prop_ishidden);
+        }
+        if ($this->isColumnModified(PropertyTableMap::COL_PROP_CATEGORY)) {
+            $criteria->add(PropertyTableMap::COL_PROP_CATEGORY, $this->prop_category);
         }
 
         return $criteria;
@@ -1557,6 +1653,7 @@ abstract class Property implements ActiveRecordInterface
         $copyObj->setPropArea($this->getPropArea());
         $copyObj->setPropPrice($this->getPropPrice());
         $copyObj->setPropPubdate($this->getPropPubdate());
+        $copyObj->setPropIshidden($this->getPropIshidden());
         $copyObj->setPropIshidden($this->getPropIshidden());
 
         if ($deepCopy) {
@@ -1654,6 +1751,57 @@ abstract class Property implements ActiveRecordInterface
         }
 
         return $this->aLocation;
+    }
+
+    /**
+     * Declares an association between this object and a ChildCategory object.
+     *
+     * @param  ChildCategory|null $v
+     * @return $this|\RealStateModel\Property The current object (for fluent API support)
+     * @throws PropelException
+     */
+    public function setCategory(ChildCategory $v = null)
+    {
+        if ($v === null) {
+            $this->setPropIshidden(NULL);
+        } else {
+            $this->setPropIshidden($v->getCatId());
+        }
+
+        $this->aCategory = $v;
+
+        // Add binding for other direction of this n:n relationship.
+        // If this object has already been added to the ChildCategory object, it will not be re-added.
+        if ($v !== null) {
+            $v->addProperty($this);
+        }
+
+
+        return $this;
+    }
+
+
+    /**
+     * Get the associated ChildCategory object
+     *
+     * @param  ConnectionInterface $con Optional Connection object.
+     * @return ChildCategory|null The associated ChildCategory object.
+     * @throws PropelException
+     */
+    public function getCategory(ConnectionInterface $con = null)
+    {
+        if ($this->aCategory === null && ($this->prop_category != 0)) {
+            $this->aCategory = ChildCategoryQuery::create()->findPk($this->prop_category, $con);
+            /* The following can be used additionally to
+                guarantee the related object contains a reference
+                to this object.  This level of coupling may, however, be
+                undesirable since it could result in an only partially populated collection
+                in the referenced object.
+                $this->aCategory->addProperties($this);
+             */
+        }
+
+        return $this->aCategory;
     }
 
 
@@ -2205,6 +2353,9 @@ abstract class Property implements ActiveRecordInterface
         if (null !== $this->aLocation) {
             $this->aLocation->removeProperty($this);
         }
+        if (null !== $this->aCategory) {
+            $this->aCategory->removeProperty($this);
+        }
         $this->prop_id = null;
         $this->prop_name = null;
         $this->prop_address = null;
@@ -2214,6 +2365,7 @@ abstract class Property implements ActiveRecordInterface
         $this->prop_price = null;
         $this->prop_pubdate = null;
         $this->prop_ishidden = null;
+        $this->prop_category = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();
@@ -2248,6 +2400,7 @@ abstract class Property implements ActiveRecordInterface
         $this->collPropertyFeatures = null;
         $this->collPropertyImages = null;
         $this->aLocation = null;
+        $this->aCategory = null;
     }
 
     /**

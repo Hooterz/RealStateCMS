@@ -16,26 +16,26 @@ use Propel\Runtime\Exception\LogicException;
 use Propel\Runtime\Exception\PropelException;
 use Propel\Runtime\Map\TableMap;
 use Propel\Runtime\Parser\AbstractParser;
-use RealStateModel\Location as ChildLocation;
-use RealStateModel\LocationQuery as ChildLocationQuery;
+use RealStateModel\Category as ChildCategory;
+use RealStateModel\CategoryQuery as ChildCategoryQuery;
 use RealStateModel\Property as ChildProperty;
 use RealStateModel\PropertyQuery as ChildPropertyQuery;
-use RealStateModel\Map\LocationTableMap;
+use RealStateModel\Map\CategoryTableMap;
 use RealStateModel\Map\PropertyTableMap;
 
 /**
- * Base class that represents a row from the 'Location' table.
+ * Base class that represents a row from the 'Category' table.
  *
  *
  *
  * @package    propel.generator.RealStateModel.Base
  */
-abstract class Location implements ActiveRecordInterface
+abstract class Category implements ActiveRecordInterface
 {
     /**
      * TableMap class name
      */
-    const TABLE_MAP = '\\RealStateModel\\Map\\LocationTableMap';
+    const TABLE_MAP = '\\RealStateModel\\Map\\CategoryTableMap';
 
 
     /**
@@ -65,18 +65,18 @@ abstract class Location implements ActiveRecordInterface
     protected $virtualColumns = array();
 
     /**
-     * The value for the lo_id field.
+     * The value for the cat_id field.
      *
      * @var        int
      */
-    protected $lo_id;
+    protected $cat_id;
 
     /**
-     * The value for the lo_name field.
+     * The value for the cat_name field.
      *
      * @var        string|null
      */
-    protected $lo_name;
+    protected $cat_name;
 
     /**
      * @var        ObjectCollection|ChildProperty[] Collection to store aggregation of ChildProperty objects.
@@ -99,7 +99,7 @@ abstract class Location implements ActiveRecordInterface
     protected $propertiesScheduledForDeletion = null;
 
     /**
-     * Initializes internal state of RealStateModel\Base\Location object.
+     * Initializes internal state of RealStateModel\Base\Category object.
      */
     public function __construct()
     {
@@ -192,9 +192,9 @@ abstract class Location implements ActiveRecordInterface
     }
 
     /**
-     * Compares this with another <code>Location</code> instance.  If
-     * <code>obj</code> is an instance of <code>Location</code>, delegates to
-     * <code>equals(Location)</code>.  Otherwise, returns <code>false</code>.
+     * Compares this with another <code>Category</code> instance.  If
+     * <code>obj</code> is an instance of <code>Category</code>, delegates to
+     * <code>equals(Category)</code>.  Otherwise, returns <code>false</code>.
      *
      * @param  mixed   $obj The object to compare to.
      * @return boolean Whether equal to the object specified.
@@ -323,64 +323,64 @@ abstract class Location implements ActiveRecordInterface
     }
 
     /**
-     * Get the [lo_id] column value.
+     * Get the [cat_id] column value.
      *
      * @return int
      */
-    public function getLoId()
+    public function getCatId()
     {
-        return $this->lo_id;
+        return $this->cat_id;
     }
 
     /**
-     * Get the [lo_name] column value.
+     * Get the [cat_name] column value.
      *
      * @return string|null
      */
-    public function getLoName()
+    public function getCatName()
     {
-        return $this->lo_name;
+        return $this->cat_name;
     }
 
     /**
-     * Set the value of [lo_id] column.
+     * Set the value of [cat_id] column.
      *
      * @param int $v New value
-     * @return $this|\RealStateModel\Location The current object (for fluent API support)
+     * @return $this|\RealStateModel\Category The current object (for fluent API support)
      */
-    public function setLoId($v)
+    public function setCatId($v)
     {
         if ($v !== null) {
             $v = (int) $v;
         }
 
-        if ($this->lo_id !== $v) {
-            $this->lo_id = $v;
-            $this->modifiedColumns[LocationTableMap::COL_LO_ID] = true;
+        if ($this->cat_id !== $v) {
+            $this->cat_id = $v;
+            $this->modifiedColumns[CategoryTableMap::COL_CAT_ID] = true;
         }
 
         return $this;
-    } // setLoId()
+    } // setCatId()
 
     /**
-     * Set the value of [lo_name] column.
+     * Set the value of [cat_name] column.
      *
      * @param string|null $v New value
-     * @return $this|\RealStateModel\Location The current object (for fluent API support)
+     * @return $this|\RealStateModel\Category The current object (for fluent API support)
      */
-    public function setLoName($v)
+    public function setCatName($v)
     {
         if ($v !== null) {
             $v = (string) $v;
         }
 
-        if ($this->lo_name !== $v) {
-            $this->lo_name = $v;
-            $this->modifiedColumns[LocationTableMap::COL_LO_NAME] = true;
+        if ($this->cat_name !== $v) {
+            $this->cat_name = $v;
+            $this->modifiedColumns[CategoryTableMap::COL_CAT_NAME] = true;
         }
 
         return $this;
-    } // setLoName()
+    } // setCatName()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -418,11 +418,11 @@ abstract class Location implements ActiveRecordInterface
     {
         try {
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : LocationTableMap::translateFieldName('LoId', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->lo_id = (null !== $col) ? (int) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : CategoryTableMap::translateFieldName('CatId', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->cat_id = (null !== $col) ? (int) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : LocationTableMap::translateFieldName('LoName', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->lo_name = (null !== $col) ? (string) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : CategoryTableMap::translateFieldName('CatName', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->cat_name = (null !== $col) ? (string) $col : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -431,10 +431,10 @@ abstract class Location implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 2; // 2 = LocationTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 2; // 2 = CategoryTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
-            throw new PropelException(sprintf('Error populating %s object', '\\RealStateModel\\Location'), 0, $e);
+            throw new PropelException(sprintf('Error populating %s object', '\\RealStateModel\\Category'), 0, $e);
         }
     }
 
@@ -476,13 +476,13 @@ abstract class Location implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getReadConnection(LocationTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getReadConnection(CategoryTableMap::DATABASE_NAME);
         }
 
         // We don't need to alter the object instance pool; we're just modifying this instance
         // already in the pool.
 
-        $dataFetcher = ChildLocationQuery::create(null, $this->buildPkeyCriteria())->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
+        $dataFetcher = ChildCategoryQuery::create(null, $this->buildPkeyCriteria())->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
         $row = $dataFetcher->fetch();
         $dataFetcher->close();
         if (!$row) {
@@ -503,8 +503,8 @@ abstract class Location implements ActiveRecordInterface
      * @param      ConnectionInterface $con
      * @return void
      * @throws PropelException
-     * @see Location::setDeleted()
-     * @see Location::isDeleted()
+     * @see Category::setDeleted()
+     * @see Category::isDeleted()
      */
     public function delete(ConnectionInterface $con = null)
     {
@@ -513,11 +513,11 @@ abstract class Location implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getWriteConnection(LocationTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(CategoryTableMap::DATABASE_NAME);
         }
 
         $con->transaction(function () use ($con) {
-            $deleteQuery = ChildLocationQuery::create()
+            $deleteQuery = ChildCategoryQuery::create()
                 ->filterByPrimaryKey($this->getPrimaryKey());
             $ret = $this->preDelete($con);
             if ($ret) {
@@ -552,7 +552,7 @@ abstract class Location implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getWriteConnection(LocationTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(CategoryTableMap::DATABASE_NAME);
         }
 
         return $con->transaction(function () use ($con) {
@@ -571,7 +571,7 @@ abstract class Location implements ActiveRecordInterface
                     $this->postUpdate($con);
                 }
                 $this->postSave($con);
-                LocationTableMap::addInstanceToPool($this);
+                CategoryTableMap::addInstanceToPool($this);
             } else {
                 $affectedRows = 0;
             }
@@ -610,9 +610,10 @@ abstract class Location implements ActiveRecordInterface
 
             if ($this->propertiesScheduledForDeletion !== null) {
                 if (!$this->propertiesScheduledForDeletion->isEmpty()) {
-                    \RealStateModel\PropertyQuery::create()
-                        ->filterByPrimaryKeys($this->propertiesScheduledForDeletion->getPrimaryKeys(false))
-                        ->delete($con);
+                    foreach ($this->propertiesScheduledForDeletion as $property) {
+                        // need to save related object because we set the relation to null
+                        $property->save($con);
+                    }
                     $this->propertiesScheduledForDeletion = null;
                 }
             }
@@ -645,21 +646,21 @@ abstract class Location implements ActiveRecordInterface
         $modifiedColumns = array();
         $index = 0;
 
-        $this->modifiedColumns[LocationTableMap::COL_LO_ID] = true;
-        if (null !== $this->lo_id) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key (' . LocationTableMap::COL_LO_ID . ')');
+        $this->modifiedColumns[CategoryTableMap::COL_CAT_ID] = true;
+        if (null !== $this->cat_id) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key (' . CategoryTableMap::COL_CAT_ID . ')');
         }
 
          // check the columns in natural order for more readable SQL queries
-        if ($this->isColumnModified(LocationTableMap::COL_LO_ID)) {
-            $modifiedColumns[':p' . $index++]  = 'lo_id';
+        if ($this->isColumnModified(CategoryTableMap::COL_CAT_ID)) {
+            $modifiedColumns[':p' . $index++]  = 'cat_id';
         }
-        if ($this->isColumnModified(LocationTableMap::COL_LO_NAME)) {
-            $modifiedColumns[':p' . $index++]  = 'lo_name';
+        if ($this->isColumnModified(CategoryTableMap::COL_CAT_NAME)) {
+            $modifiedColumns[':p' . $index++]  = 'cat_name';
         }
 
         $sql = sprintf(
-            'INSERT INTO Location (%s) VALUES (%s)',
+            'INSERT INTO Category (%s) VALUES (%s)',
             implode(', ', $modifiedColumns),
             implode(', ', array_keys($modifiedColumns))
         );
@@ -668,11 +669,11 @@ abstract class Location implements ActiveRecordInterface
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case 'lo_id':
-                        $stmt->bindValue($identifier, $this->lo_id, PDO::PARAM_INT);
+                    case 'cat_id':
+                        $stmt->bindValue($identifier, $this->cat_id, PDO::PARAM_INT);
                         break;
-                    case 'lo_name':
-                        $stmt->bindValue($identifier, $this->lo_name, PDO::PARAM_STR);
+                    case 'cat_name':
+                        $stmt->bindValue($identifier, $this->cat_name, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -687,7 +688,7 @@ abstract class Location implements ActiveRecordInterface
         } catch (Exception $e) {
             throw new PropelException('Unable to get autoincrement id.', 0, $e);
         }
-        $this->setLoId($pk);
+        $this->setCatId($pk);
 
         $this->setNew(false);
     }
@@ -720,7 +721,7 @@ abstract class Location implements ActiveRecordInterface
      */
     public function getByName($name, $type = TableMap::TYPE_PHPNAME)
     {
-        $pos = LocationTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
+        $pos = CategoryTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
         $field = $this->getByPosition($pos);
 
         return $field;
@@ -737,10 +738,10 @@ abstract class Location implements ActiveRecordInterface
     {
         switch ($pos) {
             case 0:
-                return $this->getLoId();
+                return $this->getCatId();
                 break;
             case 1:
-                return $this->getLoName();
+                return $this->getCatName();
                 break;
             default:
                 return null;
@@ -766,14 +767,14 @@ abstract class Location implements ActiveRecordInterface
     public function toArray($keyType = TableMap::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array(), $includeForeignObjects = false)
     {
 
-        if (isset($alreadyDumpedObjects['Location'][$this->hashCode()])) {
+        if (isset($alreadyDumpedObjects['Category'][$this->hashCode()])) {
             return '*RECURSION*';
         }
-        $alreadyDumpedObjects['Location'][$this->hashCode()] = true;
-        $keys = LocationTableMap::getFieldNames($keyType);
+        $alreadyDumpedObjects['Category'][$this->hashCode()] = true;
+        $keys = CategoryTableMap::getFieldNames($keyType);
         $result = array(
-            $keys[0] => $this->getLoId(),
-            $keys[1] => $this->getLoName(),
+            $keys[0] => $this->getCatId(),
+            $keys[1] => $this->getCatName(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -810,11 +811,11 @@ abstract class Location implements ActiveRecordInterface
      *                one of the class type constants TableMap::TYPE_PHPNAME, TableMap::TYPE_CAMELNAME
      *                TableMap::TYPE_COLNAME, TableMap::TYPE_FIELDNAME, TableMap::TYPE_NUM.
      *                Defaults to TableMap::TYPE_PHPNAME.
-     * @return $this|\RealStateModel\Location
+     * @return $this|\RealStateModel\Category
      */
     public function setByName($name, $value, $type = TableMap::TYPE_PHPNAME)
     {
-        $pos = LocationTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
+        $pos = CategoryTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
 
         return $this->setByPosition($pos, $value);
     }
@@ -825,16 +826,16 @@ abstract class Location implements ActiveRecordInterface
      *
      * @param  int $pos position in xml schema
      * @param  mixed $value field value
-     * @return $this|\RealStateModel\Location
+     * @return $this|\RealStateModel\Category
      */
     public function setByPosition($pos, $value)
     {
         switch ($pos) {
             case 0:
-                $this->setLoId($value);
+                $this->setCatId($value);
                 break;
             case 1:
-                $this->setLoName($value);
+                $this->setCatName($value);
                 break;
         } // switch()
 
@@ -856,17 +857,17 @@ abstract class Location implements ActiveRecordInterface
      *
      * @param      array  $arr     An array to populate the object from.
      * @param      string $keyType The type of keys the array uses.
-     * @return     $this|\RealStateModel\Location
+     * @return     $this|\RealStateModel\Category
      */
     public function fromArray($arr, $keyType = TableMap::TYPE_PHPNAME)
     {
-        $keys = LocationTableMap::getFieldNames($keyType);
+        $keys = CategoryTableMap::getFieldNames($keyType);
 
         if (array_key_exists($keys[0], $arr)) {
-            $this->setLoId($arr[$keys[0]]);
+            $this->setCatId($arr[$keys[0]]);
         }
         if (array_key_exists($keys[1], $arr)) {
-            $this->setLoName($arr[$keys[1]]);
+            $this->setCatName($arr[$keys[1]]);
         }
 
         return $this;
@@ -889,7 +890,7 @@ abstract class Location implements ActiveRecordInterface
      * @param string $data The source data to import from
      * @param string $keyType The type of keys the array uses.
      *
-     * @return $this|\RealStateModel\Location The current object, for fluid interface
+     * @return $this|\RealStateModel\Category The current object, for fluid interface
      */
     public function importFrom($parser, $data, $keyType = TableMap::TYPE_PHPNAME)
     {
@@ -909,13 +910,13 @@ abstract class Location implements ActiveRecordInterface
      */
     public function buildCriteria()
     {
-        $criteria = new Criteria(LocationTableMap::DATABASE_NAME);
+        $criteria = new Criteria(CategoryTableMap::DATABASE_NAME);
 
-        if ($this->isColumnModified(LocationTableMap::COL_LO_ID)) {
-            $criteria->add(LocationTableMap::COL_LO_ID, $this->lo_id);
+        if ($this->isColumnModified(CategoryTableMap::COL_CAT_ID)) {
+            $criteria->add(CategoryTableMap::COL_CAT_ID, $this->cat_id);
         }
-        if ($this->isColumnModified(LocationTableMap::COL_LO_NAME)) {
-            $criteria->add(LocationTableMap::COL_LO_NAME, $this->lo_name);
+        if ($this->isColumnModified(CategoryTableMap::COL_CAT_NAME)) {
+            $criteria->add(CategoryTableMap::COL_CAT_NAME, $this->cat_name);
         }
 
         return $criteria;
@@ -933,8 +934,8 @@ abstract class Location implements ActiveRecordInterface
      */
     public function buildPkeyCriteria()
     {
-        $criteria = ChildLocationQuery::create();
-        $criteria->add(LocationTableMap::COL_LO_ID, $this->lo_id);
+        $criteria = ChildCategoryQuery::create();
+        $criteria->add(CategoryTableMap::COL_CAT_ID, $this->cat_id);
 
         return $criteria;
     }
@@ -947,7 +948,7 @@ abstract class Location implements ActiveRecordInterface
      */
     public function hashCode()
     {
-        $validPk = null !== $this->getLoId();
+        $validPk = null !== $this->getCatId();
 
         $validPrimaryKeyFKs = 0;
         $primaryKeyFKs = [];
@@ -967,18 +968,18 @@ abstract class Location implements ActiveRecordInterface
      */
     public function getPrimaryKey()
     {
-        return $this->getLoId();
+        return $this->getCatId();
     }
 
     /**
-     * Generic method to set the primary key (lo_id column).
+     * Generic method to set the primary key (cat_id column).
      *
      * @param       int $key Primary key.
      * @return void
      */
     public function setPrimaryKey($key)
     {
-        $this->setLoId($key);
+        $this->setCatId($key);
     }
 
     /**
@@ -987,7 +988,7 @@ abstract class Location implements ActiveRecordInterface
      */
     public function isPrimaryKeyNull()
     {
-        return null === $this->getLoId();
+        return null === $this->getCatId();
     }
 
     /**
@@ -996,14 +997,14 @@ abstract class Location implements ActiveRecordInterface
      * If desired, this method can also make copies of all associated (fkey referrers)
      * objects.
      *
-     * @param      object $copyObj An object of \RealStateModel\Location (or compatible) type.
+     * @param      object $copyObj An object of \RealStateModel\Category (or compatible) type.
      * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
      * @param      boolean $makeNew Whether to reset autoincrement PKs and make the object new.
      * @throws PropelException
      */
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
-        $copyObj->setLoName($this->getLoName());
+        $copyObj->setCatName($this->getCatName());
 
         if ($deepCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -1020,7 +1021,7 @@ abstract class Location implements ActiveRecordInterface
 
         if ($makeNew) {
             $copyObj->setNew(true);
-            $copyObj->setLoId(NULL); // this is a auto-increment column, so set to default value
+            $copyObj->setCatId(NULL); // this is a auto-increment column, so set to default value
         }
     }
 
@@ -1033,7 +1034,7 @@ abstract class Location implements ActiveRecordInterface
      * objects.
      *
      * @param  boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-     * @return \RealStateModel\Location Clone of current object.
+     * @return \RealStateModel\Category Clone of current object.
      * @throws PropelException
      */
     public function copy($deepCopy = false)
@@ -1115,7 +1116,7 @@ abstract class Location implements ActiveRecordInterface
      * If the $criteria is not null, it is used to always fetch the results from the database.
      * Otherwise the results are fetched from the database the first time, then cached.
      * Next time the same method is called without $criteria, the cached collection is returned.
-     * If this ChildLocation is new, it will return
+     * If this ChildCategory is new, it will return
      * an empty collection or the current collection; the criteria is ignored on a new object.
      *
      * @param      Criteria $criteria optional Criteria object to narrow the query
@@ -1141,7 +1142,7 @@ abstract class Location implements ActiveRecordInterface
                 }
             } else {
                 $collProperties = ChildPropertyQuery::create(null, $criteria)
-                    ->filterByLocation($this)
+                    ->filterByCategory($this)
                     ->find($con);
 
                 if (null !== $criteria) {
@@ -1184,7 +1185,7 @@ abstract class Location implements ActiveRecordInterface
      *
      * @param      Collection $properties A Propel collection.
      * @param      ConnectionInterface $con Optional connection object
-     * @return $this|ChildLocation The current object (for fluent API support)
+     * @return $this|ChildCategory The current object (for fluent API support)
      */
     public function setProperties(Collection $properties, ConnectionInterface $con = null)
     {
@@ -1195,7 +1196,7 @@ abstract class Location implements ActiveRecordInterface
         $this->propertiesScheduledForDeletion = $propertiesToDelete;
 
         foreach ($propertiesToDelete as $propertyRemoved) {
-            $propertyRemoved->setLocation(null);
+            $propertyRemoved->setCategory(null);
         }
 
         $this->collProperties = null;
@@ -1236,7 +1237,7 @@ abstract class Location implements ActiveRecordInterface
             }
 
             return $query
-                ->filterByLocation($this)
+                ->filterByCategory($this)
                 ->count($con);
         }
 
@@ -1248,7 +1249,7 @@ abstract class Location implements ActiveRecordInterface
      * through the ChildProperty foreign key attribute.
      *
      * @param  ChildProperty $l ChildProperty
-     * @return $this|\RealStateModel\Location The current object (for fluent API support)
+     * @return $this|\RealStateModel\Category The current object (for fluent API support)
      */
     public function addProperty(ChildProperty $l)
     {
@@ -1274,12 +1275,12 @@ abstract class Location implements ActiveRecordInterface
     protected function doAddProperty(ChildProperty $property)
     {
         $this->collProperties[]= $property;
-        $property->setLocation($this);
+        $property->setCategory($this);
     }
 
     /**
      * @param  ChildProperty $property The ChildProperty object to remove.
-     * @return $this|ChildLocation The current object (for fluent API support)
+     * @return $this|ChildCategory The current object (for fluent API support)
      */
     public function removeProperty(ChildProperty $property)
     {
@@ -1290,8 +1291,8 @@ abstract class Location implements ActiveRecordInterface
                 $this->propertiesScheduledForDeletion = clone $this->collProperties;
                 $this->propertiesScheduledForDeletion->clear();
             }
-            $this->propertiesScheduledForDeletion[]= clone $property;
-            $property->setLocation(null);
+            $this->propertiesScheduledForDeletion[]= $property;
+            $property->setCategory(null);
         }
 
         return $this;
@@ -1301,23 +1302,23 @@ abstract class Location implements ActiveRecordInterface
     /**
      * If this collection has already been initialized with
      * an identical criteria, it returns the collection.
-     * Otherwise if this Location is new, it will return
-     * an empty collection; or if this Location has previously
+     * Otherwise if this Category is new, it will return
+     * an empty collection; or if this Category has previously
      * been saved, it will retrieve related Properties from storage.
      *
      * This method is protected by default in order to keep the public
      * api reasonable.  You can provide public methods for those you
-     * actually need in Location.
+     * actually need in Category.
      *
      * @param      Criteria $criteria optional Criteria object to narrow the query
      * @param      ConnectionInterface $con optional connection object
      * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
      * @return ObjectCollection|ChildProperty[] List of ChildProperty objects
      */
-    public function getPropertiesJoinCategory(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
+    public function getPropertiesJoinLocation(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
     {
         $query = ChildPropertyQuery::create(null, $criteria);
-        $query->joinWith('Category', $joinBehavior);
+        $query->joinWith('Location', $joinBehavior);
 
         return $this->getProperties($query, $con);
     }
@@ -1329,8 +1330,8 @@ abstract class Location implements ActiveRecordInterface
      */
     public function clear()
     {
-        $this->lo_id = null;
-        $this->lo_name = null;
+        $this->cat_id = null;
+        $this->cat_name = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->resetModified();
@@ -1366,7 +1367,7 @@ abstract class Location implements ActiveRecordInterface
      */
     public function __toString()
     {
-        return (string) $this->exportTo(LocationTableMap::DEFAULT_STRING_FORMAT);
+        return (string) $this->exportTo(CategoryTableMap::DEFAULT_STRING_FORMAT);
     }
 
     /**

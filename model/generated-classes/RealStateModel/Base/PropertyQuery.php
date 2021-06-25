@@ -29,6 +29,7 @@ use RealStateModel\Map\PropertyTableMap;
  * @method     ChildPropertyQuery orderByPropPrice($order = Criteria::ASC) Order by the prop_price column
  * @method     ChildPropertyQuery orderByPropPubdate($order = Criteria::ASC) Order by the prop_pubDate column
  * @method     ChildPropertyQuery orderByPropIshidden($order = Criteria::ASC) Order by the prop_isHidden column
+ * @method     ChildPropertyQuery orderByPropIshidden($order = Criteria::ASC) Order by the prop_category column
  *
  * @method     ChildPropertyQuery groupByPropId() Group by the prop_id column
  * @method     ChildPropertyQuery groupByPropName() Group by the prop_name column
@@ -39,6 +40,7 @@ use RealStateModel\Map\PropertyTableMap;
  * @method     ChildPropertyQuery groupByPropPrice() Group by the prop_price column
  * @method     ChildPropertyQuery groupByPropPubdate() Group by the prop_pubDate column
  * @method     ChildPropertyQuery groupByPropIshidden() Group by the prop_isHidden column
+ * @method     ChildPropertyQuery groupByPropIshidden() Group by the prop_category column
  *
  * @method     ChildPropertyQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     ChildPropertyQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -57,6 +59,16 @@ use RealStateModel\Map\PropertyTableMap;
  * @method     ChildPropertyQuery leftJoinWithLocation() Adds a LEFT JOIN clause and with to the query using the Location relation
  * @method     ChildPropertyQuery rightJoinWithLocation() Adds a RIGHT JOIN clause and with to the query using the Location relation
  * @method     ChildPropertyQuery innerJoinWithLocation() Adds a INNER JOIN clause and with to the query using the Location relation
+ *
+ * @method     ChildPropertyQuery leftJoinCategory($relationAlias = null) Adds a LEFT JOIN clause to the query using the Category relation
+ * @method     ChildPropertyQuery rightJoinCategory($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Category relation
+ * @method     ChildPropertyQuery innerJoinCategory($relationAlias = null) Adds a INNER JOIN clause to the query using the Category relation
+ *
+ * @method     ChildPropertyQuery joinWithCategory($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Category relation
+ *
+ * @method     ChildPropertyQuery leftJoinWithCategory() Adds a LEFT JOIN clause and with to the query using the Category relation
+ * @method     ChildPropertyQuery rightJoinWithCategory() Adds a RIGHT JOIN clause and with to the query using the Category relation
+ * @method     ChildPropertyQuery innerJoinWithCategory() Adds a INNER JOIN clause and with to the query using the Category relation
  *
  * @method     ChildPropertyQuery leftJoinPropertyFeature($relationAlias = null) Adds a LEFT JOIN clause to the query using the PropertyFeature relation
  * @method     ChildPropertyQuery rightJoinPropertyFeature($relationAlias = null) Adds a RIGHT JOIN clause to the query using the PropertyFeature relation
@@ -78,7 +90,7 @@ use RealStateModel\Map\PropertyTableMap;
  * @method     ChildPropertyQuery rightJoinWithPropertyImage() Adds a RIGHT JOIN clause and with to the query using the PropertyImage relation
  * @method     ChildPropertyQuery innerJoinWithPropertyImage() Adds a INNER JOIN clause and with to the query using the PropertyImage relation
  *
- * @method     \RealStateModel\LocationQuery|\RealStateModel\PropertyFeatureQuery|\RealStateModel\PropertyImageQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
+ * @method     \RealStateModel\LocationQuery|\RealStateModel\CategoryQuery|\RealStateModel\PropertyFeatureQuery|\RealStateModel\PropertyImageQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
  * @method     ChildProperty|null findOne(ConnectionInterface $con = null) Return the first ChildProperty matching the query
  * @method     ChildProperty findOneOrCreate(ConnectionInterface $con = null) Return the first ChildProperty matching the query, or a new ChildProperty object populated from the query conditions when no match is found
@@ -91,7 +103,8 @@ use RealStateModel\Map\PropertyTableMap;
  * @method     ChildProperty|null findOneByPropArea(double $prop_area) Return the first ChildProperty filtered by the prop_area column
  * @method     ChildProperty|null findOneByPropPrice(double $prop_price) Return the first ChildProperty filtered by the prop_price column
  * @method     ChildProperty|null findOneByPropPubdate(string $prop_pubDate) Return the first ChildProperty filtered by the prop_pubDate column
- * @method     ChildProperty|null findOneByPropIshidden(int $prop_isHidden) Return the first ChildProperty filtered by the prop_isHidden column *
+ * @method     ChildProperty|null findOneByPropIshidden(int $prop_isHidden) Return the first ChildProperty filtered by the prop_isHidden column
+ * @method     ChildProperty|null findOneByPropIshidden(int $prop_category) Return the first ChildProperty filtered by the prop_category column *
 
  * @method     ChildProperty requirePk($key, ConnectionInterface $con = null) Return the ChildProperty by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProperty requireOne(ConnectionInterface $con = null) Return the first ChildProperty matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -105,6 +118,7 @@ use RealStateModel\Map\PropertyTableMap;
  * @method     ChildProperty requireOneByPropPrice(double $prop_price) Return the first ChildProperty filtered by the prop_price column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProperty requireOneByPropPubdate(string $prop_pubDate) Return the first ChildProperty filtered by the prop_pubDate column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProperty requireOneByPropIshidden(int $prop_isHidden) Return the first ChildProperty filtered by the prop_isHidden column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildProperty requireOneByPropIshidden(int $prop_category) Return the first ChildProperty filtered by the prop_category column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildProperty[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildProperty objects based on current ModelCriteria
  * @method     ChildProperty[]|ObjectCollection findByPropId(string $prop_id) Return ChildProperty objects filtered by the prop_id column
@@ -116,6 +130,7 @@ use RealStateModel\Map\PropertyTableMap;
  * @method     ChildProperty[]|ObjectCollection findByPropPrice(double $prop_price) Return ChildProperty objects filtered by the prop_price column
  * @method     ChildProperty[]|ObjectCollection findByPropPubdate(string $prop_pubDate) Return ChildProperty objects filtered by the prop_pubDate column
  * @method     ChildProperty[]|ObjectCollection findByPropIshidden(int $prop_isHidden) Return ChildProperty objects filtered by the prop_isHidden column
+ * @method     ChildProperty[]|ObjectCollection findByPropIshidden(int $prop_category) Return ChildProperty objects filtered by the prop_category column
  * @method     ChildProperty[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
  */
@@ -214,7 +229,7 @@ abstract class PropertyQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT prop_id, prop_name, prop_address, prop_location, prop_description, prop_area, prop_price, prop_pubDate, prop_isHidden FROM Property WHERE prop_id = :p0';
+        $sql = 'SELECT prop_id, prop_name, prop_address, prop_location, prop_description, prop_area, prop_price, prop_pubDate, prop_isHidden, prop_category FROM Property WHERE prop_id = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_STR);
@@ -614,6 +629,49 @@ abstract class PropertyQuery extends ModelCriteria
     }
 
     /**
+     * Filter the query on the prop_category column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByPropIshidden(1234); // WHERE prop_category = 1234
+     * $query->filterByPropIshidden(array(12, 34)); // WHERE prop_category IN (12, 34)
+     * $query->filterByPropIshidden(array('min' => 12)); // WHERE prop_category > 12
+     * </code>
+     *
+     * @see       filterByCategory()
+     *
+     * @param     mixed $propIshidden The value to use as filter.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return $this|ChildPropertyQuery The current query, for fluid interface
+     */
+    public function filterByPropIshidden($propIshidden = null, $comparison = null)
+    {
+        if (is_array($propIshidden)) {
+            $useMinMax = false;
+            if (isset($propIshidden['min'])) {
+                $this->addUsingAlias(PropertyTableMap::COL_PROP_CATEGORY, $propIshidden['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($propIshidden['max'])) {
+                $this->addUsingAlias(PropertyTableMap::COL_PROP_CATEGORY, $propIshidden['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(PropertyTableMap::COL_PROP_CATEGORY, $propIshidden, $comparison);
+    }
+
+    /**
      * Filter the query by a related \RealStateModel\Location object
      *
      * @param \RealStateModel\Location|ObjectCollection $location The related object(s) to use as filter
@@ -744,6 +802,138 @@ abstract class PropertyQuery extends ModelCriteria
     public function useLocationNotExistsQuery($modelAlias = null, $queryClass = null)
     {
         return $this->useExistsQuery('Location', $modelAlias, $queryClass, 'NOT EXISTS');
+    }
+    /**
+     * Filter the query by a related \RealStateModel\Category object
+     *
+     * @param \RealStateModel\Category|ObjectCollection $category The related object(s) to use as filter
+     * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @throws \Propel\Runtime\Exception\PropelException
+     *
+     * @return ChildPropertyQuery The current query, for fluid interface
+     */
+    public function filterByCategory($category, $comparison = null)
+    {
+        if ($category instanceof \RealStateModel\Category) {
+            return $this
+                ->addUsingAlias(PropertyTableMap::COL_PROP_CATEGORY, $category->getCatId(), $comparison);
+        } elseif ($category instanceof ObjectCollection) {
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+
+            return $this
+                ->addUsingAlias(PropertyTableMap::COL_PROP_CATEGORY, $category->toKeyValue('PrimaryKey', 'CatId'), $comparison);
+        } else {
+            throw new PropelException('filterByCategory() only accepts arguments of type \RealStateModel\Category or Collection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the Category relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return $this|ChildPropertyQuery The current query, for fluid interface
+     */
+    public function joinCategory($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('Category');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'Category');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the Category relation Category object
+     *
+     * @see useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return \RealStateModel\CategoryQuery A secondary query class using the current class as primary query
+     */
+    public function useCategoryQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    {
+        return $this
+            ->joinCategory($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Category', '\RealStateModel\CategoryQuery');
+    }
+
+    /**
+     * Use the Category relation Category object
+     *
+     * @param callable(\RealStateModel\CategoryQuery):\RealStateModel\CategoryQuery $callable A function working on the related query
+     *
+     * @param string|null $relationAlias optional alias for the relation
+     *
+     * @param string|null $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return $this
+     */
+    public function withCategoryQuery(
+        callable $callable,
+        string $relationAlias = null,
+        ?string $joinType = Criteria::LEFT_JOIN
+    ) {
+        $relatedQuery = $this->useCategoryQuery(
+            $relationAlias,
+            $joinType
+        );
+        $callable($relatedQuery);
+        $relatedQuery->endUse();
+
+        return $this;
+    }
+    /**
+     * Use the relation to Category table for an EXISTS query.
+     *
+     * @see \Propel\Runtime\ActiveQuery\ModelCriteria::useExistsQuery()
+     *
+     * @param string|null $queryClass Allows to use a custom query class for the exists query, like ExtendedBookQuery::class
+     * @param string|null $modelAlias sets an alias for the nested query
+     * @param string $typeOfExists Either ExistsCriterion::TYPE_EXISTS or ExistsCriterion::TYPE_NOT_EXISTS
+     *
+     * @return \RealStateModel\CategoryQuery The inner query object of the EXISTS statement
+     */
+    public function useCategoryExistsQuery($modelAlias = null, $queryClass = null, $typeOfExists = 'EXISTS')
+    {
+        return $this->useExistsQuery('Category', $modelAlias, $queryClass, $typeOfExists);
+    }
+
+    /**
+     * Use the relation to Category table for a NOT EXISTS query.
+     *
+     * @see useCategoryExistsQuery()
+     *
+     * @param string|null $modelAlias sets an alias for the nested query
+     * @param string|null $queryClass Allows to use a custom query class for the exists query, like ExtendedBookQuery::class
+     *
+     * @return \RealStateModel\CategoryQuery The inner query object of the NOT EXISTS statement
+     */
+    public function useCategoryNotExistsQuery($modelAlias = null, $queryClass = null)
+    {
+        return $this->useExistsQuery('Category', $modelAlias, $queryClass, 'NOT EXISTS');
     }
     /**
      * Filter the query by a related \RealStateModel\PropertyFeature object

@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS RealState;
-CREATE DATABASE RealState;
-USE RealState;
+DROP DATABASE IF EXISTS realstate;
+CREATE DATABASE realstate;
+use realstate;
 
 # This is a fix for InnoDB in MySQL >= 4.1.x
 # It "suspends judgement" for fkey relationships until are tables are set.
@@ -47,6 +47,20 @@ CREATE TABLE `Location`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
+-- Category
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `Category`;
+
+CREATE TABLE `Category`
+(
+    `cat_id` INTEGER NOT NULL AUTO_INCREMENT,
+    `cat_name` VARCHAR(100),
+    PRIMARY KEY (`cat_id`),
+    UNIQUE INDEX `cat_name` (`cat_name`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
 -- Property
 -- ---------------------------------------------------------------------
 
@@ -63,12 +77,17 @@ CREATE TABLE `Property`
     `prop_price` DOUBLE DEFAULT 0 NOT NULL,
     `prop_pubDate` DATE,
     `prop_isHidden` INTEGER,
+    `prop_category` INTEGER,
     PRIMARY KEY (`prop_id`),
     UNIQUE INDEX `prop_pubDate` (`prop_pubDate`),
     INDEX `prop_location` (`prop_location`),
+    INDEX `property_ibfi_2` (`prop_category`),
     CONSTRAINT `property_ibfk_1`
         FOREIGN KEY (`prop_location`)
-        REFERENCES `Location` (`lo_id`)
+        REFERENCES `Location` (`lo_id`),
+    CONSTRAINT `property_ibfk_2`
+        FOREIGN KEY (`prop_category`)
+        REFERENCES `Category` (`cat_id`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
