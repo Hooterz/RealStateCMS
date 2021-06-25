@@ -1,0 +1,14 @@
+{% extends "./layout.html" %}
+{% block title %}CMS - 404{% endblock %}
+{% block body %}
+  <main id="main" class="mt-2">
+    <section class="intro-single">
+        <center><h1>404 - Page not found</h1></center>
+        <center><h1 class="p-5">{{ $message }}}</h1></center>
+
+    </section>
+  </main>
+{% endblock %}
+{% block aditional_js %}
+<script type="text/javascript" src="views/custom_assets/js/addproperty_view.js"></script>
+{% endblock %}

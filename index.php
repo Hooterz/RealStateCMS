@@ -9,6 +9,7 @@
 
     $router->map('GET', '/add-property', fn() => require_once 'controller/GET_addProperty_Controller.php');
 
+
     // match current request url
     $match = $router->match();
 
