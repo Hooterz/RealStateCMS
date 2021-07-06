@@ -7,10 +7,12 @@
     $message = 'State: ';
     try {
         header('Content-Type: application/json');
-        $response = APIRealState::getPropertyImages($_GET['prop_id']);
+        $response = APIRealState::getProperty(
+            $_GET['id'] ?? null
+        );
         $message .= (empty($response) ? 'Empty' : 'Success');
         echo (json_encode([
-            'images' => $response,
+            'property' => $response,
             'message' => $message
         ]));
     }

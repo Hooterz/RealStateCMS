@@ -1,11 +1,18 @@
+{# TODO: Hacer el primer carousel y ver qué pedo con la vista de detalle #}
 {% extends "./layout.html" %}
 {% block title %}SE - Bienvenido{% endblock %}
+{% block additional_sources %}
+  <script type="text/javascript" src="views/custom_assets/jquery/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="views/custom_assets/css/index/card_slider.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+{% endblock %}
 {% block body %}
 <div class="intro intro-carousel swiper-container position-relative">
 
   <div class="swiper-wrapper">
 
-    <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(views/assets/img/slide-1.jpg)">
+    <div class="swiper-slide carousel-item-a intro-item bg-image"
+      style="background-image: url(views/assets/img/slide-1.jpg)">
       <div class="overlay overlay-a"></div>
       <div class="intro-content display-table">
         <div class="table-cell">
@@ -30,7 +37,8 @@
         </div>
       </div>
     </div>
-    <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(views/assets/img/slide-2.jpg)">
+    <div class="swiper-slide carousel-item-a intro-item bg-image"
+      style="background-image: url(views/assets/img/slide-2.jpg)">
       <div class="overlay overlay-a"></div>
       <div class="intro-content display-table">
         <div class="table-cell">
@@ -55,7 +63,8 @@
         </div>
       </div>
     </div>
-    <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(views/assets/img/slide-3.jpg)">
+    <div class="swiper-slide carousel-item-a intro-item bg-image"
+      style="background-image: url(views/assets/img/slide-3.jpg)">
       <div class="overlay overlay-a"></div>
       <div class="intro-content display-table">
         <div class="table-cell">
@@ -193,206 +202,38 @@
         </div>
       </div>
 
-      <div id="property-carousel" class="swiper-container">
-        <div class="swiper-wrapper">
-
-          <div class="carousel-item-b swiper-slide">
-            <div class="card-box-a card-shadow">
-              <div class="img-box-a">
-                <img loading="lazy" loading="lazy" loading="lazy" loading="lazy" src="views/assets/img/property-6.jpg" alt="" class="img-a img-fluid">
-              </div>
-              <div class="card-overlay">
-                <div class="card-overlay-a-content">
-                  <div class="card-header-a">
-                    <h2 class="card-title-a">
-                      <a href="property-single.html">206 Mount
-                        <br /> Olive Road Two</a>
-                    </h2>
-                  </div>
-                  <div class="card-body-a">
-                    <div class="price-box d-flex">
-                      <span class="price-a">renta | $ 12.000 MXN</span>
-                    </div>
-                    <a href="#" class="link-a">Click para ver
-                      <span class="bi bi-chevron-right"></span>
-                    </a>
-                  </div>
-                  <div class="card-footer-a">
-                    <ul class="card-info d-flex justify-content-around">
-                      <li>
-                        <h4 class="card-info-title">Area</h4>
-                        <span>340m
-                          <sup>2</sup>
-                        </span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Cuartos</h4>
-                        <span>2</span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Baños</h4>
-                        <span>4</span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Garages</h4>
-                        <span>1</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+      <section class="carousel slider" data-ride="carousel" id="postsCarousel">
+        {# <div class="container">
+          <div class="row">
+            <div class="col-12 text-right mb-4 d-flex">
+              <a href="" class="btn btn-outline-secondary prev" title="go back"><i class="fas fa-chevron-left"
+                  aria-hidden="true"></i>
+              </a>
+              <a href="" class="btn btn-outline-secondary next" title="more"><i class="fa fa-chevron-right"
+                  aria-hidden="true"></i>
+              </a>
             </div>
-          </div><!-- End carousel item -->
+          </div>
+        </div> #}
 
-          <div class="carousel-item-b swiper-slide">
-            <div class="card-box-a card-shadow">
-              <div class="img-box-a">
-                <img loading="lazy" loading="lazy" loading="lazy" loading="lazy" src="views/assets/img/property-3.jpg" alt="" class="img-a img-fluid">
-              </div>
-              <div class="card-overlay">
-                <div class="card-overlay-a-content">
-                  <div class="card-header-a">
-                    <h2 class="card-title-a">
-                      <a href="property-single.html">157 West
-                        <br /> Central Park</a>
-                    </h2>
-                  </div>
-                  <div class="card-body-a">
-                    <div class="price-box d-flex">
-                      <span class="price-a">renta | $ 12.000</span>
-                    </div>
-                    <a href="#" class="link-a">Click para ver
-                      <span class="bi bi-chevron-right"></span>
-                    </a>
-                  </div>
-                  <div class="card-footer-a">
-                    <ul class="card-info d-flex justify-content-around">
-                      <li>
-                        <h4 class="card-info-title">Area</h4>
-                        <span>340m
-                          <sup>2</sup>
-                        </span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Cuartos</h4>
-                        <span>2</span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Baños</h4>
-                        <span>4</span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Garages</h4>
-                        <span>1</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div><!-- End carousel item -->
-
-          <div class="carousel-item-b swiper-slide">
-            <div class="card-box-a card-shadow">
-              <div class="img-box-a">
-                <img loading="lazy" loading="lazy" loading="lazy" src="views/assets/img/property-7.jpg" alt="" class="img-a img-fluid">
-              </div>
-              <div class="card-overlay">
-                <div class="card-overlay-a-content">
-                  <div class="card-header-a">
-                    <h2 class="card-title-a">
-                      <a href="property-single.html">245 Azabu
-                        <br /> Nishi Park let</a>
-                    </h2>
-                  </div>
-                  <div class="card-body-a">
-                    <div class="price-box d-flex">
-                      <span class="price-a">renta | $ 12.000</span>
-                    </div>
-                    <a href="#" class="link-a">Click para ver
-                      <span class="bi bi-chevron-right"></span>
-                    </a>
-                  </div>
-                  <div class="card-footer-a">
-                    <ul class="card-info d-flex justify-content-around">
-                      <li>
-                        <h4 class="card-info-title">Area</h4>
-                        <span>340m
-                          <sup>2</sup>
-                        </span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Cuartos</h4>
-                        <span>2</span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Baños</h4>
-                        <span>4</span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Garages</h4>
-                        <span>1</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div><!-- End carousel item -->
-
-          <div class="carousel-item-b swiper-slide">
-            <div class="card-box-a card-shadow">
-              <div class="img-box-a">
-                <img loading="lazy" loading="lazy" loading="lazy" src="views/assets/img/property-10.jpg" alt="" class="img-a img-fluid">
-              </div>
-              <div class="card-overlay">
-                <div class="card-overlay-a-content">
-                  <div class="card-header-a">
-                    <h2 class="card-title-a">
-                      <a href="property-single.html">204 Montal
-                        <br /> South Bela Two</a>
-                    </h2>
-                  </div>
-                  <div class="card-body-a">
-                    <div class="price-box d-flex">
-                      <span class="price-a">renta | $ 12.000</span>
-                    </div>
-                    <a href="#" class="link-a">Click para ver
-                      <span class="bi bi-chevron-right"></span>
-                    </a>
-                  </div>
-                  <div class="card-footer-a">
-                    <ul class="card-info d-flex justify-content-around">
-                      <li>
-                        <h4 class="card-info-title">Area</h4>
-                        <span>340m
-                          <sup>2</sup>
-                        </span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Cuartos</h4>
-                        <span>2</span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Baños</h4>
-                        <span>4</span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Garages</h4>
-                        <span>1</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div><!-- End carousel item -->
+        <div class="container carousel-inner position-relative d-flex justify-content-center pb-3 pb-md-0" latest_properties>
+            <a href="" class="btn btn-outline-secondary prev position-absolute top-50 start-0 translate-middle-y"
+              style="z-index:10;" title="go back"><i class="fas fa-chevron-left" aria-hidden="true"></i>
+            </a>
+            <a href="" class="btn btn-outline-secondary next position-absolute top-50 end-0 translate-middle-y"
+            style="z-index:10;" title="more"><i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </a>
         </div>
-      </div>
+      </section>
       <div class="propery-carousel-pagination carousel-pagination"></div>
 
     </div>
   </section><!-- End Latest Properties Section -->
 
 </main><!-- End #main -->
+{% endblock %}
+{% block aditional_js %}
+<script type="text/javascript" src="views/custom_assets/js/index/index.js"></script>
+<script type="text/javascript" src="views/custom_assets/js/index/card_slider.js"></script>
+
 {% endblock %}

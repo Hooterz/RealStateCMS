@@ -2,13 +2,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Controla el formulario para mostrar cambios segun el tipo
     document.querySelector("#type_select").addEventListener('change', function () {
+        // WARNING TODO: Hay que arreglar el hecho de que se haga el DOM con un value no string
         switch (this.value) {
-            case "casa":
+            case "Casa":
                 document.getElementById("display_terrain_form").style.display = "none";
                 document.getElementById("display_house_form").style.display = "block";
                 break;
 
-            case "terreno":
+            case "Terreno":
                 document.getElementById("display_terrain_form").style.display = "block";
                 document.getElementById("display_house_form").style.display = "none";
                 break;
@@ -22,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Para añadir nuevas locations
-
     document.querySelector('#location').addEventListener('change', function(){
         let newLocationSection = document.querySelector('#new_location_wrapper');
         if(this.value === 'new'){
@@ -70,19 +70,15 @@ document.addEventListener("DOMContentLoaded", () => {
         let data = [];
 
         switch(formType.value){
-            case "casa":
+            case "Casa":
                 document.querySelectorAll('div.flex-column-mod:nth-child(2) > div').forEach(function(element){
                     data.push(`${element.firstElementChild.innerHTML} ${element.lastElementChild.value}`);
                 });
                 break;
-            case "terreno":
+            case "Terreno":
                 document.querySelectorAll('li.d-flex').forEach(function(element){
                     data.push(element.lastElementChild.innerHTML);
                 })
-                break;
-
-            default:
-                e.preventDefault();
                 break;
         }
         data = JSON.stringify(data);

@@ -2,19 +2,27 @@
     declare(strict_types=1);    
     namespace controller\tools;
     use Illuminate\Database\Capsule\Manager as Capsule;
-    
-    class APIRealState{
+use stdClass;
+
+class APIRealState{
 
         /**
          * Obtiene las propiedades con un límite (default 10) y un offset (default null)
          *
-         * @param [type] $limit
-         * @param [type] $offset
+         * @param int $limit
+         * @param int $offset
          * @return array
          */
         public static function getProperties($limit = 10, $offset = null): array{
             $limit_mod_sql = '';
-            $sql_query = 'SELECT * FROM Property ';
+            $sql_query = '
+            SELECT
+                prop_id, prop_name, prop_address, lo_name as prop_location,
+                prop_description, prop_area, prop_price, prop_pubDate,
+                prop_isHidden, cat_name as prop_category  FROM Property
+            INNER JOIN Location ON prop_location = lo_id
+            INNER JOIN Category ON prop_category = Category.cat_id 
+            ';
 
             if($limit > 0){
                 $limit_mod_sql .= "LIMIT $limit";
@@ -31,7 +39,7 @@
         /**
          * Obtiene los path a las imágenes arreglada a una propiedad
          *
-         * @param [type] $property_id
+         * @param string $property_id
          * @return array
          */
         public static function getPropertyImages($property_id): array{
@@ -46,7 +54,7 @@
         /**
          * Obtiene los contenidos de los features arreglados a una propiedad
          *
-         * @param [type] $property_id
+         * @param string $property_id
          * @return array
          */
         public static function getPropertyFeatures($property_id): array{
@@ -56,6 +64,55 @@
                 having propFeature_prop_id = '$property_id';
             ");
             return $results;
+        }
+
+        /**
+         * Comprueba si exsite una propiedad de cualquier tipo usando su nombre como referencia
+         *
+         * @param string $name
+         * @return array
+         */
+        public static function doesPropertyNameExist($name): bool{
+            $results = Capsule::select("
+                SELECT '$name' in (SELECT prop_name FROM Property) as value;
+            ");
+            return boolval($results[0]->value);
+        }
+
+        /**
+         * Comprueba si exsite una propiedad de cualquier tipo usando su id como referencia
+         *
+         * @param string $id
+         * @return array
+         */
+        public static function doesPropertyIdExist($id): bool{
+            $results = Capsule::select("
+                SELECT '$id' in (SELECT prop_id FROM Property) as value;
+            ");
+            return boolval($results[0]->value);
+        }
+
+        /**
+         * Undocumented function
+         *
+         * @param string $id
+         * @return stdClass|null
+         */
+        public static function getProperty($id): mixed {
+            if(!self::doesPropertyIdExist($id)) return null;
+            $sql_query = "
+                SELECT
+                    prop_id, prop_name, prop_address, lo_name as prop_location,
+                    prop_description, prop_area, prop_price, prop_pubDate,
+                    prop_isHidden, cat_name as prop_category  
+                FROM Property
+                INNER JOIN Location ON prop_location = lo_id
+                INNER JOIN Category ON prop_category = Category.cat_id
+                HAVING prop_id = '$id'
+                LIMIT 1;
+            ";
+            $results = Capsule::select($sql_query);
+            return $results[0];
         }
 
     }

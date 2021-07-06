@@ -13,7 +13,7 @@
         );
         $message .= (empty($response) ? 'Empty' : 'Success');
         echo (json_encode([
-            'features' => $response,
+            'properties' => $response,
             'message' => $message
         ]));
     }

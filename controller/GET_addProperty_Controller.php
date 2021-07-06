@@ -5,10 +5,12 @@
         Environment
     };
     use settings\Path;
+    use Illuminate\Database\Capsule\Manager as DBCursor;
+    require('controller/tools/Twig.php');
 
-    $loader = new FilesystemLoader('views');
-    $twig = new Environment($loader);
     echo $twig->render('addproperty.html', [
-        'post_response' => Path::PATH_FROM_ROOT('/add-property')
+        'post_response' => Path::HOST_NAME().'/add-property',
+        'categories' => DBCursor::select('SELECT cat_name FROM Category;'),
+        'locations' => DBCursor::select('SELECT * FROM Location;')
     ]);
 ?>

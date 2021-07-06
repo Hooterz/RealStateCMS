@@ -1,11 +1,11 @@
 <?php
-    namespace controller;
-    use Twig\{
+use settings\Path;
+use Twig\{
         Loader\FilesystemLoader,
         Environment
     };
 
     $loader = new FilesystemLoader('views');
     $twig = new Environment($loader);
-    echo $twig->render('houses.html');
+    $twig->addGlobal('host', Path::HOST_NAME());
 ?>

@@ -4,14 +4,16 @@
   <main id="main" class="mt-2">
     <section class="intro-single">
       <div class="container">
-        <form action="{{ post_response }}" method="post">
+        <form action="{{ post_response }}" method="post" enctype="multipart/form-data">
 
           <label>Tipo de adicion:</label>
           <select id="type_select" class="form-select w-50" aria-label="Default select example" 
             name="type_select" required>
             <option selected>Selecciona el tipo de propiedad</option>
-            <option value="casa">Casa</option>
-            <option value="terreno">Terreno</option>
+            {# Medio para poner más cosas (tipos de propiedades) #}
+            {% for category in categories %}
+            <option value="{{ category.cat_name }}">{{ category.cat_name }}</option>
+            {% endfor %}
           </select>
 
           <fieldset class="border rounded my-4 p-md-3" style="border-color: #fff;">
@@ -31,7 +33,10 @@
                   <select class="form-select form-select-lg " aria-label="Default select example"
                     name="prop_location" id="location" required>
                   <option value="default" selected>Selecciona la localización de la propiedad</option>
-                  {# Medio para poner más cosas #}
+                  {% for location in locations %}
+                  <option value="{{ location.lo_id }}">{{ location.lo_name }}</option>
+                  {% endfor %}
+                  {# Medio para poner más cosas (Localizaciones disponibles) #}
                   <option value="new">Añadir localización</option>
                   </select>
                 </div>
@@ -53,7 +58,7 @@
               <div class="row">
                 <div class="col">
                   <label>Descripción:</label>
-                  <textarea rows="5" placeholder="Descripcion" name="prop_desc" id="description"
+                  <textarea rows="5" placeholder="Descripcion" name="prop_description" id="description"
                     class="form-control form-control-lg form-control-a"></textarea>
                 </div>
               </div>
@@ -113,7 +118,7 @@
               <input type="hidden" name="features" id="features"/> 
               <div class="input-group p-3 d-flex flex-column">
                 <label>Imágenes:</label>
-                <input type="file" multiple class="form-control w-100" name="uploaded_files">
+                <input type="file" class="form-control w-100" name="uploaded_files[]" accept="image/*" multiple>
               </div>
               <div class="row d-flex align-items-end p-3">
                 <div class="col d-flex justify-content-center">
