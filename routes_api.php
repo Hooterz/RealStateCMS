@@ -3,6 +3,7 @@
 
     $router_api->map('GET', 'test', fn() => require_once 'controller/api/testAPI.php');
     $router_api->map('GET', 'properties', fn() => require_once 'controller/api/API_get_properties_Controller.php');
+    $router_api->map('GET', 'propertiesByCategory', fn() => require_once 'controller/api/API_get_propertiesByCategory_Controller.php');
     $router_api->map('GET', 'property', fn() => require_once 'controller/api/API_get_property_Controller.php');
     $router_api->map('GET', 'propertyFeatures', fn() => require_once 'controller/api/API_get_propertyFeatures.php');
     $router_api->map('GET', 'propertyImages', fn() => require_once 'controller/api/API_get_propertyImages.php');

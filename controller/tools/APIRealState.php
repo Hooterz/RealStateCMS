@@ -93,7 +93,7 @@ class APIRealState{
         }
 
         /**
-         * Undocumented function
+         * Obtiene una propiedad si es que esta existe
          *
          * @param string $id
          * @return stdClass|null
@@ -113,6 +113,36 @@ class APIRealState{
             ";
             $results = Capsule::select($sql_query);
             return $results[0];
+        }
+
+        /**
+         * Obtiene todas las propiedades en una categoría, contando como límite y offset
+         *
+         * @param string $id
+         * @return stdClass|null
+         */
+        public static function getPropertiesByCategory($cat_id, $limit, $offset): mixed {
+            $limit_mod_sql = '';
+            $sql_query = "
+            SELECT
+                prop_id, prop_name, prop_address, lo_name as prop_location,
+                prop_description, prop_area, prop_price, prop_pubDate,
+                prop_isHidden, cat_name as prop_category  FROM Property
+            INNER JOIN Location ON prop_location = lo_id
+            INNER JOIN Category ON prop_category = cat_id
+            HAVING prop_category = (SELECT cat_name FROM Category WHERE cat_id = $cat_id LIMIT 1)
+            ";
+
+            if($limit > 0){
+                $limit_mod_sql .= "LIMIT $limit";
+                if(isset($offset) && $offset > 0) $limit_mod_sql .= " OFFSET $offset";
+                $sql_query .= "ORDER BY prop_pubDate $limit_mod_sql;";
+            }
+            else{
+                $sql_query .= 'ORDER BY prop_pubDate LIMIT 10;';
+            }
+            $results = Capsule::select($sql_query);
+            return $results;
         }
 
     }

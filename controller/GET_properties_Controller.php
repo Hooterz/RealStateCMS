@@ -4,8 +4,10 @@
         Loader\FilesystemLoader,
         Environment
     };
+    use Illuminate\Database\Capsule\Manager as DBCursor;
+    require('controller/tools/Twig.php');
 
-    $loader = new FilesystemLoader('views');
-    $twig = new Environment($loader);
-    echo $twig->render('properties.html');
+    echo $twig->render('properties.html',[
+        'categories' => DBCursor::select('SELECT * FROM Category;')
+    ]);
 ?>

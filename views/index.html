@@ -1,94 +1,16 @@
-{# TODO: Hacer el primer carousel y ver qué pedo con la vista de detalle #}
 {% extends "./layout.html" %}
 {% block title %}SE - Bienvenido{% endblock %}
 {% block additional_sources %}
   <script type="text/javascript" src="views/custom_assets/jquery/jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" href="views/custom_assets/css/index/card_slider.css">
+  <link rel="stylesheet" href="{{ host }}/views/custom_assets/css/index/card_slider.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 {% endblock %}
 {% block body %}
 <div class="intro intro-carousel swiper-container position-relative">
 
-  <div class="swiper-wrapper">
+  <div class="swiper-wrapper" latest_properties>
+    
 
-    <div class="swiper-slide carousel-item-a intro-item bg-image"
-      style="background-image: url(views/assets/img/slide-1.jpg)">
-      <div class="overlay overlay-a"></div>
-      <div class="intro-content display-table">
-        <div class="table-cell">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8">
-                <div class="intro-body">
-                  <p class="intro-title-top">Doral, Florida
-                    <br> 78345
-                  </p>
-                  <h1 class="intro-title mb-4 ">
-                    <span class="color-d">204 </span> Mount
-                    <br> Olive Road Two
-                  </h1>
-                  <p class="intro-subtitle intro-price">
-                    <a href="#"><span class="price-a">renta | $ 12.000 MXN</span></a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-slide carousel-item-a intro-item bg-image"
-      style="background-image: url(views/assets/img/slide-2.jpg)">
-      <div class="overlay overlay-a"></div>
-      <div class="intro-content display-table">
-        <div class="table-cell">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8">
-                <div class="intro-body">
-                  <p class="intro-title-top">Doral, Florida
-                    <br> 78345
-                  </p>
-                  <h1 class="intro-title mb-4">
-                    <span class="color-d">204 </span> Rino
-                    <br> Venda Road Five
-                  </h1>
-                  <p class="intro-subtitle intro-price">
-                    <a href="#"><span class="price-a">renta | $ 12.000 MXN</span></a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-slide carousel-item-a intro-item bg-image"
-      style="background-image: url(views/assets/img/slide-3.jpg)">
-      <div class="overlay overlay-a"></div>
-      <div class="intro-content display-table">
-        <div class="table-cell">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8">
-                <div class="intro-body">
-                  <p class="intro-title-top">Doral, Florida
-                    <br> 78345
-                  </p>
-                  <h1 class="intro-title mb-4">
-                    <span class="color-d">204 </span> Alira
-                    <br> Roan Road One
-                  </h1>
-                  <p class="intro-subtitle intro-price">
-                    <a href="#"><span class="price-a">renta | $ 12.000 MXN</span></a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
   <div class="swiper-pagination"></div>
 </div><!-- End Intro Section -->
@@ -216,12 +138,12 @@
           </div>
         </div> #}
 
-        <div class="container carousel-inner position-relative d-flex justify-content-center pb-3 pb-md-0" latest_properties>
+        <div class="container carousel-inner position-relative d-flex justify-content-center pb-3 pb-md-0" recent_properties>
             <a href="" class="btn btn-outline-secondary prev position-absolute top-50 start-0 translate-middle-y"
-              style="z-index:10;" title="go back"><i class="fas fa-chevron-left" aria-hidden="true"></i>
+              style="z-index:10;" title="go back" carousel-control><i class="fas fa-chevron-left" aria-hidden="true" ></i>
             </a>
             <a href="" class="btn btn-outline-secondary next position-absolute top-50 end-0 translate-middle-y"
-            style="z-index:10;" title="more"><i class="fa fa-chevron-right" aria-hidden="true"></i>
+            style="z-index:10;" title="more" carousel-control><i class="fa fa-chevron-right" aria-hidden="true"></i>
             </a>
         </div>
       </section>
@@ -233,7 +155,6 @@
 </main><!-- End #main -->
 {% endblock %}
 {% block aditional_js %}
-<script type="text/javascript" src="views/custom_assets/js/index/index.js"></script>
-<script type="text/javascript" src="views/custom_assets/js/index/card_slider.js"></script>
-
+  <script type="text/javascript" src="{{ host }}/views/custom_assets/js/index/index.js"></script>
+  <script type="text/javascript" src="{{ host }}/views/custom_assets/js/index/card_slider.js"></script>
 {% endblock %}

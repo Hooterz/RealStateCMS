@@ -1191,8 +1191,6 @@ a:hover {
 }
 
 @media (min-width: 768px) {
-  .card-box-a:hover .img-a,
-  .card-box-a:hover .img-b,
   .card-box-b:hover .img-a,
   .card-box-b:hover .img-b {
     transform: scale(1.2);
@@ -1240,38 +1238,6 @@ a:hover {
 /*======================================
 //--//-->   PROPERTY - CARD-A
 ======================================*/
-@media (min-width: 768px) {
-  .card-box-a:hover .card-overlay-a-content {
-    bottom: 60px;
-  }
-}
-
-@media (min-width: 768px) and (min-width: 768px) {
-  .card-box-a:hover .card-overlay-a-content {
-    bottom: 60px;
-  }
-}
-
-@media (min-width: 768px) and (min-width: 992px) {
-  .card-box-a:hover .card-overlay-a-content {
-    bottom: 64px;
-  }
-}
-
-@media (min-width: 768px) {
-  .card-box-a:hover .card-body-a {
-    padding-bottom: 1rem;
-  }
-}
-
-@media (max-width: 767px) {
-  .card-box-a .card-overlay-a-content {
-    bottom: 65px;
-  }
-  .card-box-a .card-body-a {
-    padding-bottom: 1rem;
-  }
-}
 
 .card-overlay-a-content {
   transition: all .5s ease-in;

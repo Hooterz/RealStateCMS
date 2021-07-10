@@ -1,12 +1,7 @@
 <?php
     namespace controller;
-    use Twig\{
-        Loader\FilesystemLoader,
-        Environment
-    };
     use settings\Path;
     use Illuminate\Database\Capsule\Manager as DBCursor;
-use Illuminate\Support\Facades\DB;
 
 $messages = array();
 
@@ -124,6 +119,6 @@ $messages = array();
         DBCursor::select("INSERT INTO Property_Image VALUES ('$generated_hash_id', $id);");
     
     // Redirect to form
-    $url = Path::HOST_NAME().'\add-property';
+    $url = Path::HOST_NAME().'/add-property';
     header("Location: $url");
 ?>

@@ -1,10 +1,13 @@
 <?php
     namespace controller;
+
+    use controller\tools\APIRealState;
     use Twig\{
         Loader\FilesystemLoader,
         Environment
     };
-    use controller\api\APIRealState;
+
+
     require('controller/tools/Twig.php');
 
     /**
@@ -12,6 +15,13 @@
      * Esta función debe sacar toda la información de una casa del server
      * Esta función tiene que redirigir al index en caso de no existir la propiedad
      */
+    $property = APIRealState::getProperty($id);
+    $features = APIRealState::getPropertyFeatures($property->prop_id);
+    $images = APIRealState::getPropertyImages($property->prop_id);
 
-    echo $twig->render('detail.html');
+    echo $twig->render('detail.html', [
+        'property' => $property,
+        'features' => $features,
+        'images' => $images
+    ]);
 ?>
