@@ -14,20 +14,22 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
+DROP DATABASE IF EXISTS realstate;
+CREATE DATABASE realstate;
+USE realstate;
 --
 -- Table structure for table `Category`
 --
 
 DROP TABLE IF EXISTS `Category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+SET character_set_client = utf8mb4;
 CREATE TABLE `Category` (
   `cat_id` int NOT NULL AUTO_INCREMENT,
   `cat_name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`cat_id`),
   UNIQUE KEY `cat_name` (`cat_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +53,7 @@ CREATE TABLE `Feature` (
   `feature_id` int NOT NULL AUTO_INCREMENT,
   `feature_content` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`feature_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +76,7 @@ CREATE TABLE `Image` (
   `img_id` int NOT NULL AUTO_INCREMENT,
   `img_path` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`img_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +101,7 @@ CREATE TABLE `Location` (
   `lo_name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`lo_id`),
   UNIQUE KEY `lo_name` (`lo_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +137,7 @@ CREATE TABLE `Property` (
   KEY `property_ibfi_2` (`prop_category`),
   CONSTRAINT `property_ibfk_1` FOREIGN KEY (`prop_location`) REFERENCES `Location` (`lo_id`),
   CONSTRAINT `property_ibfk_2` FOREIGN KEY (`prop_category`) REFERENCES `Category` (`cat_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,7 +163,7 @@ CREATE TABLE `Property_Feature` (
   KEY `propFeatureg_feature_id` (`propFeatureg_feature_id`),
   CONSTRAINT `property_feature_ibfk_1` FOREIGN KEY (`propFeature_prop_id`) REFERENCES `Property` (`prop_id`),
   CONSTRAINT `property_feature_ibfk_2` FOREIGN KEY (`propFeatureg_feature_id`) REFERENCES `Feature` (`feature_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -187,7 +189,7 @@ CREATE TABLE `Property_Image` (
   KEY `propImg_img_id` (`propImg_img_id`),
   CONSTRAINT `property_image_ibfk_1` FOREIGN KEY (`propImg_prop_id`) REFERENCES `Property` (`prop_id`),
   CONSTRAINT `property_image_ibfk_2` FOREIGN KEY (`propImg_img_id`) REFERENCES `Image` (`img_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
