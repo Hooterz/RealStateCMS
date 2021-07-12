@@ -5,6 +5,6 @@
         "kint-php/kint": "3.*",
         "twig/twig": "^3.0",
         "altorouter/altorouter": "2.0",
-        "monolog/monolog": "2.2.0"
+        "verot/class.upload.php": "*"
     }
 }

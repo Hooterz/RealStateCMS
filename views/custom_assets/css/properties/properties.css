@@ -1,5 +1,12 @@
-div.row:nth-child(2) > div{
-    height: 100% !important;
+.fill {
+    min-height: 400px;
+}
+
+.bg-img{
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    overflow: hidden;
+    background-size: cover !important;
 }
 
 .card-box-a{

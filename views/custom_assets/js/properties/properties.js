@@ -1,5 +1,5 @@
 let total_offset = 0;
-const general_limit = 3;
+const general_limit = 4;
 let isPaginationEnd = false;
 
 $(document).ready(async () => {
@@ -91,10 +91,9 @@ async function fillProperties(properties){
     container.html('');
     for (const property of properties['properties']) {
         const property_image_url = await getFirstPropertyImage(property['prop_id']);
-        let element = $(`<div class="col-md-4">
-        <div class="card-box-a rounded card-shadow">
-          <div class="img-box-a">
-            <img src="${property_image_url}" alt="Imagen de la propiedad" class="img-a img-fluid">
+        let element = $(`<div class="col-md-3 my-3">
+        <div class="card-box-a rounded card-shadow bg-img" style="background: url('${property_image_url}');">
+          <div class="img-box-a fill">
           </div>
           <div class="card-overlay">
             <div class="card-overlay-a-content">
