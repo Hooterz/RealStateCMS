@@ -1,6 +1,9 @@
 {% extends "./layout.html" %}
 {% block title %}CMS - Añadir Propiedad{% endblock %}
 {% block body %}
+{% block additional_sources %}
+  <link rel="stylesheet" href="{{ host }}views/custom_assets/css/add_property/addProperty_style.css">
+{% endblock %}
   <main id="main" class="mt-2">
     <section class="intro-single">
       <div class="container">
@@ -9,7 +12,7 @@
           <label>Tipo de adicion:</label>
           <select id="type_select" class="form-select w-50" aria-label="Default select example" 
             name="type_select" required>
-            <option selected>Selecciona el tipo de propiedad</option>
+            <option selected value="default">Selecciona el tipo de propiedad</option>
             {# Medio para poner más cosas (tipos de propiedades) #}
             {% for category in categories %}
             <option value="{{ category.cat_name }}">{{ category.cat_name }}</option>
@@ -133,5 +136,5 @@
   </main>
 {% endblock %}
 {% block aditional_js %}
-<script type="text/javascript" src="views/custom_assets/js/addproperty_view.js"></script>
+<script type="text/javascript" src="{{ host }}/views/custom_assets/js/add_property/addproperty_view.js"></script>
 {% endblock %}

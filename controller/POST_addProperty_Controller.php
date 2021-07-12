@@ -2,6 +2,10 @@
     namespace controller;
     use settings\Path;
     use Illuminate\Database\Capsule\Manager as DBCursor;
+    use Verot\Upload\Upload as UploadHandler;
+    use Exception;
+    use DateTime;
+
 
 $messages = array();
 
@@ -35,7 +39,9 @@ $messages = array();
     }
 
     // Adding Property to DB
-    $generated_hash_id = hash('md5', $name);
+    $datetime = new DateTime();
+    $current_datetime = $datetime->format('Y-m-d H:i:s');
+    $generated_hash_id = hash('md5', $name.$current_datetime);
     DBCursor::select("
         INSERT INTO Property
         VALUES(
@@ -83,9 +89,17 @@ $messages = array();
      */
     $images_id = array();
     for ($i = 0; $i < count($_FILES['uploaded_files']['name']); $i++) {
+        $image_info = [
+            'name'      => $_FILES['uploaded_files']['name'][$i],
+            'type'      => $_FILES['uploaded_files']['type'][$i],
+            'tmp_name'  => $_FILES['uploaded_files']['tmp_name'][$i],
+            'error'     => $_FILES['uploaded_files']['error'][$i],
+            'size'      => $_FILES['uploaded_files']['size'][$i]
+        ];
 
         // El archivo debe ser menor a 3mb
-        if($_FILES['uploaded_files']['size'][$i] / (1024 ** 2) > MAX_FILE_SIZE){
+        // TODO: Ver que pedo con esto
+        if($image_info['size'] / (1024 ** 2) > MAX_FILE_SIZE){
             array_push(
                 $messages, 
                 "La imagen {$_FILES['uploaded_files']['name'][$i]} excede el tamaño máximo (3mb)"
@@ -93,10 +107,34 @@ $messages = array();
             continue;
         }
 
-        // Guarda el archivo en el directorio media/Properties_img/ 
-        $file_path = Path::MEDIA_PATH('Properties_img').$_FILES['uploaded_files']['name'][$i];
-        $file_url = Path::MEDIA_HOST_URL('Properties_img').$_FILES['uploaded_files']['name'][$i];
-        move_uploaded_file($_FILES['uploaded_files']['tmp_name'][$i], $file_path);
+        /**
+         * Le pone un trailer al nombre de las imágenes para saber que fue reescalada al tamaño del frontend
+         * El tamaño al que es escalado es 500x500 conservando las proporciones de la imagen
+         * comprime la imagen al 40%
+         * Guarda el archivo original en el directorio media/Original_img/ 
+         */
+        $handler = new UploadHandler($image_info);
+        if ($handler->uploaded){
+            $handler->process(Path::MEDIA_PATH('Original_img'));
+            if(!$handler->processed) throw new Exception($handler->error, 1);
+            $handler->file_name_body_add   = '_RESIZED';
+            $handler->image_convert        = 'png';
+            $handler->image_resize         = true;
+            $handler->image_x              = 600;
+            $handler->image_y              = 500;
+            $handler->image_ratio          = true;
+            $handler->png_compression      = 4;
+            // Guarda el archivo en el directorio media/Properties_img/ 
+            $handler->process(Path::MEDIA_PATH('Properties_img'));
+            if ($handler->processed) {
+                $handler->clean();
+            } else {
+                throw new Exception($handler->error, 1);
+            }
+        }
+
+        // $file_path = Path::MEDIA_PATH('Properties_img').$handler->file_dst_name;
+        $file_url = Path::MEDIA_HOST_URL('Properties_img').$handler->file_dst_name;
         
         // Guarda el path en la DB y guarda el id del registro en $images_id
         DBCursor::select("
