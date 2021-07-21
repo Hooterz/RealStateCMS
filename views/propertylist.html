@@ -1,42 +1,44 @@
 {% extends "./layout.html" %}
 {% block title %}SE - Property List{% endblock %}
 {% block body %}
-    <main id="main" class="mt-2">
-        <section class="section-services section-t8">
-            <div class="container">
-                <div class="input-group">
-                    <input type="text" name="prop_name" id="prop_name" class="form-control" placeholder="Nombre" />
-                    <input type="text" name="prop_id" id="prop_id" class="form-control" placeholder="ID" />
-                    <input type="date" name="prop_pub_date" id="prop_pub_date" class="form-control" />
-                    <input class="btn btn-primary" type="submit" value="Buscar">
-                </div>
+<main id="main" class="mt-2">
+  <section class="section-services section-t8">
+    <div class="container">
+      <div class="input-group">
+        <input type="text" name="prop_name" id="prop_name" class="form-control" placeholder="Nombre" />
+        <input type="text" name="prop_id" id="prop_id" class="form-control" placeholder="ID" />
+        <input type="date" name="prop_pub_date" id="prop_pub_date" class="form-control" />
+        <input class="btn btn-primary" type="submit" value="Buscar">
+      </div>
 
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Locación</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Acción</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>1,000,000</td>
-                        <td>Av. Nichupte Calle Kaan Lol Lote #32 SM #51</td>
-                        <td>Casa Blanca</td>
-                        <td>
-                            <div class="input-group">
-                                <input class="btn btn-success" type="submit" value="Editar">
-                                <input class="btn btn-danger" type="submit" value="Esconder">
-                            </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-        </section>
-    </main>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Locación</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for property in latest_properties %}
+          <tr>
+            <td scope="row">{{ property.prop_id }}</td>
+            <td>{{property.prop_price}}MXN</td>
+            <td>{{ property.prop_location}}, {{ property.prop_address }}</td>
+            <td>{{ property.prop_name }}</td>
+            <td>
+              <div class="input-group">
+                <a class="btn btn-secondary shadow" href="{{ host }}/edit-property/{{ property.prop_id }}">Editar</a>
+                <button class="btn btn-danger shadow">Esconder</button>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
 {% endblock %}

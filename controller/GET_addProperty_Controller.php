@@ -1,9 +1,5 @@
 <?php
     namespace controller;
-    use Twig\{
-        Loader\FilesystemLoader,
-        Environment
-    };
     use settings\Path;
     use Illuminate\Database\Capsule\Manager as DBCursor;
     require('controller/tools/Twig.php');

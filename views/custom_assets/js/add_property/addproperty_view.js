@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var terrain_description_list = document.querySelector("#terrain_description_list");
     var terrain_counter = 0;
 
+    // Adds new terrain feature item
     terrain_add_button.addEventListener("click", () => {
         if(terrain_text_add.value === ""){ return }
         terrain_counter++;

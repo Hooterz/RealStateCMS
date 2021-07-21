@@ -59,7 +59,7 @@ class APIRealState{
          */
         public static function getPropertyFeatures($property_id): array{
             $results = Capsule::select("
-                SELECT propFeature_prop_id, feature_content FROM Property_Feature
+                SELECT propFeature_prop_id, feature_id, feature_content FROM Property_Feature
                 INNER JOIN Feature on feature_id = propFeatureg_feature_id
                 having propFeature_prop_id = '$property_id';
             ");

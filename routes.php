@@ -5,6 +5,8 @@
     $router->map('GET', '/', fn() => require_once 'controller/GET_index_Controller.php');
     $router->map('GET', '/add-property', fn() => require_once 'controller/GET_addProperty_Controller.php');
     $router->map('POST', '/add-property', fn() => require_once 'controller/POST_addProperty_Controller.php');
+    $router->map('GET', '/edit-property/[a:id]', fn($id) => require_once 'controller/GET_editProperty_Controller.php');
+    $router->map('POST', '/edit-property/[a:id]', fn($id) => require_once 'controller/POST_editProperty_Controller.php');
     $router->map('GET', '/detail/[a:id]', fn($id) => require_once 'controller/GET_detail_Controller.php');
     $router->map('GET', '/properties', fn() => require_once 'controller/GET_properties_Controller.php');
     $router->map('GET', '/404', fn() => require_once require_once 'controller/GET_404.php');

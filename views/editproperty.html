@@ -1,0 +1,173 @@
+{% extends "./layout.html" %}
+{% block title %}CMS - Añadir Propiedad{% endblock %}
+{% block body %}
+{% block additional_sources %}
+<link rel="stylesheet" href="{{ host }}views/custom_assets/css/add_property/addProperty_style.css">
+{% endblock %}
+<main id="main" class="mt-2">
+  <section class="intro-single">
+    <div class="container">
+      <form action="{{ post_response }}" method="post" enctype="multipart/form-data">
+        <label>Tipo de adicion:</label>
+        <select id="type_select" class="form-select w-50" aria-label="Default select example" name="type_select"
+          required>
+          <option selected value="{{ property.prop_category }}">Current: {{ property.prop_category }}</option>
+          {# Medio para poner más cosas (tipos de propiedades) #}
+          {% for category in categories %}
+          <option value="{{ category.cat_name }}">{{ category.cat_name }}</option>
+          {% endfor %}
+        </select>
+
+        <fieldset class="border rounded my-4 p-md-3" style="border-color: #fff;">
+          <div class="container-fluid">
+
+            <div class="row">
+              <div class="col">
+                <label>Nombre:</label>
+                <input placeholder="Nombre" type="text" name="prop_name" id="name"
+                  class="form-control form-control-lg form-control-a" required maxlength="255"
+                  value="{{ property.prop_name}}" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6 col-md-12">
+                <label>Ciudad:</label>
+                <select class="form-select form-select-lg " aria-label="Default select example" name="prop_location"
+                  id="location" required>
+                  <option value="{{ currentLocationID }}" selected>Current: {{ property.prop_location }}</option>
+                  {% for location in locations %}
+                  <option value="{{ location.lo_id }}">{{ location.lo_name }}</option>
+                  {% endfor %}
+                  {# Medio para poner más cosas (Localizaciones disponibles) #}
+                  <option value="new">Añadir localización</option>
+                </select>
+              </div>
+              <div class="col-lg-6 col-md-12" id="new_location_wrapper" hidden>
+                <label>Añadir Ciudad:</label>
+                <input placeholder="Nombre de nueva localización" type="text" name="prop_new_location" id="new_location"
+                  class="form-control form-control-lg form-control-a" maxlength="255" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label>Dirección:</label>
+                <input placeholder="Direccion" type="text" name="prop_address" id="address"
+                  class="form-control form-control-lg form-control-a" value="{{ property.prop_address }}" required />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label>Descripción:</label>
+                <textarea rows="5" placeholder="Descripcion" name="prop_description" id="description"
+                  class="form-control form-control-lg form-control-a">{{ property.prop_description }}</textarea>
+              </div>
+            </div>
+
+            <div id="display_house_form" class="container-fluid p-3 my-3 border rounded " style="display: none;">
+              <h2 style="font-weight: 500;">Carácteristicas de casa:</h2>
+              
+              {% if property.prop_category == 'Casa' %}
+                <!-- Si es una casa va a pasar lo de aqui -->
+
+                <div class="row d-flex flex-column-mod">
+                  <div class="col">
+                    <label>Habitaciones:</label>
+                    <input type="number" min="0" id="bedrooms" class="form-control form-control-lg form-control-a"
+                      value="{{ features.0.feature_content}}" />
+                  </div>
+
+                  <div class="col">
+                    <label>Baños:</label>
+                    <input type="number" min="0" id="bathrooms" class="form-control form-control-lg form-control-a"
+                      value="{{ features.1.feature_content}}" />
+                  </div>
+
+                  <div class="col">
+                    <label>Lotes de estacionamiento:</label>
+                    <input type="number" min="0" id="parking_slots" class="form-control form-control-lg form-control-a"
+                      value="{{ features.2.feature_content}}" />
+                  </div>
+                </div>
+              
+              {% else %}
+                <!-- Si no es una casa va pasar esto -->
+                <div class="row d-flex flex-column-mod">
+                  <div class="col">
+                    <label>Habitaciones:</label>
+                    <input type="number" min="0" id="bedrooms" class="form-control form-control-lg form-control-a"
+                      value="0" />
+                  </div>
+
+                  <div class="col">
+                    <label>Baños:</label>
+                    <input type="number" min="0" id="bathrooms" class="form-control form-control-lg form-control-a"
+                      value="0" />
+                  </div>
+
+                  <div class="col">
+                    <label>Lotes de estacionamiento:</label>
+                    <input type="number" min="0" id="parking_slots" class="form-control form-control-lg form-control-a"
+                      value="0" />
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+
+            <div id="display_terrain_form" class="container-fluid p-3 my-3 border rounded" style="display: none;">
+              <h2 style="font-weight: 500;">Características de terreno:</h2>
+              <div class="row">
+                <ul id="terrain_description_list"></ul>
+              </div>
+              <div class="row d-flex flex-column-mod">
+                <div class="col-md-12 col-lg-10">
+                  <input type="text" class="form-control form-control-lg form-control-a" placeholder="Añadir texto"
+                    id="terrain_text_add" />
+                </div>
+                <div class="col-2">
+                  <div class="btn btn-primary" id="terrain_add_button">Agregar</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row d-flex align-items-end p-3">
+            <div class="col-6">
+              <label>Precio:</label>
+              <input type="number" min="0" name="prop_price" id="price"
+                class="form-control form-control-lg form-control-a" value="{{ property.prop_price }}" required />
+            </div>
+            <div class="col-6">
+              <label>Área (m^2):</label>
+              <input type="number" min="0" name="prop_area" id="area"
+                class="form-control form-control-lg form-control-a" value="{{ property.prop_area }}" required />
+            </div>
+            {# Acá se hacen una lista serializada de features #}
+            <input type="hidden" name="features" id="features" />
+            <div class="input-group p-3 d-flex flex-column">
+              <label>Imágenes:</label>
+              <input type="file" class="form-control w-100" name="uploaded_files[]" accept="image/*" multiple>
+            </div>
+            <div class="row d-flex align-items-end p-3">
+              <div class="col d-flex justify-content-center">
+                <input type="submit" id="submit" value="Registrar Propiedad" class="btn btn-primary" />
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <!-- Se le agregan todos los feature a un span para gestionar el contenido en js -->
+        {% for feature in features %}
+        <span data-id="{{ feature.feature_id}}" data-content="{{ feature.feature_content}}" feature_data hidden></span>
+        {% endfor %}
+      </form>
+    </div>
+  </section>
+</main>
+{% endblock %}
+{% block aditional_js %}
+<script type="text/javascript" src="{{ host }}/views/custom_assets/js/add_property/addproperty_view.js"></script>
+<script type="text/javascript" src="{{ host }}/views/custom_assets/js/edit_property/editproperty.js"></script>
+
+{% endblock %}
