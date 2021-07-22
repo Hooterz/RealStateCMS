@@ -113,7 +113,7 @@
                   required />
               </div>
               <div class="col-6">
-                <label>Área (m^2):</label>
+                <label>Área (m<sup>2</sup>):</label>
                 <input type="number" min="0" name="prop_area" id="area" class="form-control form-control-lg form-control-a"
                   required />
               </div>
@@ -121,6 +121,9 @@
               <input type="hidden" name="features" id="features"/> 
               <div class="input-group p-3 d-flex flex-column">
                 <label>Imágenes:</label>
+                <small class="text-warning">ATENCIÓN: Por favor almacene en su dispostivo las imágenes que cargará 
+                  para su posterior edición (en caso de ser necesario).
+                </small>
                 <input type="file" class="form-control w-100" name="uploaded_files[]" accept="image/*" multiple>
               </div>
               <div class="row d-flex align-items-end p-3">

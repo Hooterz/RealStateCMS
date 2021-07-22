@@ -140,7 +140,7 @@
                 class="form-control form-control-lg form-control-a" value="{{ property.prop_price }}" required />
             </div>
             <div class="col-6">
-              <label>Área (m^2):</label>
+              <label>Área (m<sup>2</sup>):</label>
               <input type="number" min="0" name="prop_area" id="area"
                 class="form-control form-control-lg form-control-a" value="{{ property.prop_area }}" required />
             </div>
@@ -148,11 +148,12 @@
             <input type="hidden" name="features" id="features" />
             <div class="input-group p-3 d-flex flex-column">
               <label>Imágenes:</label>
+              <small class="text-warning">ATENCIÓN: Al cargar nuevas imágenes, se sustituirán las imágenes cargadas anteriormente</small>
               <input type="file" class="form-control w-100" name="uploaded_files[]" accept="image/*" multiple>
             </div>
             <div class="row d-flex align-items-end p-3">
               <div class="col d-flex justify-content-center">
-                <input type="submit" id="submit" value="Registrar Propiedad" class="btn btn-primary" />
+                <input type="submit" id="submit" value="Guardar cambios de propiedad" class="btn btn-primary" />
               </div>
             </div>
           </div>
