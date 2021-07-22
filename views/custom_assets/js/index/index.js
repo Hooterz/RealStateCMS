@@ -86,8 +86,8 @@ async function fillRecentProperties(properties) {
     for (const property of properties['properties']) {
         const property_image_url = await getFirstPropertyImage(property['prop_id']);
         let carousel_item = $(`
-            <div class="col-12 p-0 p-md-2 col-md-4 mt-2 mt-md-0 ">
-                <a href="${location.protocol}//${location.host}/detail/${property['prop_id']}" class="text-decoration-none">
+            <div class="col-12 p-0 p-md-2 col-md-4 mt-2 mt-md-0">
+                <a href="${location.protocol}//${location.host}/detail/${property['prop_id']}" class="text-decoration-none w-100">
                     <div class="card shadow-sm">
                         <div class="card-img-top card-img-top-250 position-relative">
                             <img src="${property_image_url}" class="img-fluid" alt="image1">
@@ -110,7 +110,9 @@ async function fillRecentProperties(properties) {
                                     <small class="text-muted" style="font-size:1rem;">${property['prop_address']} </small>
                                 </div>
                             </div>
-                            <div class="card-text p-3">${property['prop_description']}</div>
+                            <div class="card-text p-3 text-break overflow-scroll" style="height: 200px;">
+                                ${property['prop_description']}
+                            </div>
                         </div>
                     </div>
                 </a>

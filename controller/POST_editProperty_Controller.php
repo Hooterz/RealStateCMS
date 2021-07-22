@@ -152,10 +152,27 @@
     if($current_property->prop_area !== $_POST['prop_area'])
         DBCursor::select("UPDATE Property SET prop_area = {$_POST['prop_area']} WHERE prop_id = '$id';");
     
-    // NOTE: Trabajando sobre las imágenes
     // Comprueba las imágenes y actualiza en caso necesario
-    // Si se subió algo
     if($_FILES['uploaded_files']['name'][0] !== ''){
+
+        // Borra referencias a las imágenes cargadas para una propiedad
+        $current_images = DBCursor::select("
+            SELECT * FROM Property_Image 
+            WHERE propImg_prop_id = '$id';
+        ");
+
+        DBCursor::select("
+            DELETE FROM Property_Image 
+            WHERE propImg_prop_id = '$id';
+        ");
+
+        foreach ($current_images as $image) 
+            DBCursor::select("
+                DELETE FROM Image 
+                WHERE img_id = {$image->propImg_img_id};
+            ");
+        
+        // Carga las imágenes a partir de aquí
         $images_id = array();
         for ($i = 0; $i < count($_FILES['uploaded_files']['name']); $i++) {
             $image_info = [
@@ -202,7 +219,6 @@
                 }
             }
 
-            // $file_path = Path::MEDIA_PATH('Properties_img').$handler->file_dst_name;
             $file_url = Path::MEDIA_HOST_URL('Properties_img').$handler->file_dst_name;
             
             // Guarda el path en la DB y guarda el id del registro en $images_id
@@ -221,9 +237,9 @@
             array_push($images_id, $image_id);
         }
 
-        // Adding relation records between Properties and Images
-        foreach ($images_id as $id)
-            DBCursor::select("INSERT INTO Property_Image VALUES ('$generated_hash_id', $id);");
+        // Añade relación de propiedades con propiedad
+        foreach ($images_id as $image_id)
+            DBCursor::select("INSERT INTO Property_Image VALUES ('$id', $image_id);");
         
     }
 
