@@ -2,9 +2,24 @@
     declare(strict_types=1);    
     namespace controller\tools;
     use Illuminate\Database\Capsule\Manager as Capsule;
-use stdClass;
+    use stdClass;
 
 class APIRealState{
+        /**
+         * Obtiene la cantidad de propiedades disponibles en la base de datos
+         *
+         * @return void
+         */
+        public static function countProperties(){
+            return Capsule::select('SELECT COUNT(*) as value FROM Property;')[0]->value;
+        }
+
+        public static function showHideProperty($id): bool{
+            $property = self::getProperty($id);
+            $hiden_value = $property->prop_isHidden !== 0 ? 0 : 1;
+            Capsule::select("UPDATE Property SET prop_isHidden = $hiden_value WHERE prop_id = '$id';");
+            return $hiden_value === 0 ? false : true;
+        }
 
         /**
          * Obtiene las propiedades con un límite (default 10) y un offset (default null)
@@ -13,7 +28,7 @@ class APIRealState{
          * @param int $offset
          * @return array
          */
-        public static function getProperties($limit = 10, $offset = null): array{
+        public static function getProperties($limit = 10, $offset = null, $all=false): array{
             $limit_mod_sql = '';
             $sql_query = '
             SELECT
@@ -24,13 +39,15 @@ class APIRealState{
             INNER JOIN Category ON prop_category = Category.cat_id 
             ';
 
+            if(!$all) $sql_query.=' HAVING prop_isHidden = 0 ';
+
             if($limit > 0){
                 $limit_mod_sql .= "LIMIT $limit";
                 if(isset($offset) && $offset > 0) $limit_mod_sql .= " OFFSET $offset";
-                $sql_query .= "ORDER BY prop_pubDate $limit_mod_sql;";
+                $sql_query .= "ORDER BY prop_pubDate DESC $limit_mod_sql;";
             }
             else
-                $sql_query .= 'ORDER BY prop_pubDate LIMIT 10;';
+                $sql_query .= 'ORDER BY prop_pubDate DESC LIMIT 10;';
 
             $results = Capsule::select($sql_query);
             return $results;
@@ -121,25 +138,27 @@ class APIRealState{
          * @param string $id
          * @return stdClass|null
          */
-        public static function getPropertiesByCategory($cat_id, $limit, $offset): mixed {
+        public static function getPropertiesByCategory($cat_id, $limit, $offset, $all=false): mixed {
             $limit_mod_sql = '';
             $sql_query = "
             SELECT
                 prop_id, prop_name, prop_address, lo_name as prop_location,
                 prop_description, prop_area, prop_price, prop_pubDate,
-                prop_isHidden, cat_name as prop_category  FROM Property
+                prop_isHidden, cat_name as prop_category FROM Property
             INNER JOIN Location ON prop_location = lo_id
             INNER JOIN Category ON prop_category = cat_id
             HAVING prop_category = (SELECT cat_name FROM Category WHERE cat_id = $cat_id LIMIT 1)
-            ";
+            "; 
+
+            if(!$all) $sql_query.=' && prop_isHidden = 0 ';
 
             if($limit > 0){
                 $limit_mod_sql .= "LIMIT $limit";
                 if(isset($offset) && $offset > 0) $limit_mod_sql .= " OFFSET $offset";
-                $sql_query .= "ORDER BY prop_pubDate $limit_mod_sql;";
+                $sql_query .= "ORDER BY prop_pubDate DESC $limit_mod_sql;";
             }
             else{
-                $sql_query .= 'ORDER BY prop_pubDate LIMIT 10;';
+                $sql_query .= 'ORDER BY prop_pubDate DESC LIMIT 10;';
             }
             $results = Capsule::select($sql_query);
             return $results;

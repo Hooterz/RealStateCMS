@@ -14,6 +14,7 @@ async function getLatestProperties() {
 }
 
 async function fillLatestProperties(properties) {
+    console.log(properties);
     for (const property of properties['properties']) {
         const property_image_url = await getFirstPropertyImage(property['prop_id']);
         let carousel_item = $(`

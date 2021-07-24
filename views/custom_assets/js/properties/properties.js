@@ -43,6 +43,7 @@ async function getPropertiesByCategory(limit, offset, custom_cat=undefined) {
     else 
         server_response = await fetch(`${location.protocol}//${location.host}/api/propertiesByCategory?cat_id=${cat_id}&limit=${limit}&offset=${offset}`);
     server_response = await server_response.json();
+    console.log(server_response);
     return server_response;
 }
 

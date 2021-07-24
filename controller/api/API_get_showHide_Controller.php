@@ -7,14 +7,10 @@
     $message = 'State: ';
     try {
         header('Content-Type: application/json');
-        $response = APIRealState::getProperties(
-            $limit = $_GET['limit'] ?? null, 
-            $offset = $_GET['offset'] ?? null,
-            $all = $_GET['all'] ?? false
-        );
+        $response = APIRealState::showHideProperty($_GET['id']);
         $message .= (empty($response) ? 'Empty' : 'Success');
         echo (json_encode([
-            'properties' => $response,
+            'value' => $response,
             'message' => $message
         ]));
     }

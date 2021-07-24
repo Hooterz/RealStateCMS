@@ -10,7 +10,8 @@
         $response = APIRealState::getPropertiesByCategory(
             $_GET['cat_id'] ?? null, 
             $_GET['limit'] ?? null, 
-            $_GET['offset'] ?? null
+            $_GET['offset'] ?? null,
+            $all = $_GET['all'] ?? false
         );
         $message .= (empty($response) ? 'Empty' : 'Success');
         echo (json_encode([

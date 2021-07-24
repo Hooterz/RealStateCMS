@@ -1,5 +1,9 @@
 {% extends "./layout.html" %}
 {% block title %}SE - Property List{% endblock %}
+{% block additional_sources %}
+  <link rel="stylesheet" href="{{ host }}/views/custom_assets/css/properties/properties.css">
+  <script type="text/javascript" src="{{ host }}/views/custom_assets/jquery/jquery-3.6.0.min.js"></script>
+{% endblock %}
 {% block body %}
 <main id="main" class="mt-2">
   <section class="section-services section-t8">
@@ -15,30 +19,20 @@
         <thead>
           <tr>
             <th scope="col">ID</th>
-            <th scope="col">Precio</th>
             <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
             <th scope="col">Locación</th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-          {% for property in latest_properties %}
-          <tr>
-            <td scope="row">{{ property.prop_id }}</td>
-            <td>{{property.prop_price}}MXN</td>
-            <td>{{ property.prop_location}}, {{ property.prop_address }}</td>
-            <td>{{ property.prop_name }}</td>
-            <td>
-              <div class="input-group">
-                <a class="btn btn-secondary shadow" href="{{ host }}/edit-property/{{ property.prop_id }}">Editar</a>
-                <button class="btn btn-danger shadow">Esconder</button>
-              </div>
-            </td>
-          </tr>
-          {% endfor %}
+          
         </tbody>
       </table>
     </div>
   </section>
 </main>
+{% endblock %}
+{% block aditional_js %}
+  <script type="text/javascript" src="{{ host }}/views/custom_assets/js/property_list/property_list.js"></script>
 {% endblock %}
