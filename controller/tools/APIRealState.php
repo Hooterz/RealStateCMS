@@ -54,6 +54,57 @@ class APIRealState{
         }
 
         /**
+         * Obtiene las propiedades con un límite (default 10) y un offset (default null) 
+         * siempre que cumpla con los filtros especificados
+         *
+         * @param [type] $id
+         * @param [type] $name
+         * @param [type] $date
+         * @return array
+         */
+        public static function getPropertiesFiltered($id=null, $name=null, $date=null): array{
+            $sql_query = '
+            SELECT
+                prop_id, prop_name, prop_address, lo_name as prop_location,
+                prop_description, prop_area, prop_price, prop_pubDate,
+                prop_isHidden, cat_name as prop_category  FROM Property
+            INNER JOIN Location ON prop_location = lo_id
+            INNER JOIN Category ON prop_category = Category.cat_id 
+            ';
+
+            // Procesamiento de los filtros
+            $filter_params = [
+                'id' => $id,
+                'name' => $name,
+                'date' => $date
+            ];
+            $aplyFilter = false;
+            $filter_syntax = ' HAVING ';
+            foreach ($filter_params as $param => $value) {
+                if(!isset($value)) continue;
+                if($aplyFilter) $filter_syntax .= ' AND ';
+                $aplyFilter = true;
+                switch($param){
+                    case 'id':
+                        $filter_syntax .= "prop_id = '$value' ";
+                        break;
+                    case 'name':
+                        $filter_syntax .= "prop_name LIKE '%$value%' ";
+                        break;
+                    case 'date':
+                        $filter_syntax .= "DATE(prop_pubDate) = '$date' ";
+                        break;
+                }
+            }
+
+            if($aplyFilter) $sql_query .= " $filter_syntax ";
+
+            $sql_query .= 'ORDER BY prop_pubDate DESC;';
+            $results = Capsule::select($sql_query);
+            return $results;
+        }
+
+        /**
          * Obtiene los path a las imágenes arreglada a una propiedad
          *
          * @param string $property_id

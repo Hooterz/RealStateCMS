@@ -1,7 +1,7 @@
 {% extends "./layout.html" %}
 {% block title %}SE - Property List{% endblock %}
 {% block additional_sources %}
-  <link rel="stylesheet" href="{{ host }}/views/custom_assets/css/properties/properties.css">
+  <link rel="stylesheet" href="{{ host }}/views/custom_assets/css/edit_property/edit_property.css">
   <script type="text/javascript" src="{{ host }}/views/custom_assets/jquery/jquery-3.6.0.min.js"></script>
 {% endblock %}
 {% block body %}
@@ -12,13 +12,13 @@
         <input type="text" name="prop_name" id="prop_name" class="form-control" placeholder="Nombre" />
         <input type="text" name="prop_id" id="prop_id" class="form-control" placeholder="ID" />
         <input type="date" name="prop_pub_date" id="prop_pub_date" class="form-control" />
-        <input class="btn btn-primary" type="submit" value="Buscar">
       </div>
 
       <table class="table">
         <thead>
           <tr>
             <th scope="col">ID</th>
+            <th scope="col">Categoría</th>
             <th scope="col">Nombre</th>
             <th scope="col">Precio</th>
             <th scope="col">Locación</th>
@@ -26,9 +26,13 @@
           </tr>
         </thead>
         <tbody>
-          
         </tbody>
       </table>
+      <div class="text-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
     </div>
   </section>
 </main>
