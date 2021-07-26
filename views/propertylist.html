@@ -8,12 +8,16 @@
 <main id="main" class="mt-2">
   <section class="section-services section-t8">
     <div class="container">
+      <h3>Búsqueda</h3>
       <div class="input-group">
         <input type="text" name="prop_name" id="prop_name" class="form-control" placeholder="Nombre" />
         <input type="text" name="prop_id" id="prop_id" class="form-control" placeholder="ID" />
         <input type="date" name="prop_pub_date" id="prop_pub_date" class="form-control" />
       </div>
-
+      <div class="d-grid gap-2 col-6 mx-auto my-3">
+        <a class="btn btn-primary" href="{{host}}/add-property">Añadir nueva propiedad</a>
+      </div>
+      <h3>Resultados de Búsqueda</h3>
       <table class="table">
         <thead>
           <tr>
