@@ -4,17 +4,7 @@
     use settings\Path;
 
     require('controller/tools/Twig.php');
+    require('controller/tools/Auth_required.php');
 
-    session_start();
-
-    if (isset($_SESSION["user"]) && $_SESSION['user'] == 'sergioescudero') 
-    {
-        echo $twig->render('propertylist.html', [
-        ]);
-    }
-    else
-    {
-        $not_found = Path::HOST_NAME().'/404';
-        header("Location: $not_found");
-    }    
+    echo $twig->render('propertylist.html');  
 ?>

@@ -1,0 +1,36 @@
+{% extends "./layout.html" %}
+{% block title %}Login{% endblock %}
+{% block body %}
+    <main id="main" class="mt-2">
+        <section class="intro-single">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 offset-md-4">
+                        <div class="login-form bg-light mt-4 p-4 shadow-sm">
+                            <form action="{{host}}/login" method="post" class="row g-3">
+                                <h5>Bienvenido al Gestor de Contenido</h5>
+                                <div class="col-12">
+                                    <label>Usuario</label>
+                                    <input type="text" name="username" class="form-control" placeholder="Usuario" required>
+                                </div>
+                                <div class="col-12">
+                                    <label>Contraseña</label>
+                                    <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-dark float-end">Login</button>
+                                </div>
+                            </form>
+                            {% if message %}                           
+                                <div class="alert alert-warning alert-dismissible fade show mt-3 bg-danger text-white" role="alert">
+                                    <strong>Error!</strong> {{message}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

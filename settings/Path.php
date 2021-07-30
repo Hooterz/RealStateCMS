@@ -28,7 +28,8 @@
         }
 
         public static function PATH_FROM_HOST_URL(string $path): string{
-            return self::HOST_NAME().self::FormatPath($path);
+            $url = self::HOST_NAME().self::FormatPath($path);
+            return substr($url, 0, strlen($url) - 1);
         }
         
 

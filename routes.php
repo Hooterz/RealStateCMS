@@ -12,7 +12,7 @@
     $router->map('GET', '/404', fn() => require_once require_once 'controller/GET_404.php');
     $router->map('GET', '/property-list', fn() => require_once 'controller/GET_propertyList_Controller.php');
     $router->map('GET', '/login', fn() => require_once 'controller/GET_login_Controller.php');
-    $router->map('POST', '/login', fn() => require_once 'controller/GET_login_Controller.php');
+    $router->map('POST', '/login', fn() => require_once 'controller/POST_login_Controller.php');
     $router->map('GET', '/logout', fn() => require_once 'controller/GET_logout_Controller.php');
 
     // Api routing connection
