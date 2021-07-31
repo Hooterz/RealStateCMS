@@ -32,9 +32,6 @@
             return substr($url, 0, strlen($url) - 1);
         }
         
-
-
-        // FIXME: Tengo que renombrarla y hacerla un poquito más formal
         /**
          * Esta función es para agregar los '/' al principio y al final.
          *

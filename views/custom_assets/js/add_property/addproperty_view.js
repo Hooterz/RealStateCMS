@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Controla el formulario para mostrar cambios segun el tipo
     document.querySelector("#type_select").addEventListener('change', function () {
-        // WARNING TODO: Hay que arreglar el hecho de que se haga el DOM con un value no string
         switch (this.value) {
             case "Casa":
                 document.getElementById("display_terrain_form").style.display = "none";

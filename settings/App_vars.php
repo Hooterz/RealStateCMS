@@ -1,5 +1,5 @@
 <?php
-    // NOTE: This file handles all Application variables
+    // This file handles all Application variables
     
     // Tamaño máximo de archivo (en bytes)
     if(!defined('MAX_FILE_SIZE'))

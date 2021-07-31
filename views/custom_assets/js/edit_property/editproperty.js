@@ -16,9 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
         default:
             break;
     }
-    
-
-    // TODO: Buscar una manera de emparejar los id de la bases de datos con las cosas del frontend
 });
 
 /**

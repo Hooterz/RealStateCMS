@@ -1,5 +1,7 @@
 <?php
-    // NOTE: Esta script es para probar el correcto funcionamiento de las APIs
+    // Esta script es para probar el correcto funcionamiento de las APIs
+    // Se debe incluir en un enrutamiento en routes_api.php
+    
     namespace controller\api;
     use Exception;
     use Illuminate\Database\Capsule\Manager as DBCursor;

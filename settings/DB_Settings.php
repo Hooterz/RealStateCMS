@@ -1,5 +1,5 @@
 <?php
-    // NOTE: This file handles Database configurations
+    // This file handles Database configurations
     declare(strict_types=1);
     
     use Illuminate\Database\Capsule\Manager as Capsule;

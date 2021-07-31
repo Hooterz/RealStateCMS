@@ -9,7 +9,6 @@
 
 $messages = array();
 
-    // NOTE: Hacer la función de ingreso de datos del formulario para incluir nuevas propiedades
     $name = ucfirst($_POST['prop_name']);
     $location = $_POST['prop_location'];
     $new_location = $_POST['prop_new_location'] ?? null;

@@ -1,6 +1,4 @@
 <?php    
-    use settings\Path;
-    require 'settings/Path.php';
     require 'vendor/autoload.php';
     
     class Autoloader
