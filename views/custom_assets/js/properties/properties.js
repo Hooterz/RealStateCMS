@@ -1,38 +1,17 @@
-let total_offset = 0;
-const general_limit = 4;
+let offset = 0;
+const limit = 12;
 let isPaginationEnd = false;
 
-$(document).ready(async () => {
-    const initInfo = async () => {
-        let temp_properties = await getPropertiesByCategory(general_limit, 0);
-        await fillProperties(temp_properties);
-        total_offset = general_limit;
-        isPaginationEnd = false;
-        setPageNumber();
-    }
-    
-    $(".custom-select").on('change', initInfo);
-    $('li.page-item:nth-child(1)').on('click', prevProperties);
-    $('li.page-item:nth-child(3)').on('click', nextProperties);
-    
-    initInfo();
-});
+function debug(complemento=1) {
+    console.log(`limit: ${limit}`);
+    console.log(`offset: ${offset}`);
+    console.log(`page end: ${isPaginationEnd}`);
 
- 
-
-function debug() {
-    console.log(`total offset: ${total_offset}`);
-    console.log(`limit: ${general_limit}`);
 }
 
 function setPageNumber(addition=0) {
-    const calculated_page = (total_offset / general_limit) + addition;
+    const calculated_page = (offset / limit) + addition;
     $('li.page-item:nth-child(2) > span:nth-child(1)').html(calculated_page);
-}
-
-function getPageNumber() {
-    let value = $('li.page-item:nth-child(2) > span:nth-child(1)').html();
-    return parseInt(value);
 }
 
 async function getPropertiesByCategory(limit, offset, custom_cat=undefined) {
@@ -43,7 +22,7 @@ async function getPropertiesByCategory(limit, offset, custom_cat=undefined) {
     else 
         server_response = await fetch(`${location.protocol}//${location.host}/api/propertiesByCategory?cat_id=${cat_id}&limit=${limit}&offset=${offset}`);
     server_response = await server_response.json();
-    console.log(server_response);
+    // console.log(server_response);
     return server_response;
 }
 
@@ -59,35 +38,52 @@ async function getFirstPropertyImage(id) {
     return first_image_path;
 }
 
+function fixPaginationButtonDesign() {
+    const nextButton = $('li.page-item:nth-child(3)');
+    const prevButton = $('li.page-item:nth-child(1)');
+    const pageNumber = $('li.page-item:nth-child(2) > span:nth-child(1)');
+
+    if(isPaginationEnd) nextButton.hide();
+    else nextButton.show();
+
+    if(pageNumber.html() === '0') prevButton.hide(); 
+    else prevButton.show();
+}
+
 async function nextProperties (){
-    if(total_offset === 0) total_offset = general_limit;
-    let properties = await getPropertiesByCategory(general_limit, total_offset);
-    const success = await fillProperties(properties);
-    if(success){
-        total_offset += general_limit;
-        setPageNumber();
-    }
+    if(isPaginationEnd) return;
+
+    let properties = await getPropertiesByCategory(limit, offset);
+    if(properties['properties'].length === 0) return;
+
+    let next_properties = await getPropertiesByCategory(limit, offset + limit);
+    if(next_properties['properties'].length === 0) isPaginationEnd = true;
+
+    await fillProperties(properties);
+    setPageNumber();
+    offset += limit;
+    debug();
+    fixPaginationButtonDesign();
 }
 
 async function prevProperties () {
+    if (offset <= 0) return;
+
     if(isPaginationEnd){
-        let calculated_offset = 2 * general_limit
-        total_offset -= calculated_offset;
-        isPaginationEnd = false;
-    }
-    else {
-        let calculated_offset = total_offset - general_limit
-        total_offset = calculated_offset < 0 ? 0 : calculated_offset;
-    }
-    let properties = await getPropertiesByCategory(general_limit, total_offset);
-    const success = await fillProperties(properties);
-    setPageNumber(1);
+      offset = offset - limit < 0 ? 0 : offset - (2 * limit);
+      isPaginationEnd = false;
+    } 
+    else offset = offset - limit < 0 ? 0 : offset - limit;
+
+    let properties = await getPropertiesByCategory(limit, offset);
+    await fillProperties(properties);
+    setPageNumber();
+    if(offset === 0) offset = limit;
+    debug();
+    fixPaginationButtonDesign();
 }
 
 async function fillProperties(properties){
-    if(isPaginationEnd) return false;
-    const next_properties = await getPropertiesByCategory(general_limit, total_offset + general_limit);
-    if(next_properties['properties'].length === 0) isPaginationEnd = true;
     let container = $("div.row:nth-child(2)");
     container.html('');
     for (const property of properties['properties']) {
@@ -122,3 +118,17 @@ async function fillProperties(properties){
     }
     return true;
 }
+
+$(document).ready(async () => {
+  const initInfo = async () => {
+      offset = 0;
+      isPaginationEnd = false;
+      nextProperties();
+  }
+  
+  $(".custom-select").on('change', initInfo);
+  $('li.page-item:nth-child(1)').on('click', async () => prevProperties());
+  $('li.page-item:nth-child(3)').on('click', async () => nextProperties());
+  
+  initInfo();
+});
