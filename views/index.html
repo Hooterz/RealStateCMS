@@ -1,16 +1,14 @@
 {% extends "./layout.html" %}
 {% block title %}SE - Bienvenido{% endblock %}
 {% block additional_sources %}
-  <script type="text/javascript" src="views/custom_assets/jquery/jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" href="{{ host }}/views/custom_assets/css/index/card_slider.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+<script type="text/javascript" src="views/custom_assets/jquery/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="{{ host }}/views/custom_assets/css/index/card_slider.css">
+<link rel="stylesheet" href="{{ host }}/views/custom_assets/css/index/index.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 {% endblock %}
 {% block body %}
 <div class="intro intro-carousel swiper-container position-relative">
-
   <div class="swiper-wrapper" latest_properties>
-    
-
   </div>
   <div class="swiper-pagination"></div>
 </div><!-- End Intro Section -->
@@ -30,62 +28,90 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-12 col-md-6 col-xl-4">
           <div class="card-box-c foo">
             <div class="card-header-c d-flex">
               <div class="card-box-ico">
-                <span class="bi bi-person"></span>
+                <span class="bi bi-people-fill"></span>
               </div>
               <div class="card-title-c align-self-center">
-                <h2 class="title-c" style="background: #fff;">Sobre mi</h2>
+                <h2 class="title-c" style="background: #fff;">Responsables</h2>
               </div>
             </div>
             <div class="card-body-c">
-              <p class="content-c">
-                Me llamo Sergio E. Buerba, soy un agente inmobiliario serio, rápido y motivado por mi profesión.
+              <p class="content-c" class="has-line-data" data-line-start="2" data-line-end="3">
+                En Buerba… ofrecemos el más alto nivel de experiencia, servicio e integridad, nos
+                esforzamos por ofrecer la mejor selección de casas y propiedades a la venta y renta,
+                en los lugares más populares del estado.
               </p>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-sm-12 col-md-6 col-xl-4">
           <div class="card-box-c foo">
             <div class="card-header-c d-flex">
               <div class="card-box-ico">
-                <span class="bi bi-house"></span>
+                <span class="bi bi-award-fill"></span>
               </div>
               <div class="card-title-c align-self-center">
-                <h2 class="title-c" style="background: #fff;">Propiedades</h2>
+                <h2 class="title-c" style="background: #fff;">Comprometidos</h2>
               </div>
             </div>
             <div class="card-body-c">
-              <p class="content-c">
-                Aquí podrás ver especificaciones de las propiedades que estoy actualmente ofreciendo, cualquier duda adicional o
-                consulta, me la puedes hacer mediante correo o teléfono.
+              <p class="content-c" data-line-start="9" data-line-end="10">
+                Los objetivos y necesidades de nuestros clientes están a la vanguardia de lo que
+                hacemos a diario y siempre recordamos que es nuestro trabajo representar
+                firmemente los mejores intereses de nuestros clientes en todo momento.
               </p>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-sm-12 col-md-6 col-xl-4">
           <div class="card-box-c foo">
             <div class="card-header-c d-flex">
               <div class="card-box-ico">
-                <span class="bi bi-search"></span>
+                <span class="bi bi-cpu-fill"></span>
               </div>
               <div class="card-title-c align-self-center">
-                <h2 class="title-c" style="background: #fff;">Busqueda</h2>
+                <h2 class="title-c" style="background: #fff;">Actualizados</h2>
               </div>
             </div>
             <div class="card-body-c">
-              <p class="content-c">
-                De ser que necesites una propiedad con ciertas especificaciones y no la encuentras enlistada, me puedes contactar y yo puedo
-                ayudarte a encontrarla!
-              </p>
+              <p class="content-c" data-line-start="13" data-line-end="14">
+                En Buerba… nos innovamos en la comercialización de viviendas, terrenos y
+                cierre de negocios. Invertimos en fotografía profesional, recorridos virtuales,
+                publicidad online, publicidad impresa local y mucho más.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section><!-- End Services Section -->
+
+  <!-- ======= Mission Section ======= -->
+  <section class="section-t8 background"
+    style="background-image: url('{{host}}/views/custom_assets/img/mission_bg.jpg');">
+    <div class="container background">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title-wrap d-flex justify-content-between">
+            <div class="title-box">
+              <h2 class="title-a text-background mission-header">¿Cuál es mi objetivo?</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col mision text-background">
+          <q>
+            Brindar un servicio inmobiliario de primera calidad para quienes buscan
+            vender, comprar o invertir, proporcionando experiencia y habilidades de
+            negociación.
+          </q>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Mission -->
 
   <!-- ======= Latest Properties Section ======= -->
   <section class="section-property section-t8">
@@ -97,7 +123,7 @@
               <h2 class="title-a">Propiedades Recientes</h2>
             </div>
             <div class="title-link">
-              <a href="properties.html">Todas las propiedades
+              <a href="{{host}}/properties">Todas las propiedades
                 <span class="bi bi-chevron-right"></span>
               </a>
             </div>
@@ -106,26 +132,14 @@
       </div>
 
       <section class="carousel slider" data-ride="carousel" id="postsCarousel">
-        {# <div class="container">
-          <div class="row">
-            <div class="col-12 text-right mb-4 d-flex">
-              <a href="" class="btn btn-outline-secondary prev" title="go back"><i class="fas fa-chevron-left"
-                  aria-hidden="true"></i>
-              </a>
-              <a href="" class="btn btn-outline-secondary next" title="more"><i class="fa fa-chevron-right"
-                  aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-        </div> #}
-
-        <div class="container carousel-inner position-relative d-flex justify-content-center pb-3 pb-md-0" recent_properties>
-            <a href="" class="btn btn-outline-secondary prev position-absolute top-50 start-0 translate-middle-y"
-              style="z-index:10;" title="go back" carousel-control><i class="fas fa-chevron-left" aria-hidden="true" ></i>
-            </a>
-            <a href="" class="btn btn-outline-secondary next position-absolute top-50 end-0 translate-middle-y"
+        <div class="container carousel-inner position-relative d-flex justify-content-center pb-3 pb-md-0"
+          recent_properties>
+          <a href="" class="btn btn-outline-secondary prev position-absolute top-50 start-0 translate-middle-y"
+            style="z-index:10;" title="go back" carousel-control><i class="fas fa-chevron-left" aria-hidden="true"></i>
+          </a>
+          <a href="" class="btn btn-outline-secondary next position-absolute top-50 end-0 translate-middle-y"
             style="z-index:10;" title="more" carousel-control><i class="fa fa-chevron-right" aria-hidden="true"></i>
-            </a>
+          </a>
         </div>
       </section>
       <div class="propery-carousel-pagination carousel-pagination"></div>
@@ -133,11 +147,146 @@
     </div>
   </section><!-- End Latest Properties Section -->
 
+  <!-- ======= FAQ Section ======= -->
+  <section class="section-t8">
+    <div class="container pb-5">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title-wrap d-flex justify-content-between">
+            <div class="title-box">
+              <h2 class="title-a text-centered">Preguntas frecuentes:</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Aquí son los cuadros modales que aparecen cuando clicas cada FAQ #}
+      <div class="modal fade" id="faqModeal1" tabindex="-1" aria-labelledby="faqModeal1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">FAQ 1</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h3>Contenido</h3>
+              Soy mero contenido del FAQ, espero a que me llenes
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="faqModeal2" tabindex="-1" aria-labelledby="faqModeal2" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">FAQ 2</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h3>Contenido</h3>
+              Soy mero contenido del FAQ, espero a que me llenes
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="faqModeal3" tabindex="-1" aria-labelledby="faqModeal3" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">FAQ 3</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h3>Contenido</h3>
+              Soy mero contenido del FAQ, espero a que me llenes
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="faqModeal4" tabindex="-1" aria-labelledby="faqModeal4" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">FAQ 4</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h3>Contenido</h3>
+              Soy mero contenido del FAQ, espero a que me llenes
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="faqModeal5" tabindex="-1" aria-labelledby="faqModeal5" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">FAQ 5</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h3>Contenido</h3>
+              Soy mero contenido del FAQ, espero a que me llenes
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <center>
+          <ul id="faq" class="rounded p-md-3 shadow-lg w-50">
+            <li class="m-md-1 m-3">
+              <span data-bs-toggle="modal" data-bs-target="#faqModeal1">¿Por qué me gustan tanto los gatos?</span>
+            </li>
+            <li class="m-md-1 m-3">
+              <span data-bs-toggle="modal" data-bs-target="#faqModeal2">¿Por qué me existo?</span>
+            </li>
+            <li class="m-md-1 m-3">
+              <span data-bs-toggle="modal" data-bs-target="#faqModeal3">¿Me gusta que me toquen los pies?</span>
+            </li>
+            <li class="m-md-1 m-3">
+              <span data-bs-toggle="modal" data-bs-target="#faqModeal4">¿Por qué me voy ALV (A la Vicenta)?</span>
+            </li>
+            <li class="m-md-1 m-3">
+              <span data-bs-toggle="modal" data-bs-target="#faqModeal5">¿Por qué me duele el pelo 49?</span>
+            </li>
+          </ul>
+        </center>
+      </div>
+    </div>
+  </section><!-- End FAQ -->
+
+  <!-- ======= More Info Section ======= -->
+  <section class="section-t8">
+    <div class="container pb-2">
+      <div class="row text-muted text" style="font-size: 11px;">
+        <p class="has-line-data" data-line-start="0" data-line-end="1">En Buerba… ofrecemos el más alto nivel de
+          experiencia, servicio e integridad, nos esforzamos por ofrecer la mejor selección de casas y propiedades a la
+          venta y renta, en los lugares más populares del estado. Nuestro equipo tiene toda la experiencia trabajando y
+          brindando asesoramiento para vender, rentar o encontrar la propiedad adecuada a sus necesidades. Así también
+          le brindamos asistencia legal, y ayuda a extranjeros que desde invertir.</p>
+        <p class="has-line-data" data-line-start="2" data-line-end="3">Nuestro compromiso con nuestros clientes que
+          buscan bienes raíces en Quintana Roo es absolutamente la prioridad número uno, como lo ha sido en el pasado y
+          siempre lo será. Buerba… cree con orgullo que el sector inmobiliario es un negocio orientado al servicio. Los
+          objetivos y necesidades de nuestros clientes están a la vanguardia de lo que hacemos a diario y siempre
+          recordamos que es nuestro trabajo representar firmemente los mejores intereses de nuestros clientes en todo
+          momento.</p>
+        <p class="has-line-data" data-line-start="4" data-line-end="5">En Buerba… nos innovamos en la comercialización
+          de viviendas, terrenos y cierre de negocios. Cada uno de nuestros listados se beneficia de la presencia más
+          fuerte en la comunidad local y una introducción a una audiencia mundial en la web. Invertimos en fotografía
+          profesional, recorridos virtuales, publicidad online, publicidad impresa local y mucho más.</p>
+      </div>
+    </div>
+  </section><!-- End More Info -->
+
 </main><!-- End #main -->
 {% endblock %}
 {% block aditional_js %}
-  <script type="text/javascript" src="{{ host }}/views/custom_assets/js/index/index.js"></script>
-  <script type="text/javascript" src="{{ host }}/views/custom_assets/js/index/card_slider.js"></script>
+<script type="text/javascript" src="{{ host }}/views/custom_assets/js/index/index.js"></script>
+<script type="text/javascript" src="{{ host }}/views/custom_assets/js/index/card_slider.js"></script>
 {% endblock %}
-
-{# TODO: Ponerle las cosas del SEO para el posicionamiento web #}

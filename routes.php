@@ -3,6 +3,7 @@
 
     // View routing
     $router->map('GET', '/', fn() => require_once 'controller/GET_index_Controller.php');
+    $router->map('GET', '/about-us', fn() => require_once 'controller/GET_about-us_Controller.php');
     $router->map('GET', '/add-property', fn() => require_once 'controller/GET_addProperty_Controller.php');
     $router->map('POST', '/add-property', fn() => require_once 'controller/POST_addProperty_Controller.php');
     $router->map('GET', '/edit-property/[a:id]', fn($id) => require_once 'controller/GET_editProperty_Controller.php');

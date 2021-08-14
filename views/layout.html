@@ -34,7 +34,7 @@
                 <span></span>
                 <span></span>
             </button>
-            <a class="navbar-brand text-brand" href="{{ host }}">Sergio<span class="color-d">Escudero</span></a>
+            <a class="navbar-brand text-brand" href="{{ host }}">Buer<span class="color-d">ba</span></a>
 
             <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
                 <ul class="navbar-nav">
@@ -44,6 +44,13 @@
 
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ host }}/properties">Propiedades</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ host }}/about-us">Acerca de nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#contact">Contacto</a>
                     </li>
                 </ul>
             </div>
@@ -65,20 +72,20 @@
                 <div class="col-sm-12 col-md-4 section-md-t3">
                     <div class="widget-a">
                         <div class="w-header-a">
-                            <h3 class="w-title-a text-brand">SergioEscudero</h3>
+                            <h3 class="w-title-a text-brand">Contacta con Buerba</h3>
                         </div>
                         <div class="w-body-a">
                             <p class="w-text-a color-text-a">
-                                Agente inmobiliario
+                                Agentes inmobiliarios
                             </p>
                         </div>
                         <div class="w-footer-a">
                             <ul class="list-unstyled">
                                 <li class="color-a">
-                                    <span class="color-text-a">Phone .</span> +54 356 945234
+                                    <span class="color-text-a">Teléfono .</span> +54 356 945234
                                 </li>
                                 <li class="color-a">
-                                    <span class="color-text-a">Email .</span> contact@test.com
+                                    <span class="color-text-a">Correo Electrónico .</span> contact@test.com
                                 </li>
                             </ul>
                         </div>
@@ -90,20 +97,10 @@
             </div>
         </div>
     </section>
-    <footer>
+    <footer id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <nav class="nav-footer">
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <a href="#">Inicio</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">Propiedades</a>
-                            </li>
-                        </ul>
-                    </nav>
                     <div class="socials-a">
                         <ul class="list-inline">
                             <li class="list-inline-item">
@@ -157,7 +154,6 @@
     <script src="{{ host }}/views/assets/js/main.js"></script>
     {% block aditional_js %}{% endblock %}
     <!-- End JS Files -->
-
 </body>
 
 </html>

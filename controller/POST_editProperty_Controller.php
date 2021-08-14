@@ -68,7 +68,7 @@
             DBCursor::select("INSERT INTO Property_Feature VALUES ('$prop_id', $feature_id);");
     }
 
-    // NOTE: Trabajando sobre las características
+    // Trabajando sobre las características
 
     // Si hay una diferencia de categoría
     if($current_property->prop_category !== $_POST['type_select'] && !$already_changed_features){
@@ -105,7 +105,7 @@
     if($current_property->prop_name !== $_POST['prop_name'])
         DBCursor::select("UPDATE Property SET prop_name = '{$_POST['prop_name']}' WHERE prop_id = '$id';");
 
-    // NOTE: Trabajando sobre la localización
+    // Trabajando sobre la localización
     // Comprueba la localización y actualiza en caso necesario
     // Si hay nueva location
     $current_location_id = DBCursor::select("
@@ -243,6 +243,6 @@
         
     }
 
-    // NOTE: Redirigir al property-list
+    // Redirigir al property-list
     $redirect_url = Path::HOST_NAME().'/property-list';
     header("Location: $redirect_url");

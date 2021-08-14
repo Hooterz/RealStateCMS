@@ -20,28 +20,30 @@ async function fillLatestProperties(properties) {
         let carousel_item = $(`
             <div class="swiper-slide carousel-item-a intro-item bg-image overflow-hidden" 
                 style="background-image: url(${property_image_url})">
-                <div class="overlay overlay-a"></div>
-                <div class="intro-content display-table">
-                    <div class="table-cell">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <div class="intro-body">
-                                        <p class="intro-title-top">${property['prop_location']}
-                                        <br>${property['prop_address']}
-                                        </p>
-                                        <h1 class="intro-title mb-4 w-50">
-                                            ${property['prop_name']}
-                                        </h1>
-                                        <p class="intro-subtitle intro-price">
-                                        <a href="${location.protocol}//${location.host}/detail/${property['prop_id']}"><span class="price-a">${property['prop_price']} MXN</span></a>
-                                        </p>
+                <a href="${location.protocol}//${location.host}/detail/${property['prop_id']}">
+                    <div class="overlay overlay-a"></div>
+                    <div class="intro-content display-table">
+                        <div class="table-cell">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="intro-body">
+                                            <p class="intro-title-top">${property['prop_location']}
+                                            <br>${property['prop_address']}
+                                            </p>
+                                            <h1 class="intro-title mb-4 w-50">
+                                                ${property['prop_name']}
+                                            </h1>
+                                            <p class="intro-subtitle intro-price">
+                                                <span class="price-a">${property['prop_price']} MXN</span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         `);
         $('[latest_properties]').append(carousel_item);
@@ -87,7 +89,7 @@ async function fillRecentProperties(properties) {
     for (const property of properties['properties']) {
         const property_image_url = await getFirstPropertyImage(property['prop_id']);
         let carousel_item = $(`
-            <div class="col-12 p-0 p-md-2 col-md-4 mt-2 mt-md-0">
+            <div class="col-sm-12 col-md-6 col-xl-4 p-0 p-md-2 col-md-4 mt-2 mt-md-0">
                 <a href="${location.protocol}//${location.host}/detail/${property['prop_id']}" class="text-decoration-none w-100">
                     <div class="card shadow-sm">
                         <div class="card-img-top card-img-top-250 position-relative">
@@ -135,9 +137,9 @@ async function fillRecentProperties(properties) {
     const blank_spaces = 3 - (counter % 3);
     let blank_space_content = undefined;
     if (blank_spaces === 1)
-        blank_space_content = $('<div class="col-md-4"></div>');
+        blank_space_content = $('<div class="col-sm-12 col-md-6 col-xl-4"></div>');
     else if (blank_spaces === 2)
-        blank_space_content = $('<div class="col-md-8"></div>');
+        blank_space_content = $('<div class="col-md-12 col-xl-8"></div>');
 
     $('div.row-equal:nth-last-child(1)').append(blank_space_content);
 }

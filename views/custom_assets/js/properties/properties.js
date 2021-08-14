@@ -88,31 +88,32 @@ async function fillProperties(properties){
     container.html('');
     for (const property of properties['properties']) {
         const property_image_url = await getFirstPropertyImage(property['prop_id']);
-        let element = $(`<div class="col-md-3 my-3">
-        <div class="card-box-a rounded card-shadow bg-img" style="background: url('${property_image_url}');">
-          <div class="img-box-a fill">
-          </div>
-          <div class="card-overlay">
-            <div class="card-overlay-a-content">
-              <div class="card-header-a">
-                <h2 class="card-title-a">
-                  <a href="${location.protocol}//${location.host}/detail/${property['prop_id']}">
-                    ${property['prop_name']}
-                  </a>
-                </h2>
-              </div>
-              <div class="card-body-a">
-                <div class="price-box d-flex">
-                  <span class="price-a">${property['prop_price']} MXN</span>
+        let element = $(`
+        <div class="col-md-3 my-3">
+          <div class="card-box-a rounded card-shadow bg-img" style="background: url('${property_image_url}');">
+            <div class="img-box-a fill">
+            </div>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="${location.protocol}//${location.host}/detail/${property['prop_id']}">
+                      ${property['prop_name']}
+                    </a>
+                  </h2>
                 </div>
-                <a href="${location.protocol}//${location.host}/detail/${property['prop_id']}" class="link-a">Click here to view
-                  <span class="bi bi-chevron-right"></span>
-                </a>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a">${property['prop_price']} MXN</span>
+                  </div>
+                  <a href="${location.protocol}//${location.host}/detail/${property['prop_id']}" class="link-a">Click here to view
+                    <span class="bi bi-chevron-right"></span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
       `);
       container.append(element);
     }

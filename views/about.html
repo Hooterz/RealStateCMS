@@ -1,0 +1,308 @@
+{% extends "./layout.html" %}
+{% block title %}About Buerba{% endblock %}
+{% block body %}
+<main id="main position-relative" class="mt-2">
+    {# Sidebar #}
+    <button class="btn btn-dark rounded-pill text-white position-fixed bottom-0 end-0 m-md-5 m-3" type="button"
+        data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Índice</button>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="opacity: .9;">
+        <div class="offcanvas-header">
+            <h2 id="offcanvasRightLabel ">Índice</h2>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ol class="list-group list-group-numbered list-group-flush">
+                <li class="list-group-item"><a href="#about_us">Acerca de nosostros</a></li>
+                <li class="list-group-item"><a href="#service_standar">El estándar en servicio</a></li>
+                <li class="list-group-item"><a href="#top_marketing">Marketing de vanguardia</a></li>
+                <li class="list-group-item"><a href="#5_rules_to_sell_rs"> Las 5 reglas para vender con eficiencia un
+                        inmueble</a></li>
+                <li class="list-group-item"><a href="#check_listing">Check Listing</a></li>
+                <li class="list-group-item"><a href="#lista_documentos_para_el_propietario">Lista de documentos para el
+                        propietario</a></li>
+                <li class="list-group-item"><a href="#exclusividad">Exclusividad</a></li>
+            </ol>
+        </div>
+    </div>
+
+    {# Contenido de acerca de nosotros #}
+    <section class="intro-single">
+        <div class="container">
+            <div class="row pb-md-3 pb-5" id="about_us">
+                <h2 class="code-line fw-bold" data-line-start=0 data-line-end=1>Acerca de Nosotros</h2>
+                <p class="has-line-data" data-line-start="1" data-line-end="2">En Buerba… ofrecemos el más alto nivel de
+                    experiencia, servicio e integridad, nos esforzamos por ofrecer la mejor selección de casas y
+                    propiedades a
+                    la venta y renta, en los lugares más populares del estado.</p>
+                <p class="has-line-data" data-line-start="3" data-line-end="4">Nuestro equipo tiene toda la experiencia
+                    trabajando y brindando asesoramiento para vender, rentar o encontrar la propiedad adecuada a sus
+                    necesidades. Así también le brindamos asistencia legal, y ayuda a extranjeros que desde invertir.
+                </p>
+            </div>
+
+            <div class="row pb-md-3 pb-5" id="service_standar">
+                <h2 class="code-line fw-bold" data-line-start=6 data-line-end=7><a id="El_estndar_en_servicio_6"></a>El
+                    estándar
+                    en
+                    servicio</h2>
+                <p class="has-line-data" data-line-start="7" data-line-end="8">Nuestro compromiso con nuestros clientes
+                    que
+                    buscan bienes raíces en Quintana Roo es absolutamente la prioridad número uno, como lo ha sido en el
+                    pasado
+                    y siempre lo será. Buerba… cree con orgullo que el sector inmobiliario es un negocio orientado al
+                    servicio.
+                    Los objetivos y necesidades de nuestros clientes están a la vanguardia de lo que hacemos a diario y
+                    siempre
+                    recordamos que es nuestro trabajo representar firmemente los mejores intereses de nuestros clientes
+                    en todo
+                    momento.</p>
+            </div>
+
+            <div class="row pb-md-3 pb-5" id="top_marketing">
+                <h2 class="code-line fw-bold" data-line-start=9 data-line-end=10><a
+                        id="Marketing_de_vanguardia_9"></a>Marketing
+                    de
+                    vanguardia</h2>
+                <p class="has-line-data" data-line-start="10" data-line-end="11">En Buerba… nos innovamos en la
+                    comercialización
+                    de viviendas, terrenos y cierre de negocios. Cada uno de nuestros listados se beneficia de la
+                    presencia más
+                    fuerte en la comunidad local y una introducción a una audiencia mundial en la web. Invertimos en
+                    fotografía
+                    profesional, recorridos virtuales, publicidad online, publicidad impresa local y mucho más.</p>
+            </div>
+
+            <div class="row pb-md-3 pb-5" id="5_rules_to_sell_rs">
+                <h2 class="code-line fw-bold" data-line-start=0 data-line-end=1><a
+                        id="LAS_5_REGLAS_PARA_VENDER_CON_EFICIENCIA_UN_INMUEBLE_0"></a> Las 5 reglas para vender con
+                    eficiencia un inmueble</h2>
+                <ol class="px-5">
+                    <li class="has-line-data" data-line-start="2" data-line-end="5">
+                        <h6 class="code-line fw-bold" data-line-start=2 data-line-end=3>Déjelo en manos expertas</h6>
+                        <p class="has-line-data px-3" data-line-start="3" data-line-end="4">
+                            Vender un inmueble es una de las decisiones más trascendentales de nuestra
+                            vida, por lo cual recomendamos darle la importancia que merece, primero haga
+                            cita con un profesional inmobiliario para iniciar el proceso.
+                        </p>
+                    </li>
+                    <li class="has-line-data" data-line-start="5" data-line-end="9">
+                        <h6 class="code-line fw-bold" data-line-start=5 data-line-end=6>
+                            El orden del proceso es primordial, por lo cual veamos, <strong>¿Sabe usted que requiere
+                                el Profesional para brindarle esta asesoría de una manera certera y eficaz?</strong>
+                        </h6>
+                        <p class="has-line-data px-5" data-line-start="6" data-line-end="8"><strong>A)</strong> Una cita
+                            en
+                            el inmueble con luz de día.<br>
+                            <strong>B)</strong> Acreditar la propiedad con todos los documentos necesarios.
+                        </p>
+                    </li>
+                    <li class="has-line-data" data-line-start="9" data-line-end="11">
+                        <h6 class="code-line fw-bold" data-line-start=9 data-line-end=10><a
+                                id="Determinar_el_valor_de_venta_del_inmueble_de_acuerdo_al_estado_fsico_el_mercado_y_la_situacin_legal_del_mismo_9"></a>Determinar
+                            el valor de venta del inmueble, de acuerdo al estado físico, el mercado y la situación legal
+                            del mismo.</h6>
+                    </li>
+                    <li class="has-line-data" data-line-start="11" data-line-end="13">
+                        <h6 class="code-line fw-bold" data-line-start=11 data-line-end=12><a
+                                id="Firmar_contrato_de_comercializacin_en_exclusiva_con_la_Empresa_Inmobiliaria_que_usted_elija_11"></a>Firmar
+                            contrato de comercialización en exclusiva con la Empresa Inmobiliaria que usted elija.</h6>
+                    </li>
+                    <li class="has-line-data" data-line-start="13" data-line-end="14">
+                        <h6 class="code-line fw-bold" data-line-start=13 data-line-end=14><a
+                                id="Sea_honesto_con_el_profesional_inmobiliario_es_indispensable_para_poder_brindarle_el_mejor_de_los_servicios_13"></a>Sea
+                            honesto con el profesional inmobiliario, es indispensable para poder brindarle el mejor de
+                            los servicios.</h6>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="row pb-md-3 pb-5" id="check_listing">
+                <h2 class="code-line fw-bold" data-line-start=0 data-line-end=1>Check Listing</h2>
+                <h6 class="code-line fw-bold" data-line-start=2 data-line-end=3>Lista de documentos para promoción de
+                    inmuebles</h6>
+                <ul class="px-5">
+                    <li class="has-line-data" data-line-start="3" data-line-end="4">Escritura o título de la propiedad
+                    </li>
+                    <li class="has-line-data" data-line-start="4" data-line-end="5">Impuesto predial al día</li>
+                    <li class="has-line-data" data-line-start="5" data-line-end="6">Cédula Catal.</li>
+                    <li class="has-line-data" data-line-start="6" data-line-end="7">El folio del registro público de la
+                        propiedad y el comercio con la libertad de gravamen actualizada (aun cuando tenga gravamen)</li>
+                    <li class="has-line-data" data-line-start="7" data-line-end="8">Planos.</li>
+                    <li class="has-line-data" data-line-start="8" data-line-end="9">Levantamiento topográfico (si se
+                        tiene)</li>
+                    <li class="has-line-data" data-line-start="9" data-line-end="10">Último recibo de agua pagado
+                        (cuando sea el caso).</li>
+                    <li class="has-line-data" data-line-start="10" data-line-end="11">Última recibo de CFE pagado
+                        (cuando sea el caso).</li>
+                    <li class="has-line-data" data-line-start="11" data-line-end="13">Contrato de gas(cuando sea el
+                        caso).</li>
+                </ul>
+                <h6 class="code-line fw-bold" data-line-start=13 data-line-end=14>Si es
+                    Ejidal:</h6>
+                <ul class="px-5">
+                    <li class="has-line-data" data-line-start="14" data-line-end="15">Cesión de derechos firmada por las
+                        autoridades ejidales.</li>
+                    <li class="has-line-data" data-line-start="15" data-line-end="16">Contrato de regularizació</li>
+                    <li class="has-line-data" data-line-start="16" data-line-end="17">Titulo o Escritura Pública</li>
+                    <li class="has-line-data" data-line-start="17" data-line-end="20">
+                        Plano topográfico
+                        <br>
+                        <small class="text-muted ml-5 "><u>Este trámite lo podemos realizar por usted y tiene un costo
+                                de $1,500.00 (Mil Quinientos
+                                Pesos 00/100 M.N.)</u></small>
+                    </li>
+                </ul>
+                <h6 class="code-line fw-bold" data-line-start=20 data-line-end=21>Si es
+                    Condominio:</h6>
+                <ul class="px-5">
+                    <li class="has-line-data" data-line-start="21" data-line-end="22">Ultimo recibo de pago de
+                        mantenimiento.</li>
+                    <li class="has-line-data" data-line-start="22" data-line-end="23">Carta del administrador del
+                        condominio de no adeudo.</li>
+                    <li class="has-line-data" data-line-start="23" data-line-end="25">Ultimo pago de impuesto de zona
+                        federal.</li>
+                </ul>
+                <h6 class="code-line fw-bold" data-line-start=25 data-line-end=26>Si
+                    tiene
+                    Hipoteca:</h6>
+                <ul class="px-5">
+                    <li class="has-line-data" data-line-start="26" data-line-end="27">Ultimo pago de hipoteca.</li>
+                    <li class="has-line-data" data-line-start="27" data-line-end="29">Estado de cuenta original de la
+                        hipoteca.</li>
+                </ul>
+                <h6 class="code-line fw-bold" data-line-start=29 data-line-end=30>Si está en Zona Hotelera (o
+                    darse el caso de Zona Federal):</h6>
+                <p class="has-line-data" data-line-start="30" data-line-end="31">Carta de la hipotecaria en donde
+                    especifique los requisitos para sustituir el deudor y el tiempo que tarda el liberar la hipoteca en
+                    el RPPC, así como cualquier costo adicional que cobre el desarrollador por vender.</p>
+            </div>
+
+            <div class="row pb-md-3 pb-5" id="lista_documentos_para_el_propietario">
+                <h2 class="code-line fw-bold" data-line-start=33 data-line-end=34>Lista de documentos para el
+                    propietario:
+                </h2>
+                <h6 class="code-line fw-bold" data-line-start=35 data-line-end=36>Persona
+                    física:
+                </h6>
+                <ul class="px-5">
+                    <li class="has-line-data" data-line-start="36" data-line-end="37">Acta de nacimiento del
+                        propietario.</li>
+                    <li class="has-line-data" data-line-start="37" data-line-end="38">Acta de nacimiento del cónyuge (en
+                        caso de sociedad conyugal).</li>
+                    <li class="has-line-data" data-line-start="38" data-line-end="39">Identificación Oficial (solo se
+                        aceptan INE o Pasaporte VIGENTES).</li>
+                    <li class="has-line-data" data-line-start="39" data-line-end="40">Comprobante de domicilio a nombre
+                        del Propietario actualizado.</li>
+                    <li class="has-line-data" data-line-start="40" data-line-end="42">Factura del inmueble si la compra
+                        venta se realizo después de Marzo del 2014.</li>
+                </ul>
+                <h6 class="code-line fw-bold" data-line-start=42 data-line-end=43>Persona Moral:
+                </h6>
+                <ul class="px-5">
+                    <li class="has-line-data" data-line-start="43" data-line-end="44">Acta Constitutiva de la empresa,
+                        con sello de la notaria e inscripción al RPPC.</li>
+                    <li class="has-line-data" data-line-start="44" data-line-end="45">Folio electrónico del Registro
+                        Público de la Propiedad y del Comercio.</li>
+                    <li class="has-line-data" data-line-start="45" data-line-end="46">Poder del representante legal.
+                    </li>
+                    <li class="has-line-data" data-line-start="46" data-line-end="47">Comprobante de domicilio
+                        actualizado.</li>
+                    <li class="has-line-data" data-line-start="47" data-line-end="48">Identificación Oficial de las
+                        partes (solo se aceptan INE o Pasaporte VIGENTES)</li>
+                    <li class="has-line-data" data-line-start="48" data-line-end="49">En caso de ser extranjero (FM-3,
+                        FM-2 o Pasaporte VIGENTES).</li>
+                    <li class="has-line-data" data-line-start="49" data-line-end="50">Factura del inmueble si la compra
+                        venta se realizó después de Enero del 2014.</li>
+                </ul>
+            </div>
+
+            <div class="row pb-md-3 pb-5" id="exclusividad">
+                <h2 class="code-line fw-bold" data-line-start=0 data-line-end=1>Exclusividad:</h2>
+                <h6 class="code-line fw-bold" data-line-start=2 data-line-end=3>La exclusividad le ofrece un
+                    servicio personalizado y seguro:</h6>
+                <ol class="px-5">
+                    <li class="has-line-data" data-line-start="3" data-line-end="4">Su propiedad se ubica en un precio
+                        real
+                        de mercado de acuerdo con las últimas rentas o ventas de la zona, se sugiere para mayor certeza
+                        realizar un avaluó por un perito calificado.</li>
+                    <li class="has-line-data" data-line-start="4" data-line-end="5">Se gestiona la estrategia ideal de
+                        comercialización.</li>
+                    <li class="has-line-data" data-line-start="5" data-line-end="6">Se sube a nuestra página web www.
+                    </li>
+                    <li class="has-line-data" data-line-start="6" data-line-end="7">Se sube a los sitios web lideres en
+                        ventas del sector inmobiliario</li>
+                    <li class="has-line-data" data-line-start="7" data-line-end="8">Se integra a nuestra publicidad</li>
+                    <li class="has-line-data" data-line-start="8" data-line-end="10">El propietario recibirá una vez al
+                        mes
+                        un reporte de medios, así como una relación de clientes que visitaron su inmueble.</li>
+                </ol>
+                <h6 class="code-line fw-bold" data-line-start=10 data-line-end=11>Requisitos para comercializar su
+                    inmueble en exclusiva?</h6>
+                <p class="has-line-data" data-line-start="11" data-line-end="12">Dependiendo del inmueble, el Asociado
+                    le
+                    indicará la documentación necesaria a entregar y firmar convenio entre las partes.</p>
+                <h6 class="code-line fw-bold" data-line-start=13 data-line-end=14>Ventajas de otorgar un inmueble en
+                    exclusiva.</h6>
+                <ul class="px-5">
+                    <li class="has-line-data" data-line-start="14" data-line-end="15">Existe el compromiso formal de la
+                        empresa inmobiliaria de correr su inmueble.</li>
+                    <li class="has-line-data" data-line-start="15" data-line-end="16">Será el primer inmueble que la
+                        empresa
+                        inmobiliaria presente en su recorrido a los clientes potenciales.</li>
+                    <li class="has-line-data" data-line-start="16" data-line-end="17">El precio en que se comercialice
+                        será
+                        un precio real y justo de mercado, contribuyendo con esto a que el inmueble se comercialice
+                        rápidamente.</li>
+                    <li class="has-line-data" data-line-start="17" data-line-end="20">Los clientes que se llevan a su
+                        inmueble son calificados, brindándole seguridad, sobre todo cuando los inmuebles están ocupados.</li>
+                    <li class="has-line-data" data-line-start="16" data-line-end="21">Usted solamente negociará con nosotros.</li>
+                </ul>
+                <h6 class="code-line fw-bold" data-line-start=20 data-line-end=21>Al no dar su propiedad en exclusiva…
+                </h6>
+                <ul class="px-5">
+                    <li class="has-line-data" data-line-start="21" data-line-end="22">Las empresas inmobiliarias no
+                        invertirán tiempo ni publicidad en su inmueble.</li>
+                    <li class="has-line-data" data-line-start="22" data-line-end="23">Las empresas inmobiliarias
+                        mostrarán
+                        en último lugar su inmueble.</li>
+                    <li class="has-line-data" data-line-start="23" data-line-end="24">Su inmueble estará en el mercado
+                        con
+                        distintos precios.</li>
+                    <li class="has-line-data" data-line-start="24" data-line-end="25">Los clientes que le lleven quizá
+                        no
+                        estén calificados.</li>
+                    <li class="has-line-data" data-line-start="25" data-line-end="26">Su inmueble estará “congelado”
+                        sobre
+                        los escritorios de las empresas inmobiliarias.</li>
+                    <li class="has-line-data" data-line-start="26" data-line-end="28">Quizá los clientes busquen su
+                        propiedad, y al no ser atendidos rápido, renten o compren otra.</li>
+                </ul>
+                <h6 class="code-line fw-bold" data-line-start=28 data-line-end=29>Consejos para vender su propiedad.
+                </h6>
+                <ul class="px-5">
+                    <li class="has-line-data" data-line-start="29" data-line-end="30">Es muy importante considerar el
+                        valor
+                        comercial del inmueble actualizado, lo mejor será siempre hacer un avalúo y que este realizado
+                        por
+                        un perito calificado.</li>
+                    <li class="has-line-data" data-line-start="30" data-line-end="31">El inmueble deberá estar limpio y
+                        bien
+                        ventilado.</li>
+                    <li class="has-line-data" data-line-start="31" data-line-end="32">La jardinería así como la alberca
+                        en
+                        caso de contar con ellas deberán estar en buen estado.</li>
+                    <li class="has-line-data" data-line-start="32" data-line-end="33">Ser claros y precisos en que
+                        incluye
+                        el precio del inmueble (Extras)</li>
+                    <li class="has-line-data" data-line-start="33" data-line-end="34">En darse el caso de estar presente
+                        el
+                        propietario en la demostración del inmueble, permitir que sea el profesional inmobiliario quien
+                        haga
+                        la presentación del inmueble.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

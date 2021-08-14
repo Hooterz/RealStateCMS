@@ -12,7 +12,6 @@
     $router_api->map('GET', 'propertyImages', fn() => require_once 'controller/api/API_get_propertyImages.php');
     $router_api->map('GET', 'propertyNameExits', fn() => require_once 'controller/api/API_property_name_exists_Controller.php');
     $router_api->map('GET', 'propertyIdExits', fn() => require_once 'controller/api/API_property_id_exists_Controller.php');
-    
 
     // match current request url
     $match = $router_api->match($requestUrl = $url);
