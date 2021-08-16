@@ -23,6 +23,8 @@
             $feature->feature_content = explode(": ", $feature->feature_content)[1];
 
     echo $twig->render('editproperty.html', [
+        'is_not_indexed' => 1,
+        'no_meta' => 1,
         'post_response' => Path::HOST_NAME()."/edit-property/{$current_property->prop_id}",
         'categories' => DBCursor::select('SELECT cat_name FROM Category;'),
         'locations' => DBCursor::select('SELECT * FROM Location;'),

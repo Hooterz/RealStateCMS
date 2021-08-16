@@ -20,6 +20,9 @@
     $images = APIRealState::getPropertyImages($property->prop_id);
 
     echo $twig->render('detail.html', [
+        'dif_meta' => 1,
+        'meta_description' => $property->prop_description,
+        'meta_keywords' => implode(', ', explode(' ', $property->prop_name)),
         'property' => $property,
         'features' => $features,
         'images' => $images

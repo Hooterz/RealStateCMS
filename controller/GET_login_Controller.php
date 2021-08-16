@@ -68,5 +68,8 @@
         
     } 
 
-    echo $twig->render('login.html');
+    echo $twig->render('login.html',[
+        'is_not_indexed' => 1,
+        'no_meta' => 1
+    ]);
 ?>
