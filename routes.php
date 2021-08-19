@@ -1,5 +1,6 @@
 <?php
     $router = new AltoRouter();
+    $router->setBasePath('');
 
     // View routing
     $router->map('GET', '/', fn() => require_once 'controller/GET_index_Controller.php');

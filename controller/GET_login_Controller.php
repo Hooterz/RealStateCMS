@@ -63,7 +63,7 @@
     // }
     
     if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']){
-        $url = Path::PATH_FROM_HOST_URL('property-list');
+        $url = Path::HOST_NAME().'/property-list';
         header("Location: $url");  
         
     } 

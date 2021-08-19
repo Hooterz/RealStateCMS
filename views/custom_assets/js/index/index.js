@@ -19,7 +19,7 @@ async function fillLatestProperties(properties) {
         const property_image_url = await getFirstPropertyImage(property['prop_id']);
         let carousel_item = $(`
             <div class="swiper-slide carousel-item-a intro-item bg-image overflow-hidden" 
-                style="background-image: url(${property_image_url})">
+                style="background-image: url('${property_image_url}')">
                 <a href="${location.protocol}//${location.host}/detail/${property['prop_id']}">
                     <div class="overlay overlay-a"></div>
                     <div class="intro-content display-table">

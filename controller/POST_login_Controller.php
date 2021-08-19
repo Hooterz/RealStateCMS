@@ -21,6 +21,6 @@
     unset($_SESSION['logged_in']);
     $_SESSION['logged_in'] = true;
 
-    $url = Path::PATH_FROM_HOST_URL('property-list');
+    $url = Path::HOST_NAME().'/property-list';
     header("Location: $url");  
 
