@@ -1,5 +1,5 @@
 {% extends "./layout.html" %}
-{% block title %}SE - Property List{% endblock %}
+{% block title %}SB - Lista de Propiedades{% endblock %}
 {% block additional_sources %}
   <link rel="stylesheet" href="{{ host }}/views/custom_assets/css/edit_property/edit_property.css">
   <script type="text/javascript" src="{{ host }}/views/custom_assets/jquery/jquery-3.6.0.min.js"></script>
@@ -16,6 +16,7 @@
       </div>
       <div class="d-grid gap-2 col-6 mx-auto my-3">
         <a class="btn btn-primary" href="{{host}}/add-property">Añadir nueva propiedad</a>
+        <a class="btn btn-danger" href="{{host}}/logout">Cerrar Sesión</a>
       </div>
       <h3>Resultados de Búsqueda</h3>
       <table class="table">

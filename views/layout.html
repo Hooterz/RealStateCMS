@@ -7,6 +7,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
     {# Meta de indexado #}
+    
+    {% block extra_meta %}{% endblock %}
+
     {% if is_not_indexed %}
         <meta name="robots" content="noindex">
     {% elseif are_only_page_links_indexed %}
@@ -142,7 +145,7 @@
                                     <span class="color-text-a">Teléfono .</span> +52 998 109 5357
                                 </li>
                                 <li class="color-a">
-                                    <span class="color-text-a">Correo Electrónico .</span> sergio.buerba@gmail.com
+                                    <span class="color-text-a">Correo Electrónico .</span> buerba@outlook.es
                                 </li>
                             </ul>
                         </div>
@@ -161,25 +164,25 @@
                     <div class="socials-a">
                         <ul class="list-inline">
                             <li class="list-inline-item">
-                                <a href="#">
+                                <a href="https://www.facebook.com/sergio.buerba.real.estate/" target="_blank">
                                     <i class="bi bi-facebook" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li class="list-inline-item">
+                            <!--<li class="list-inline-item">
                                 <a href="#">
                                     <i class="bi bi-twitter" aria-hidden="true"></i>
                                 </a>
-                            </li>
+                            </li>-->
                             <li class="list-inline-item">
-                                <a href="#">
+                                <a href="https://www.instagram.com/sergio.e.buerba" target="_blank">
                                     <i class="bi bi-instagram" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li class="list-inline-item">
+                            <!--<li class="list-inline-item">
                                 <a href="#">
                                     <i class="bi bi-linkedin" aria-hidden="true"></i>
                                 </a>
-                            </li>
+                            </li>-->
                         </ul>
                     </div>
                     <div class="copyright-footer">

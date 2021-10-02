@@ -13,5 +13,8 @@
     session_destroy(); 
     
     $link = Path::HOST_NAME();
-    header("Location: $link");
+    header("Location: $link",array([
+        'is_not_indexed' => 1,
+        'no_meta' => 1
+    ]));
 ?>

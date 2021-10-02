@@ -1,5 +1,5 @@
 {% extends "./layout.html" %}
-{% block title %}CMS - Houses{% endblock %}
+{% block title %}SB - Hogar: {{ property.prop_name }}{% endblock %}
 {% block body %}
 <main id="main">
 
@@ -54,7 +54,11 @@
             <div class="card-header-c d-flex p-0 my-3">
               <div class="card-box-ico p-0 d-flex flex-column align-item-center shadow rounded">
                 <span class="bi bi-cash align-self-center"></span>
-                <h3 class="title-c m-0 px-2">{{ property.prop_price }} MXN</h3>
+                {% if property.prop_price == 0 %}
+                  <h3 class="title-c m-0 px-2">Negociable</h3>
+                {% else %}
+                  <h3 class="title-c m-0 px-2">{{ property.prop_price }} MXN</h3>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -70,15 +74,15 @@
             <div class="summary-list">
               <ul class="list">
                 <li class="d-flex justify-content-between">
-                  <strong>Dirección:</strong>
+                  <strong>Dirección: </strong>
                   <span>{{ property.prop_location}}, {{ property.prop_address }}</span>
                 </li>
                 <li class="d-flex justify-content-between">
-                  <strong>Tipo de Propiedad:</strong>
+                  <strong>Tipo de Propiedad: </strong>
                   <span>{{ property.prop_category }}</span>
                 </li>
                 <li class="d-flex justify-content-between">
-                  <strong>Area:</strong>
+                  <strong>Area: </strong>
                   <span>{{ property.prop_area}} m<sup>2</sup>
                   </span>
                 </li>
@@ -109,9 +113,9 @@
                 <div class="col-sm-12">
                   <div class="title-box-d">
                     {% if property.prop_category == 'Casa' %}
-                    <h3 class="title-d">Habitaciones:</h3>
+                    <h3 class="title-d">Habitaciones: </h3>
                     {% elseif property.prop_category == 'Terreno' %}
-                    <h3 class="title-d">Características:</h3>
+                    <h3 class="title-d">Características: </h3>
                     {% endif %}
                   </div>
                 </div>

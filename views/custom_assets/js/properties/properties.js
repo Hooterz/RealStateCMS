@@ -104,7 +104,7 @@ async function fillProperties(properties){
                 </div>
                 <div class="card-body-a">
                   <div class="price-box d-flex">
-                    <span class="price-a">${property['prop_price']} MXN</span>
+                    <span class="price-a">${property['prop_price'] === 0 ? 'Negociable' : (property['prop_price'].toString() + ' MXN')}</span>
                   </div>
                   <a href="${location.protocol}//${location.host}/detail/${property['prop_id']}" class="link-a">Click here to view
                     <span class="bi bi-chevron-right"></span>

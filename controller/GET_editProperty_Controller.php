@@ -9,6 +9,7 @@
     require('controller/tools/Twig.php');
     require('controller/tools/Auth_required.php');
 
+    $id = htmlspecialchars($id);
     // Current Property
     $current_property = APIRealState::getProperty($id); 
         

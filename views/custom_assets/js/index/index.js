@@ -14,9 +14,9 @@ async function getLatestProperties() {
 }
 
 async function fillLatestProperties(properties) {
-    console.log(properties);
     for (const property of properties['properties']) {
         const property_image_url = await getFirstPropertyImage(property['prop_id']);
+        console.log(property);
         let carousel_item = $(`
             <div class="swiper-slide carousel-item-a intro-item bg-image overflow-hidden" 
                 style="background-image: url('${property_image_url}')">
@@ -31,11 +31,11 @@ async function fillLatestProperties(properties) {
                                             <p class="intro-title-top">${property['prop_location']}
                                             <br>${property['prop_address']}
                                             </p>
-                                            <h1 class="intro-title mb-4 w-50">
+                                            <h1 class="intro-title mb-3 w-70">
                                                 ${property['prop_name']}
                                             </h1>
                                             <p class="intro-subtitle intro-price">
-                                                <span class="price-a">${property['prop_price']} MXN</span>
+                                                <span class="price-a">${property['prop_price'] === 0 ? 'Negociable' : (property['prop_price'].toString() + ' MXN')}</span>
                                             </p>
                                         </div>
                                     </div>
@@ -53,7 +53,7 @@ async function fillLatestProperties(properties) {
         speed: 600,
         loop: true,
         autoplay: {
-          delay: 2000,
+          delay: 4000,
           disableOnInteraction: false
         },
         slidesPerView: 'auto',
@@ -88,6 +88,12 @@ async function fillRecentProperties(properties) {
     let counter = 0;
     for (const property of properties['properties']) {
         const property_image_url = await getFirstPropertyImage(property['prop_id']);
+        if (property['prop_price'] === 0) {
+            var property_price = "Negociable";
+        }
+        else {
+            var property_price = property['prop_price'] + " MXN";
+        }
         let carousel_item = $(`
             <div class="col-sm-12 col-md-6 col-xl-4 p-0 p-md-2 col-md-4 mt-2 mt-md-0">
                 <a href="${location.protocol}//${location.host}/detail/${property['prop_id']}" class="text-decoration-none w-100">
@@ -101,7 +107,7 @@ async function fillRecentProperties(properties) {
 
                             <div class="p-2 m-2 position-absolute top-0 start-0 bg-white shadow-sm rounded"
                                 style="font-size:.8rem;">
-                                ${property['prop_price']} MXN
+                                ${property['prop_price'] === 0 ? 'Negociable' : (property['prop_price'].toString() + ' MXN')} 
                             </div>
                         </div>
                         <div class="card-block pt-2">
